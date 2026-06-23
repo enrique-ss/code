@@ -57,13 +57,17 @@ const ASSETS = {
         forest_path: 'assets/backgrounds/forest_path.png',
         magic_tower: 'assets/backgrounds/magic_tower.png',
         market: 'assets/backgrounds/market.png',
-        door: 'assets/backgrounds/door.png'
+        door: 'assets/backgrounds/door.png',
+        forest_layer_0: 'assets/backgrounds/GrassLand_Background_1.png',
+        forest_layer_1: 'assets/backgrounds/GrassLand_Background_2.png',
+        forest_layer_2: 'assets/backgrounds/GrassLand_Background_3.png',
+        forest_layer_3: 'assets/backgrounds/GrassLand_Background_4.png'
     },
     sprites: {
-        arthur: 'assets/sprites/arthur.png',
-        mage: 'assets/sprites/mage.png',
-        merchant: 'assets/sprites/merchant.png',
-        door: 'assets/sprites/door.png'
+        arthur: 'assets/sprites/arthur.gif',
+        mage: 'assets/sprites/mage.gif',
+        merchant: 'assets/sprites/merchant.gif',
+        door: 'assets/sprites/door.gif'
     },
     ui: {
         json_panel: 'assets/ui/json_panel.png',

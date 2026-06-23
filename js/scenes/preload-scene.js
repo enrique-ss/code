@@ -57,7 +57,7 @@ class PreloadScene extends Phaser.Scene {
         // Load background images (apenas se caminho não for null)
         Object.entries(ASSETS.backgrounds).forEach(([key, path]) => {
             if (path) {
-                this.load.image(`bg_${key}`, path);
+                this.load.image(key, path);
             }
         });
 

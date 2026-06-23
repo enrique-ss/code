@@ -19,6 +19,29 @@ class GameScene extends Phaser.Scene {
         this.storyQueue = [];
         this.queueIndex = 0;
 
+        // Setup DOM sprites container for animated GIFs
+        const uiLayer = document.getElementById('ui-layer');
+        this.domSprites = {};
+        
+        if (uiLayer) {
+            const oldContainer = document.getElementById('dom-sprites-container');
+            if (oldContainer) oldContainer.remove();
+            
+            this.domSpritesContainer = document.createElement('div');
+            this.domSpritesContainer.id = 'dom-sprites-container';
+            this.domSpritesContainer.style.position = 'absolute';
+            this.domSpritesContainer.style.top = '0';
+            this.domSpritesContainer.style.left = '0';
+            this.domSpritesContainer.style.width = '100%';
+            this.domSpritesContainer.style.height = '100%';
+            this.domSpritesContainer.style.pointerEvents = 'none';
+            uiLayer.appendChild(this.domSpritesContainer);
+            
+            this.events.on('shutdown', () => {
+                if (this.domSpritesContainer) this.domSpritesContainer.remove();
+            });
+        }
+
         // ==================== INTEGRAR COM GAME ENGINE ====================
         if (window.gameEngine) {
             window.gameEngine.onStateChange = (oldState, newState, data) => {
@@ -30,33 +53,14 @@ class GameScene extends Phaser.Scene {
         // Set bounds
         this.physics.world.setBounds(0, 0, width * 3, height);
 
-        // Background loading (use gradient fallback if image is missing)
-        // Make it slightly wider and taller than the actual bounds to prevent gaps on zoom/shake
-        if (this.textures.exists('bg_forest_path')) {
-            this.background = this.add.image(width * 1.5, height / 2, 'bg_forest_path')
-                .setDisplaySize(width * 3.6, height * 1.3);
-        } else {
-            // Create a gorgeous parallax style forest background
-            const graphics = this.add.graphics();
-            graphics.fillGradientStyle(0x0f0c1b, 0x0f0c1b, 0x1d1a39, 0x1d1a39, 1);
-            graphics.fillRect(-300, -200, width * 3 + 600, height + 400);
-            
-            // Add some simple glowing stars in Phaser
-            for (let i = 0; i < 40; i++) {
-                const sx = Phaser.Math.Between(-100, width * 3 + 100);
-                const sy = Phaser.Math.Between(-100, height * 0.4);
-                const size = Phaser.Math.Between(2, 4);
-                const star = this.add.circle(sx, sy, size, 0x8be9fd, 0.4);
-                
-                this.tweens.add({
-                    targets: star,
-                    alpha: { from: 0.4, to: 0.8 },
-                    duration: Phaser.Math.Between(1500, 3000),
-                    yoyo: true,
-                    repeat: -1
-                });
-            }
-        }
+        // Setup Parallax Background (4 layers)
+        // Fallback graphics are drawn dynamically in HSL Dracula color scheme if images don't exist
+        this.parallaxLayers = [
+            { sprite: this.createParallaxLayer(0, 'forest_layer_0', width, height), factor: 0.05 },
+            { sprite: this.createParallaxLayer(1, 'forest_layer_1', width, height), factor: 0.15 },
+            { sprite: this.createParallaxLayer(2, 'forest_layer_2', width, height), factor: 0.4 },
+            { sprite: this.createParallaxLayer(3, 'forest_layer_3', width, height), factor: 1.0 }
+        ];
 
         // Create hero sprite (use visual graphic circle if asset is missing)
         if (this.textures.exists('sprite_arthur')) {
@@ -87,6 +91,9 @@ class GameScene extends Phaser.Scene {
             });
             this.heroHalo = halo;
         }
+
+        // Add the DOM GIF overlay for Arthur
+        this.createDOMSprite('arthur', this.hero, 0.8, 128);
 
         // Define obstacles/encounters positions (X coordinates)
         this.obstacles = [
@@ -133,6 +140,10 @@ class GameScene extends Phaser.Scene {
             
             sprite.setData('index', index);
             sprite.setData('node', obs.node);
+
+            // Add the DOM GIF overlay for this obstacle (Door uses larger sprite frame)
+            const defaultSize = (obs.type === 'door') ? 160 : 128;
+            this.createDOMSprite(obs.type, sprite, 0.8, defaultSize);
         });
 
         // Setup camera to follow hero smoothly
@@ -204,6 +215,46 @@ class GameScene extends Phaser.Scene {
         if (this.heroHalo && this.hero) {
             this.heroHalo.x = this.hero.x;
             this.heroHalo.y = this.hero.y;
+        }
+
+        // Update parallax layers scroll position based on camera movement
+        if (this.parallaxLayers) {
+            const camScrollX = this.cameras.main.scrollX;
+            this.parallaxLayers.forEach(layer => {
+                layer.sprite.tilePositionX = camScrollX * layer.factor;
+            });
+        }
+
+        // Update DOM sprites positions to match Phaser physics sprites
+        if (this.domSprites) {
+            const cam = this.cameras.main;
+            Object.keys(this.domSprites).forEach(key => {
+                const spriteData = this.domSprites[key];
+                const phaserSprite = spriteData.phaserSprite;
+                const el = spriteData.element;
+                
+                if (phaserSprite && el && el.style.display !== 'none') {
+                    // Calculate screen position based on camera scroll
+                    const screenX = phaserSprite.x - cam.scrollX;
+                    const screenY = phaserSprite.y - cam.scrollY;
+                    
+                    const size = spriteData.defaultSize * phaserSprite.scaleX;
+                    
+                    el.style.width = `${size}px`;
+                    el.style.height = `${size}px`;
+                    el.style.left = `${screenX - size / 2}px`;
+                    el.style.top = `${screenY - size * spriteData.originY}px`;
+                    
+                    // Mirroring (flipping horizontally) based on velocity
+                    if (phaserSprite.body && phaserSprite.body.velocity) {
+                        if (phaserSprite.body.velocity.x < 0) {
+                            el.style.transform = 'scaleX(-1)';
+                        } else if (phaserSprite.body.velocity.x > 0) {
+                            el.style.transform = 'scaleX(1)';
+                        }
+                    }
+                }
+            });
         }
 
         // Trigger inspection when hero arrives at next obstacle
@@ -387,5 +438,135 @@ class GameScene extends Phaser.Scene {
                 this.loadNode(choice.target);
             }
         }
+    }
+
+    /**
+     * Creates a parallax background layer (either from loaded image asset or generated beautiful fallback)
+     */
+    createParallaxLayer(index, key, width, height) {
+        if (this.textures.exists(key)) {
+            // Setup preloaded image asset
+            const ts = this.add.tileSprite(0, 0, width, height, key)
+                .setOrigin(0, 0)
+                .setScrollFactor(0)
+                .setTileScale(1, 1);
+            
+            // Scaled dynamically to preserve nearest neighbor look if necessary
+            ts.tileScaleX = 1;
+            ts.tileScaleY = 1;
+            return ts;
+        }
+
+        // Generate high-quality retro styled pixel-art fallbacks using Dracula Theme palette
+        const graphics = this.make.graphics({ x: 0, y: 0, add: false });
+        
+        if (index === 0) {
+            // Layer 0: Deep space / Sky
+            graphics.fillGradientStyle(0x0e0e1b, 0x0e0e1b, 0x1d1d35, 0x1d1d35, 1);
+            graphics.fillRect(0, 0, width, height);
+            
+            // Glowing stars
+            graphics.fillStyle(0x8be9fd, 0.4);
+            for (let i = 0; i < 35; i++) {
+                const rx = Phaser.Math.Between(0, width);
+                const ry = Phaser.Math.Between(0, height * 0.55);
+                graphics.fillCircle(rx, ry, Phaser.Math.Between(1, 3));
+            }
+            
+            // Distant faint nebula clouds
+            graphics.fillStyle(0xbd93f9, 0.08);
+            graphics.fillEllipse(width * 0.3, height * 0.25, 300, 100);
+            graphics.fillEllipse(width * 0.7, height * 0.35, 400, 150);
+            
+        } else if (index === 1) {
+            // Layer 1: Distant mountains/skyline silhouttes
+            graphics.fillStyle(0x282a36, 1);
+            graphics.beginPath();
+            graphics.moveTo(0, height);
+            let cx = 0;
+            while (cx < width) {
+                const nextX = cx + Phaser.Math.Between(100, 200);
+                const peakY = height * 0.52 + Phaser.Math.Between(-30, 25);
+                graphics.lineTo(cx, height);
+                graphics.lineTo(nextX, peakY);
+                cx = nextX;
+            }
+            graphics.lineTo(width, height);
+            graphics.closePath();
+            graphics.fillPath();
+            
+        } else if (index === 2) {
+            // Layer 2: Midground pine forest
+            graphics.fillStyle(0x44475a, 1);
+            for (let cx = 15; cx < width; cx += Phaser.Math.Between(45, 80)) {
+                const treeH = Phaser.Math.Between(90, 150);
+                const topY = height * 0.67 - treeH;
+                graphics.beginPath();
+                graphics.moveTo(cx, topY);
+                graphics.lineTo(cx - 25, height * 0.67);
+                graphics.lineTo(cx + 25, height * 0.67);
+                graphics.closePath();
+                graphics.fillPath();
+                // Draw trunk down to bottom
+                graphics.fillRect(cx - 4, height * 0.67, 8, height * 0.33);
+            }
+            
+        } else if (index === 3) {
+            // Layer 3: Foreground trees, path & walk ground
+            // Draw soil
+            graphics.fillStyle(0x1a1a2e, 1);
+            graphics.fillRect(0, height * 0.68, width, height * 0.32);
+            
+            // Draw path detail
+            graphics.fillStyle(0x6272a4, 0.4);
+            graphics.fillRect(0, height * 0.68, width, 18);
+            
+            // Draw grass blades and detail
+            graphics.fillStyle(0x50fa7b, 0.95);
+            graphics.fillRect(0, height * 0.68 - 4, width, 4);
+            for (let cx = 0; cx < width; cx += 12) {
+                graphics.fillRect(cx, height * 0.68 - 8, 4, 4);
+            }
+        }
+
+        graphics.generateTexture(key, width, height);
+        graphics.destroy();
+
+        return this.add.tileSprite(0, 0, width, height, key)
+            .setOrigin(0, 0)
+            .setScrollFactor(0);
+    }
+
+    /**
+     * Creates a DOM image element overlay for playing animated GIF files
+     */
+    createDOMSprite(key, phaserSprite, originY = 0.5, defaultSize = 128) {
+        if (!this.domSpritesContainer) return;
+        
+        const path = ASSETS.sprites[key];
+        if (!path) return;
+        
+        const img = document.createElement('img');
+        img.src = path;
+        img.style.position = 'absolute';
+        img.style.pointerEvents = 'none';
+        img.style.imageRendering = 'pixelated'; // Keep pixel art sharp!
+        img.style.display = 'block';
+        
+        // Hide the original Phaser sprite visually but keep it for physics
+        phaserSprite.setAlpha(0);
+        
+        img.onerror = () => {
+            img.style.display = 'none';
+            phaserSprite.setAlpha(1);
+        };
+        
+        this.domSpritesContainer.appendChild(img);
+        this.domSprites[key] = {
+            element: img,
+            phaserSprite: phaserSprite,
+            originY: originY,
+            defaultSize: defaultSize
+        };
     }
 }
