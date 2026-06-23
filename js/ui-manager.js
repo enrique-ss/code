@@ -293,6 +293,17 @@ const UIManager = {
         const container = document.getElementById('json-visual-editor');
         if (!container) return;
 
+        // Mensagem especial quando a aba npcs ainda está vazia (nenhum personagem encontrado)
+        if (this.activeTab === 'npcs' && (!data || Object.keys(data).length === 0)) {
+            container.innerHTML = `<span style="color:#6272a4; font-style:italic; font-size:13px; line-height:1.7">
+// Nenhum personagem descoberto ainda.<br>
+// Continue avançando na história<br>
+// para revelar os habitantes deste mundo.<br><br>
+<span style="color:#44475a">// npcs: {}</span>
+</span>`;
+            return;
+        }
+
         if (!data) {
             container.innerHTML = 'Nenhum dado disponível.';
             return;
@@ -481,10 +492,18 @@ const UIManager = {
                 eventos_ativos: [],
                 estado_mundo: "normal"
             };
+            // Reinicia os NPCs — serão revelados novamente conforme o jogador avança
+            window.gameEngine.databases.npcs = {};
             window.gameEngine.currentState = window.gameEngine.GameState.MENU;
             window.gameEngine.triggerDatabaseUpdate('heroi');
             window.gameEngine.triggerDatabaseUpdate('inventario');
             window.gameEngine.triggerDatabaseUpdate('mundo');
+            window.gameEngine.triggerDatabaseUpdate('npcs');
+
+            // Limpa o cache do localStorage para não restaurar dados de sessões anteriores
+            ['heroi', 'inventario', 'mundo', 'npcs', 'monstros'].forEach(tab => {
+                localStorage.removeItem(`codequest:${tab}`);
+            });
         }
 
         const classBtns = document.querySelectorAll('.class-btn');

@@ -288,19 +288,22 @@ class GameScene extends Phaser.Scene {
         // Garante que o jogador fique parado enquanto o diálogo estiver ativo
         this.stopWalking();
 
-        // Synchronize databases and trigger updates for tabs
+        // Revela NPCs dinamicamente no painel JSON conforme o jogador os encontra
         if (node.json_data && window.gameEngine) {
             if (nodeKey.includes('cenario_1')) {
-                window.gameEngine.databases.npcs.mago = node.json_data.npc;
-                window.gameEngine.triggerDatabaseUpdate('npcs');
+                // Mago Eldrin: revela no primeiro encontro, depois atualiza com dados do nó
+                window.gameEngine.revealNPC('mago', node.json_data.npc || {});
             } else if (nodeKey.includes('cenario_2')) {
-                window.gameEngine.databases.npcs.mercador = node.json_data.npc;
-                window.gameEngine.triggerDatabaseUpdate('npcs');
+                // Mercador Gorb: revela ao chegar no mercado
+                window.gameEngine.revealNPC('mercador', node.json_data.npc || {});
             } else if (nodeKey.includes('cenario_3')) {
-                window.gameEngine.databases.npcs.porta = node.json_data.objeto;
-                window.gameEngine.databases.inventario = node.json_data.heroi.inventario;
-                window.gameEngine.triggerDatabaseUpdate('npcs');
-                window.gameEngine.triggerDatabaseUpdate('inventario');
+                // Porta do Conhecimento: revela no último cenário
+                window.gameEngine.revealNPC('porta', node.json_data.objeto || {});
+                // Também atualiza inventário do herói com os dados do cenário
+                if (node.json_data.heroi && node.json_data.heroi.inventario) {
+                    Object.assign(window.gameEngine.databases.inventario, node.json_data.heroi.inventario);
+                    window.gameEngine.triggerDatabaseUpdate('inventario');
+                }
             }
         }
 

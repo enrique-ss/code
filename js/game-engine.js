@@ -93,29 +93,33 @@ class CodeQuestGame {
                     drops: ["pele_lobo", "dente_lobo"]
                 }
             },
-            npcs: {
-                mago: {
-                    nome: "Mago Eldrin",
-                    localizacao: "torre_magica",
-                    dialogos: ["Bem-vindo, viajante!", "A magia é como código."],
-                    servicos: ["ensinar_magia", "dar_poção"]
-                },
-                mercador: {
-                    nome: "Mercador Gorb",
-                    localizacao: "mercado",
-                    dialogos: ["Tenho os melhores itens!", "Olhe minha mercadoria."],
-                    servicos: ["comprar_itens", "vender_itens"]
-                },
-                porta: {
-                    nome: "Porta do Conhecimento",
-                    localizacao: "final",
-                    dialogos: ["Responda corretamente para passar.", "A lógica é a chave."],
-                    servicos: ["abrir_porta"]
-                }
-            }
+            npcs: {}  // NPCs são revelados dinamicamente conforme o jogador os encontra
         };
 
         this.blockCounter = 0;
+
+        // ==================== NPCs REVELADOS ====================
+        // Catálogo completo de NPCs (dados completos, nunca expostos diretamente)
+        this._npcCatalog = {
+            mago: {
+                nome: "Mago Eldrin",
+                tipo: "mentor",
+                localizacao: "torre_magica",
+                status: "????"  // será atualizado ao revelar
+            },
+            mercador: {
+                nome: "Mercador Gorb",
+                tipo: "vendedor",
+                localizacao: "mercado",
+                status: "????"
+            },
+            porta: {
+                nome: "Porta do Conhecimento",
+                tipo: "passagem",
+                localizacao: "sala_final",
+                status: "????"
+            }
+        };
 
         // ==================== INICIALIZAÇÃO ====================
         // Load level 1 initially
@@ -133,8 +137,8 @@ class CodeQuestGame {
                 heroi: this.databases.heroi,
                 inventario: this.databases.inventario,
                 mundo: this.databases.mundo,
-                monstros: this.databases.monstros,
-                npcs: this.databases.npcs
+                monstros: this.databases.monstros
+                // 'npcs' é intencionalmente excluído — revelados dinamicamente durante o jogo
             };
 
             const tabs = Object.keys(defaults);
@@ -152,6 +156,9 @@ class CodeQuestGame {
                 }
                 this.databases[tab] = await response.json();
             }
+
+            // Garante que npcs sempre começa vazio (revelação progressiva)
+            this.databases.npcs = {};
 
             console.log('JSON data loaded successfully');
             // Trigger UI update after loading
@@ -253,6 +260,24 @@ class CodeQuestGame {
         if (this.onDatabaseUpdate) {
             this.onDatabaseUpdate(tab, this.databases[tab]);
         }
+    }
+
+    /**
+     * Revela um NPC no painel JSON, tornando seus dados visíveis ao jogador.
+     * Mescla os dados do catálogo interno com os dados dinâmicos do encontro.
+     * @param {string} npcKey - Chave do NPC ('mago', 'mercador', 'porta')
+     * @param {Object} encounterData - Dados extras do encontro atual (do StoryNodes.json_data)
+     */
+    revealNPC(npcKey, encounterData = {}) {
+        const base = this._npcCatalog[npcKey];
+        if (!base) return;
+
+        // Mescla os dados base do catálogo com os dados dinâmicos do encontro
+        this.databases.npcs[npcKey] = Object.assign({}, base, encounterData);
+        delete this.databases.npcs[npcKey].status; // Remove placeholder "????"
+
+        this.triggerDatabaseUpdate('npcs');
+        console.log(`[GameEngine] NPC revelado: ${npcKey}`);
     }
 
     loadLevel(levelId) {
