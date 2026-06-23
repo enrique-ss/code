@@ -46,10 +46,12 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 1280px;
+            height: 720px;
             z-index: 10;
             pointer-events: none;
+            transform-origin: top left;
+            overflow: hidden;
         }
 
         .screen {
@@ -58,7 +60,7 @@
 
         /* About Modal styles */
         .modal {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -112,7 +114,7 @@
 
         /* Hacker Menu Panel slide out */
         #hacker-menu-panel {
-            position: fixed;
+            position: absolute;
             right: 0;
             top: 0;
             width: 420px;
@@ -188,166 +190,160 @@
 <body>
 
     <!-- Phaser Canvas Container -->
-    <div id="game-container"></div>
-
-    <!-- UI Overlay Layer -->
-    <div id="ui-layer">
-        
-        <!-- ==================== TELA DE MENU ==================== -->
-        <div id="screen-menu" class="screen active">
-            <div class="logo-container">
-                <h1 class="game-title">Code Quest</h1>
-                <p class="game-subtitle">A Programmer's Isekai Adventure</p>
+    <div id="game-container">
+        <!-- UI Overlay Layer -->
+        <div id="ui-layer">
+            
+            <!-- ==================== TELA DE MENU ==================== -->
+            <div id="screen-menu" class="screen active">
+                <div class="logo-container">
+                    <h1 class="game-title">Code Quest</h1>
+                    <p class="game-subtitle">A Programmer's Isekai Adventure</p>
+                </div>
+                <div class="menu-buttons">
+                    <button class="btn btn-primary" id="btn-start-game">
+                        <i class="fa-solid fa-play"></i> Iniciar Jogo
+                    </button>
+                    <button class="btn" id="btn-about">
+                        <i class="fa-solid fa-circle-info"></i> Sobre
+                    </button>
+                </div>
             </div>
-            <div class="menu-buttons">
-                <button class="btn btn-primary" id="btn-start-game">
-                    <i class="fa-solid fa-play"></i> Iniciar Jogo
-                </button>
-                <button class="btn" id="btn-about">
-                    <i class="fa-solid fa-circle-info"></i> Sobre
-                </button>
-            </div>
-        </div>
 
-        <!-- ==================== TELA DE CRIAÇÃO DE PERSONAGEM ==================== -->
-        <div id="screen-char-create" class="screen">
-            <div class="character-creation-container">
-                <h2 class="creation-title">Crie seu Personagem</h2>
-                <div class="creation-form">
-                    <div class="form-group">
-                        <label for="char-name" style="font-weight: bold;">Nome do Personagem:</label>
-                        <input type="text" id="char-name" class="creation-input" placeholder="Digite seu nome..." maxlength="15">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-weight: bold;">Escolha sua Classe:</label>
-                        <div class="class-selection">
-                            <button class="class-btn" data-class="Guerreiro">
-                                <span class="class-icon">🛡️</span>
-                                <span>Guerreiro</span>
+            <!-- ==================== TELA DE CRIAÇÃO DE PERSONAGEM ==================== -->
+            <div id="screen-char-create" class="screen">
+                <div class="character-creation-container">
+                    <h2 class="creation-title">Crie seu Personagem</h2>
+                    <div class="creation-form">
+                        <div class="form-group">
+                            <label style="font-weight: bold;">Escolha sua Classe:</label>
+                            <div class="class-selection">
+                                <button class="class-btn" data-class="Guerreiro">
+                                    <span class="class-icon">🛡️</span>
+                                    <span>Guerreiro</span>
+                                </button>
+                                <button class="class-btn" data-class="Mago">
+                                    <span class="class-icon">✨</span>
+                                    <span>Mago</span>
+                                </button>
+                                <button class="class-btn" data-class="Ladino">
+                                    <span class="class-icon">🥷</span>
+                                    <span>Ladino</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                            <button class="btn btn-primary" id="btn-char-confirm" style="flex: 1;">
+                                <i class="fa-solid fa-check"></i> Confirmar
                             </button>
-                            <button class="class-btn" data-class="Mago">
-                                <span class="class-icon">✨</span>
-                                <span>Mago</span>
-                            </button>
-                            <button class="class-btn" data-class="Ladino">
-                                <span class="class-icon">🥷</span>
-                                <span>Ladino</span>
+                            <button class="btn" id="btn-char-back" style="flex: 1;">
+                                <i class="fa-solid fa-arrow-left"></i> Voltar
                             </button>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                        <button class="btn btn-primary" id="btn-char-confirm" style="flex: 1;">
-                            <i class="fa-solid fa-check"></i> Confirmar
-                        </button>
-                        <button class="btn" id="btn-char-back" style="flex: 1;">
-                            <i class="fa-solid fa-arrow-left"></i> Voltar
-                        </button>
+                </div>
+            </div>
+ 
+            <!-- ==================== INTERFACE DE JOGO ==================== -->
+            <div id="screen-game" class="screen">
+                <!-- HUD Superior -->
+                <div class="hud-header">
+                    <div class="hud-card">
+                        <span id="hud-hero-class" style="font-weight: 700; color: #8be9fd;">Programador</span>
+                        <span style="color: #ffb86c; font-weight: bold;">Nível <span id="hud-hero-level">1</span></span>
+                    </div>
+                    <div class="hud-time" id="hud-time-container">
+                        <span id="hud-time-icon"><i class="fa-solid fa-cloud-sun" style="color: #ffb86c;"></i></span> <span id="hud-world-time">MANHÃ</span>
+                        <span class="hud-time-sep">|</span>
+                        <span id="hud-weather-icon"><i class="fa-solid fa-sun" style="color: #f1fa8c;"></i></span> <span id="hud-world-weather">SOL</span>
+                    </div>
+                    <button class="hud-menu-btn" id="btn-toggle-json" title="Inspecionar JSON do Mundo" style="pointer-events: auto;">
+                        <i class="fa-solid fa-code"></i> JSON
+                    </button>
+                </div>
+
+                <!-- Camada de Diálogo e Escolhas -->
+                <div class="dialog-layer">
+                    <!-- Painel de Escolhas -->
+                    <div class="choices-container" id="game-choices-container" style="display: none;">
+                        <!-- Botões de escolhas inseridos dinamicamente -->
+                    </div>
+
+                    <!-- Caixa de Diálogo Visual Novel -->
+                    <div class="dialog-box" id="game-dialog-box" style="display: none;">
+                        <div class="dialog-name-tag" id="dialog-speaker-name">Narrador</div>
+                        <div class="dialog-text" id="dialog-text-content">Carregando história...</div>
+                        <div class="dialog-cursor">▼</div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ==================== INTERFACE DE JOGO ==================== -->
-        <div id="screen-game" class="screen">
-            <!-- HUD Superior -->
-            <div class="hud-header">
-                <div class="hud-card">
-                    <span id="hud-hero-name" style="font-weight: 700; color: #8be9fd;">Arthur</span>
-                    <span id="hud-hero-class" style="color: #50fa7b; font-weight: 500;">Programador</span>
-                    <span style="color: #ffb86c; font-weight: bold;">Nível <span id="hud-hero-level">1</span></span>
+            <!-- ==================== TELA FINAL ==================== -->
+            <div id="screen-final" class="screen">
+                <div class="logo-container">
+                    <h1 class="game-title">Fim de Jogo</h1>
+                    <p class="game-subtitle">Obrigado por jogar Code Quest!</p>
                 </div>
-                <div class="hud-time" id="hud-time-container">
-                    <i class="fa-solid fa-clock"></i> <span id="hud-world-time">06:00</span>
-                    <span class="hud-time-sep">|</span>
-                    <span id="hud-weather-icon"><i class="fa-solid fa-sun" style="color: #f1fa8c;"></i></span> <span id="hud-world-weather">SOL</span>
-                </div>
-                <button class="hud-menu-btn" id="btn-toggle-json" title="Inspecionar JSON do Mundo" style="pointer-events: auto;">
-                    <i class="fa-solid fa-code"></i> JSON
-                </button>
-            </div>
-
-            <!-- Camada de Diálogo e Escolhas -->
-            <div class="dialog-layer">
-                <!-- Painel de Escolhas -->
-                <div class="choices-container" id="game-choices-container" style="display: none;">
-                    <!-- Botões de escolhas inseridos dinamicamente -->
+                
+                <div style="background: rgba(40, 42, 54, 0.85); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); max-width: 500px; width: 90%; margin: 0 auto 2.5rem; text-align: left; backdrop-filter: blur(10px);">
+                    <h3 style="color: #8be9fd; margin-bottom: 1.2rem; text-align: center; font-family: 'Fredoka', sans-serif; font-size: 1.5rem;">Resumo do Herói:</h3>
+                    <p style="margin-bottom: 0.6rem; font-size: 1.05rem;"><strong>Classe:</strong> <span id="final-char-class" style="color: #50fa7b;">Programador</span></p>
+                    <p style="margin-bottom: 0.6rem; font-size: 1.05rem;"><strong>Nível:</strong> <span id="final-char-level" style="color: #ffb86c; font-weight: bold;">1</span></p>
+                    <p style="margin-bottom: 0.6rem; font-size: 1.05rem;"><strong>Mana Máxima:</strong> <span id="final-char-mana" style="color: #bd93f9;">50</span></p>
+                    <p style="margin-bottom: 0; font-size: 1.05rem; line-height: 1.4;"><strong>Habilidades:</strong> <span id="final-char-skills" style="color: #8be9fd;">análise_de_código, depuração</span></p>
                 </div>
 
-                <!-- Caixa de Diálogo Visual Novel -->
-                <div class="dialog-box" id="game-dialog-box" style="display: none;">
-                    <div class="dialog-name-tag" id="dialog-speaker-name">Narrador</div>
-                    <div class="dialog-text" id="dialog-text-content">Carregando história...</div>
-                    <div class="dialog-cursor">▼</div>
+                <div class="menu-buttons">
+                    <button class="btn btn-primary" id="btn-restart-game">
+                        <i class="fa-solid fa-rotate-left"></i> Jogar Novamente
+                    </button>
+                    <button class="btn" id="btn-final-menu">
+                        <i class="fa-solid fa-house"></i> Menu Principal
+                    </button>
                 </div>
             </div>
-        </div>
 
-        <!-- ==================== TELA FINAL ==================== -->
-        <div id="screen-final" class="screen">
-            <div class="logo-container">
-                <h1 class="game-title">Fim de Jogo</h1>
-                <p class="game-subtitle">Obrigado por jogar Code Quest!</p>
-            </div>
-            
-            <div style="background: rgba(40, 42, 54, 0.85); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); max-width: 500px; width: 90%; margin: 0 auto 2.5rem; text-align: left; backdrop-filter: blur(10px);">
-                <h3 style="color: #8be9fd; margin-bottom: 1.2rem; text-align: center; font-family: 'Fredoka', sans-serif; font-size: 1.5rem;">Resumo do Herói:</h3>
-                <p style="margin-bottom: 0.6rem; font-size: 1.05rem;"><strong>Nome:</strong> <span id="final-char-name" style="color: #f8f8f2;">Arthur</span></p>
-                <p style="margin-bottom: 0.6rem; font-size: 1.05rem;"><strong>Classe:</strong> <span id="final-char-class" style="color: #50fa7b;">Programador</span></p>
-                <p style="margin-bottom: 0.6rem; font-size: 1.05rem;"><strong>Nível:</strong> <span id="final-char-level" style="color: #ffb86c; font-weight: bold;">1</span></p>
-                <p style="margin-bottom: 0.6rem; font-size: 1.05rem;"><strong>Mana Máxima:</strong> <span id="final-char-mana" style="color: #bd93f9;">50</span></p>
-                <p style="margin-bottom: 0; font-size: 1.05rem; line-height: 1.4;"><strong>Habilidades:</strong> <span id="final-char-skills" style="color: #8be9fd;">análise_de_código, depuração</span></p>
+            <!-- ==================== SOBRE / MODAL DE AJUDA ==================== -->
+            <div id="about-modal" class="modal">
+                <div class="modal-content">
+                    <h3>Sobre o Code Quest</h3>
+                    <p><strong>Code Quest</strong> é uma visual novel interativa projetada para ensinar conceitos fundamentais de lógica de programação.</p>
+                    <p>Ao longo da jornada, você assume o controle de um desenvolvedor transportado para um universo de fantasia medieval.</p>
+                    <p>Use o <strong>Console JSON</strong> para ler a estrutura de objetos do mundo e escolha as opções corretas para resolver problemas e avançar na história!</p>
+                    <button class="btn btn-primary" id="btn-close-about" style="margin-top: 1.5rem; width: 100%;">
+                        Fechar
+                    </button>
+                </div>
             </div>
 
-            <div class="menu-buttons">
-                <button class="btn btn-primary" id="btn-restart-game">
-                    <i class="fa-solid fa-rotate-left"></i> Jogar Novamente
-                </button>
-                <button class="btn" id="btn-final-menu">
-                    <i class="fa-solid fa-house"></i> Menu Principal
-                </button>
+            <!-- ==================== OVERLAY DE FEEDBACK ==================== -->
+            <div id="feedback-overlay" style="display: none; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; pointer-events: none;">
+                <div id="feedback-card" class="feedback-correct" style="display: flex; align-items: center; gap: 1rem; width: 420px;">
+                    <span class="feedback-icon" id="feedback-card-icon">✓</span>
+                    <span class="feedback-text" id="feedback-card-text">Correto!</span>
+                </div>
             </div>
-        </div>
 
-    </div>
+            <!-- ==================== PAINEL DO CONSOLE JSON ==================== -->
+            <div id="hacker-menu-panel">
+                <div style="background: #1a1a2e; padding: 12px 16px; border-bottom: 1px solid #44475a; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+                    <span style="font-family: 'Courier New', monospace; font-weight: bold; color: #8be9fd;"><i class="fa-solid fa-terminal"></i> CONSOLE JSON</span>
+                    <button id="btn-close-json" style="background: none; border: none; color: #ff5555; cursor: pointer; font-size: 1.3rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="json-tabs">
+                    <button class="tab-btn blue active" data-tab="heroi" title="Herói">👤</button>
+                    <button class="tab-btn green" data-tab="inventario" title="Inventário">🎒</button>
+                    <button class="tab-btn yellow" data-tab="mundo" title="Mundo">🌍</button>
+                    <button class="tab-btn red" data-tab="monstros" title="Monstros">🐉</button>
+                    <button class="tab-btn purple" data-tab="npcs" title="NPCs">👥</button>
+                </div>
+                <div class="json-editor-section" style="flex: 1; overflow-y: auto; padding: 1.2rem; font-family: 'Courier New', monospace; font-size: 14px; background: #0d0d12; line-height: 1.5; scrollbar-width: thin;">
+                    <pre id="json-visual-editor" style="margin: 0; white-space: pre-wrap; word-wrap: break-word; color: #f8f8f2;"></pre>
+                </div>
+            </div>
 
-    <!-- ==================== SOBRE / MODAL DE AJUDA ==================== -->
-    <div id="about-modal" class="modal">
-        <div class="modal-content">
-            <h3>Sobre o Code Quest</h3>
-            <p><strong>Code Quest</strong> é uma visual novel interativa projetada para ensinar conceitos fundamentais de lógica de programação.</p>
-            <p>Ao longo da jornada, você assume o controle de um desenvolvedor transportado para um universo de fantasia medieval.</p>
-            <p>Use o <strong>Console JSON</strong> para ler a estrutura de objetos do mundo e escolha as opções corretas para resolver problemas e avançar na história!</p>
-            <button class="btn btn-primary" id="btn-close-about" style="margin-top: 1.5rem; width: 100%;">
-                Fechar
-            </button>
-        </div>
-    </div>
-
-    <!-- ==================== OVERLAY DE FEEDBACK ==================== -->
-    <div id="feedback-overlay" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; pointer-events: none;">
-        <div id="feedback-card" class="feedback-correct" style="display: flex; align-items: center; gap: 1rem; width: 420px;">
-            <span class="feedback-icon" id="feedback-card-icon">✓</span>
-            <span class="feedback-text" id="feedback-card-text">Correto!</span>
-        </div>
-    </div>
-
-    <!-- ==================== PAINEL DO CONSOLE JSON ==================== -->
-    <div id="hacker-menu-panel">
-        <div style="background: #1a1a2e; padding: 12px 16px; border-bottom: 1px solid #44475a; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
-            <span style="font-family: 'Courier New', monospace; font-weight: bold; color: #8be9fd;"><i class="fa-solid fa-terminal"></i> CONSOLE JSON</span>
-            <button id="btn-close-json" style="background: none; border: none; color: #ff5555; cursor: pointer; font-size: 1.3rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-        <div class="json-tabs">
-            <button class="tab-btn blue active" data-tab="heroi" title="Herói">👤</button>
-            <button class="tab-btn green" data-tab="inventario" title="Inventário">🎒</button>
-            <button class="tab-btn yellow" data-tab="mundo" title="Mundo">🌍</button>
-            <button class="tab-btn red" data-tab="monstros" title="Monstros">🐉</button>
-            <button class="tab-btn purple" data-tab="npcs" title="NPCs">👥</button>
-        </div>
-        <div class="json-editor-section" style="flex: 1; overflow-y: auto; padding: 1.2rem; font-family: 'Courier New', monospace; font-size: 14px; background: #0d0d12; line-height: 1.5; scrollbar-width: thin;">
-            <pre id="json-visual-editor" style="margin: 0; white-space: pre-wrap; word-wrap: break-word; color: #f8f8f2;"></pre>
         </div>
     </div>
 

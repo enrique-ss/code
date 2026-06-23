@@ -7,8 +7,39 @@ const UIManager = {
     currentText: '',
     onDialogClickCallback: null,
 
+    alignUI() {
+        const canvas = document.querySelector('#game-container canvas');
+        const uiLayer = document.getElementById('ui-layer');
+        const gameContainer = document.getElementById('game-container');
+        if (!canvas || !uiLayer || !gameContainer) return;
+
+        const canvasRect = canvas.getBoundingClientRect();
+        const parentRect = gameContainer.getBoundingClientRect();
+
+        const left = canvasRect.left - parentRect.left;
+        const top = canvasRect.top - parentRect.top;
+        const width = canvasRect.width;
+        const height = canvasRect.height;
+        
+        // Scale ui-layer (1280x720) to match canvas dimensions
+        const scale = width / 1280;
+
+        uiLayer.style.position = 'absolute';
+        uiLayer.style.width = '1280px';
+        uiLayer.style.height = '720px';
+        uiLayer.style.left = '0px';
+        uiLayer.style.top = '0px';
+        uiLayer.style.transformOrigin = 'top left';
+        uiLayer.style.transform = `translate(${left}px, ${top}px) scale(${scale})`;
+    },
+
     initDOM() {
         console.log('[UIManager] Inicializando interface DOM');
+        
+        // Align UI to canvas on init, resize and periodically
+        this.alignUI();
+        window.addEventListener('resize', () => this.alignUI());
+        setInterval(() => this.alignUI(), 200);
 
         const btnStartGame = document.getElementById('btn-start-game');
         if (btnStartGame) {
@@ -59,13 +90,7 @@ const UIManager = {
         const btnCharConfirm = document.getElementById('btn-char-confirm');
         if (btnCharConfirm) {
             btnCharConfirm.addEventListener('click', () => {
-                const nameInput = document.getElementById('char-name');
-                const name = nameInput.value.trim();
-
-                if (!name) {
-                    alert('Por favor, digite o nome do seu personagem!');
-                    return;
-                }
+                const name = 'Arthur';
 
                 if (!this.selectedClass) {
                     alert('Por favor, selecione uma classe!');
@@ -206,36 +231,55 @@ const UIManager = {
         const heroi = window.gameEngine.databases.heroi;
         const mundo = window.gameEngine.databases.mundo;
 
-        const hudName = document.getElementById('hud-hero-name');
         const hudClass = document.getElementById('hud-hero-class');
         const hudLevel = document.getElementById('hud-hero-level');
         const hudTime = document.getElementById('hud-world-time');
         const hudWeather = document.getElementById('hud-world-weather');
         const hudWeatherIcon = document.getElementById('hud-weather-icon');
+        const hudTimeIcon = document.getElementById('hud-time-icon');
 
-        if (hudName) hudName.textContent = heroi.nome || 'Arthur';
         if (hudClass) hudClass.textContent = heroi.classe || 'Programador';
         if (hudLevel) hudLevel.textContent = heroi.nivel || '1';
-        if (hudTime) hudTime.textContent = mundo.hora || '06:00';
-        if (hudWeather) hudWeather.textContent = mundo.clima || 'SOL';
 
-        if (hudWeatherIcon) {
-            if (mundo.clima === 'SOL') {
-                hudWeatherIcon.innerHTML = '<i class="fa-solid fa-sun" style="color: #f1fa8c;"></i>';
-            } else if (mundo.clima === 'CHUVA') {
-                hudWeatherIcon.innerHTML = '<i class="fa-solid fa-cloud-showers-heavy" style="color: #8be9fd;"></i>';
-            } else {
-                hudWeatherIcon.innerHTML = '<i class="fa-solid fa-cloud" style="color: #6272a4;"></i>';
+        if (hudTime) {
+            const timeValue = (mundo.hora || 'manha').toLowerCase();
+            hudTime.textContent = timeValue.toUpperCase();
+            if (hudTimeIcon) {
+                if (timeValue === 'manha') {
+                    hudTimeIcon.innerHTML = '<i class="fa-solid fa-cloud-sun" style="color: #ffb86c;"></i>';
+                } else if (timeValue === 'tarde') {
+                    hudTimeIcon.innerHTML = '<i class="fa-solid fa-sun" style="color: #ff79c6;"></i>';
+                } else if (timeValue === 'noite') {
+                    hudTimeIcon.innerHTML = '<i class="fa-solid fa-moon" style="color: #bd93f9;"></i>';
+                } else {
+                    hudTimeIcon.innerHTML = '<i class="fa-solid fa-clock" style="color: #f8f8f2;"></i>';
+                }
             }
         }
 
-        const finalName = document.getElementById('final-char-name');
+        if (hudWeather) {
+            const weatherValue = (mundo.clima || 'sol').toLowerCase();
+            hudWeather.textContent = weatherValue.toUpperCase();
+            if (hudWeatherIcon) {
+                if (weatherValue === 'sol') {
+                    hudWeatherIcon.innerHTML = '<i class="fa-solid fa-sun" style="color: #f1fa8c;"></i>';
+                } else if (weatherValue === 'chuva') {
+                    hudWeatherIcon.innerHTML = '<i class="fa-solid fa-cloud-showers-heavy" style="color: #8be9fd;"></i>';
+                } else if (weatherValue === 'calor') {
+                    hudWeatherIcon.innerHTML = '<i class="fa-solid fa-temperature-high" style="color: #ff5555;"></i>';
+                } else if (weatherValue === 'frio') {
+                    hudWeatherIcon.innerHTML = '<i class="fa-solid fa-snowflake" style="color: #8be9fd;"></i>';
+                } else {
+                    hudWeatherIcon.innerHTML = '<i class="fa-solid fa-cloud" style="color: #6272a4;"></i>';
+                }
+            }
+        }
+
         const finalClass = document.getElementById('final-char-class');
         const finalLevel = document.getElementById('final-char-level');
         const finalMana = document.getElementById('final-char-mana');
         const finalSkills = document.getElementById('final-char-skills');
 
-        if (finalName) finalName.textContent = heroi.nome || 'Arthur';
         if (finalClass) finalClass.textContent = heroi.classe || 'Programador';
         if (finalLevel) finalLevel.textContent = heroi.nivel || '1';
         if (finalMana) finalMana.textContent = heroi.mana_maxima || '50';
@@ -297,14 +341,15 @@ const UIManager = {
 
         dialogBox.style.display = 'block';
 
-        if (speaker === 'Arthur' && window.gameEngine && window.gameEngine.databases.heroi.nome) {
-            speaker = window.gameEngine.databases.heroi.nome;
+        if ((speaker === 'Arthur' || speaker.toLowerCase().includes('arthur')) && window.gameEngine && window.gameEngine.databases.heroi.classe) {
+            speaker = window.gameEngine.databases.heroi.classe;
         }
         speakerTag.textContent = speaker;
         
         speakerTag.className = 'dialog-name-tag';
         const speakerLower = speaker.toLowerCase();
-        if (speakerLower.includes('arthur')) {
+        const currentHeroClass = (window.gameEngine && window.gameEngine.databases.heroi.classe) ? window.gameEngine.databases.heroi.classe.toLowerCase() : 'arthur';
+        if (speakerLower.includes('arthur') || speakerLower.includes(currentHeroClass)) {
             speakerTag.classList.add('luiza');
         } else if (speakerLower.includes('mago')) {
             speakerTag.classList.add('ruan');
@@ -428,8 +473,8 @@ const UIManager = {
                 }
             };
             window.gameEngine.databases.mundo = {
-                hora: "06:00",
-                clima: "SOL",
+                hora: "manha",
+                clima: "sol",
                 localizacao: "floresta_inicial",
                 regiao: "reino_codigo",
                 cena_atual: "intro",
@@ -441,9 +486,6 @@ const UIManager = {
             window.gameEngine.triggerDatabaseUpdate('inventario');
             window.gameEngine.triggerDatabaseUpdate('mundo');
         }
-
-        const nameInput = document.getElementById('char-name');
-        if (nameInput) nameInput.value = '';
 
         const classBtns = document.querySelectorAll('.class-btn');
         classBtns.forEach(btn => btn.classList.remove('selected'));

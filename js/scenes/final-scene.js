@@ -11,14 +11,14 @@ class FinalScene extends Phaser.Scene {
         const width = this.cameras.main.width;
         const height = this.cameras.main.height;
 
-        // Background
+        // Background (larger than canvas to prevent gaps)
         if (this.textures.exists('bg_final')) {
-            this.add.image(width / 2, height / 2, 'bg_final').setDisplaySize(width, height);
+            this.add.image(width / 2, height / 2, 'bg_final').setDisplaySize(width * 1.3, height * 1.3);
         } else {
             // Draw a beautiful dark space background
             const graphics = this.add.graphics();
             graphics.fillGradientStyle(0x0a0518, 0x0a0518, 0x1d143c, 0x1d143c, 1);
-            graphics.fillRect(0, 0, width, height);
+            graphics.fillRect(-200, -200, width + 400, height + 400);
         }
 
         // Twinkling stars effect
@@ -30,8 +30,8 @@ class FinalScene extends Phaser.Scene {
         const height = this.cameras.main.height;
 
         for (let i = 0; i < 60; i++) {
-            const x = Phaser.Math.Between(0, width);
-            const y = Phaser.Math.Between(0, height);
+            const x = Phaser.Math.Between(-100, width + 100);
+            const y = Phaser.Math.Between(-100, height + 100);
             const size = Phaser.Math.Between(1, 3);
             
             const star = this.add.rectangle(x, y, size, size, 0xffffff);

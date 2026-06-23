@@ -56,8 +56,8 @@ class CodeQuestGame {
                 }
             },
             mundo: {
-                hora: "06:00",
-                clima: "SOL",
+                hora: "manha",
+                clima: "sol",
                 localizacao: "floresta_inicial",
                 regiao: "reino_codigo",
                 cena_atual: "intro",

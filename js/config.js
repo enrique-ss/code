@@ -47,25 +47,28 @@ const CONSTANTS = {
     WALK_SPEED: 100
 };
 
-// Assets Configuration (placeholders - usar cores sólidas se imagens não existirem)
+// Assets Configuration (Standardized 16-bit Pixel Art paths)
+// - Backgrounds standard resolution: 1280x720px
+// - Sprites standard resolution: 128x128px (or 256x256px for higher detail)
+// - UI elements should match standard component sizing
 const ASSETS = {
     backgrounds: {
-        menu: null,  // Usará cor sólida
-        forest_path: null,
-        magic_tower: null,
-        market: null,
-        door: null
+        menu: 'assets/backgrounds/menu.png',
+        forest_path: 'assets/backgrounds/forest_path.png',
+        magic_tower: 'assets/backgrounds/magic_tower.png',
+        market: 'assets/backgrounds/market.png',
+        door: 'assets/backgrounds/door.png'
     },
     sprites: {
-        arthur: null,  // Usará placeholder
-        mage: null,
-        merchant: null,
-        door: null
+        arthur: 'assets/sprites/arthur.png',
+        mage: 'assets/sprites/mage.png',
+        merchant: 'assets/sprites/merchant.png',
+        door: 'assets/sprites/door.png'
     },
     ui: {
-        json_panel: null,
-        dialog_box: null,
-        choice_button: null
+        json_panel: 'assets/ui/json_panel.png',
+        dialog_box: 'assets/ui/dialog_box.png',
+        choice_button: 'assets/ui/choice_button.png'
     }
 };
 

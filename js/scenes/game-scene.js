@@ -31,19 +31,20 @@ class GameScene extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, width * 3, height);
 
         // Background loading (use gradient fallback if image is missing)
+        // Make it slightly wider and taller than the actual bounds to prevent gaps on zoom/shake
         if (this.textures.exists('bg_forest_path')) {
             this.background = this.add.image(width * 1.5, height / 2, 'bg_forest_path')
-                .setDisplaySize(width * 3, height);
+                .setDisplaySize(width * 3.6, height * 1.3);
         } else {
             // Create a gorgeous parallax style forest background
             const graphics = this.add.graphics();
             graphics.fillGradientStyle(0x0f0c1b, 0x0f0c1b, 0x1d1a39, 0x1d1a39, 1);
-            graphics.fillRect(0, 0, width * 3, height);
+            graphics.fillRect(-300, -200, width * 3 + 600, height + 400);
             
             // Add some simple glowing stars in Phaser
             for (let i = 0; i < 40; i++) {
-                const sx = Phaser.Math.Between(0, width * 3);
-                const sy = Phaser.Math.Between(0, height * 0.4);
+                const sx = Phaser.Math.Between(-100, width * 3 + 100);
+                const sy = Phaser.Math.Between(-100, height * 0.4);
                 const size = Phaser.Math.Between(2, 4);
                 const star = this.add.circle(sx, sy, size, 0x8be9fd, 0.4);
                 
