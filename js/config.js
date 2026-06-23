@@ -1,61 +1,113 @@
-const ASSETS = {
-    backgrounds: {
-        menu: "assets/bg_menu.jpg",
-        final: "assets/bg_final.jpg",
-        casa_luiza_manha: "assets/bg_casa.jpg",
-        casa_luiza_noite: "assets/bg_casa_noite.jpg",
-        cantina_manha: "assets/bg_cantina.jpg",
-        cantina_tarde: "assets/bg_cantina_tarde.jpg",
-        parada_manha: "assets/bg_parada.jpg",
-        parada_noite: "assets/bg_parada_noite.jpg",
-        centro_manha: "assets/bg_centro.jpg",
-        centro_tarde: "assets/bg_centro_tarde.jpg",
-        centro_noite: "assets/bg_centro_noite.jpg",
-        oponente_bar_jantar: "assets/bg_bar.jpg",
-        oponente_bar_noite: "assets/bg_bar_noite.jpg",
-        tributo_festa: "assets/bg_festa.jpg",
-        praca_manha: "assets/bg_praca.jpg",
-        praca_tarde: "assets/bg_praca_tarde.jpg",
-        praca_noite: "assets/bg_praca_noite.jpg",
-        kalzone: "assets/bg_kalzone.jpg"
+/**
+ * CODE QUEST - CONFIGURAÇÕES
+ * Motion Comic Educativa sobre Programação
+ */
+
+// Phaser Game Configuration
+const GAME_CONFIG = {
+    type: Phaser.AUTO,
+    width: 1280,
+    height: 720,
+    parent: 'game-container',
+    backgroundColor: '#1a1a2e',
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    sprites: {
-        luiza: "assets/luiza.png",
-        enrique_zen: "assets/enrique_zen.png",
-        talita: "assets/talita.png"
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: false
+        }
     }
 };
 
-const WeatherTypes = {
-    SOL: 'sol',
-    CHUVA: 'chuva',
-    FRIO: 'frio'
+// Game Constants
+const CONSTANTS = {
+    FONT_FAMILY: 'Fredoka, Arial, sans-serif',
+    FONT_FAMILY_UI: 'Outfit, Arial, sans-serif',
+    FONT_FAMILY_CODE: 'Courier New, monospace',
+    
+    // Colors
+    COLORS: {
+        PRIMARY: '#8be9fd',
+        SECONDARY: '#50fa7b',
+        DANGER: '#ff5555',
+        WARNING: '#f1fa8c',
+        PURPLE: '#bd93f9',
+        BACKGROUND: '#1a1a2e',
+        SURFACE: '#282a36',
+        TEXT: '#f8f8f2',
+        TEXT_MUTED: '#6272a4'
+    },
+    
+    // Animation Speeds
+    TYPING_SPEED: 30,
+    ZOOM_DURATION: 500,
+    WALK_SPEED: 100
 };
 
-const STICKERS = {
-    love: "assets/sticker_love.png", // Sticker romântico "TE AMO"
-    sticker_vigia: "assets/sticker_vigia.png" // Sticker "VIGIA"
+// Assets Configuration (placeholders - usar cores sólidas se imagens não existirem)
+const ASSETS = {
+    backgrounds: {
+        menu: null,  // Usará cor sólida
+        forest_path: null,
+        magic_tower: null,
+        market: null,
+        door: null
+    },
+    sprites: {
+        arthur: null,  // Usará placeholder
+        mage: null,
+        merchant: null,
+        door: null
+    },
+    ui: {
+        json_panel: null,
+        dialog_box: null,
+        choice_button: null
+    }
 };
 
-const SPRITE_STYLES = {
-    luiza: {
-        color: '#ff5555',
-        glow: 'rgba(255, 85, 85, 0.4)',
-        name: 'Luiza'
+// JSON Panel Styling (Terminal-like)
+const JSON_PANEL_STYLES = {
+    backgroundColor: '#0d0d12',
+    borderColor: '#44475a',
+    textColor: '#f8f8f2',
+    keyColor: '#ff79c6',
+    stringColor: '#f1fa8c',
+    numberColor: '#bd93f9',
+    booleanColor: '#50fa7b',
+    nullColor: '#6272a4',
+    bracketColor: '#f8f8f2',
+    fontSize: 13,
+    fontFamily: 'Courier New, monospace'
+};
+
+// Character Styles
+const CHARACTER_STYLES = {
+    arthur: {
+        name: 'Arthur',
+        color: '#8be9fd',
+        glow: 'rgba(139, 233, 253, 0.3)',
+        role: 'protagonist'
     },
-    enrique_zen: {
-        color: '#98c379',
-        glow: 'rgba(152, 195, 121, 0.4)',
-        name: 'Enrique'
+    mage: {
+        name: 'Mago Eldrin',
+        color: '#bd93f9',
+        glow: 'rgba(189, 147, 249, 0.3)',
+        role: 'npc'
     },
-    enrique: {
-        color: '#98c379',
-        glow: 'rgba(152, 195, 121, 0.4)',
-        name: 'Enrique'
-    },
-    talita: {
+    merchant: {
+        name: 'Mercador Gorb',
         color: '#f1fa8c',
-        glow: 'rgba(241, 250, 140, 0.4)',
-        name: 'Talita'
+        glow: 'rgba(241, 250, 140, 0.3)',
+        role: 'npc'
+    },
+    door: {
+        name: 'Porta do Conhecimento',
+        color: '#ff5555',
+        glow: 'rgba(255, 85, 85, 0.3)',
+        role: 'object'
     }
 };

@@ -1,0 +1,49 @@
+/**
+ * FINAL SCENE - Twinkling stars effect and background
+ */
+
+class FinalScene extends Phaser.Scene {
+    constructor() {
+        super('FinalScene');
+    }
+
+    create() {
+        const width = this.cameras.main.width;
+        const height = this.cameras.main.height;
+
+        // Background
+        if (this.textures.exists('bg_final')) {
+            this.add.image(width / 2, height / 2, 'bg_final').setDisplaySize(width, height);
+        } else {
+            // Draw a beautiful dark space background
+            const graphics = this.add.graphics();
+            graphics.fillGradientStyle(0x0a0518, 0x0a0518, 0x1d143c, 0x1d143c, 1);
+            graphics.fillRect(0, 0, width, height);
+        }
+
+        // Twinkling stars effect
+        this.createStars();
+    }
+
+    createStars() {
+        const width = this.cameras.main.width;
+        const height = this.cameras.main.height;
+
+        for (let i = 0; i < 60; i++) {
+            const x = Phaser.Math.Between(0, width);
+            const y = Phaser.Math.Between(0, height);
+            const size = Phaser.Math.Between(1, 3);
+            
+            const star = this.add.rectangle(x, y, size, size, 0xffffff);
+            star.setAlpha(Phaser.Math.FloatBetween(0.3, 1));
+
+            this.tweens.add({
+                targets: star,
+                alpha: { from: star.alpha, to: 0.1 },
+                duration: Phaser.Math.Between(1000, 3000),
+                yoyo: true,
+                repeat: -1
+            });
+        }
+    }
+}

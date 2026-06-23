@@ -1,6 +1,7 @@
 /**
  * CODE QUEST GAME ENGINE
- * Fantasy Medieval Isekai with Fourth Wall Breaking
+ * Motor do Jogo Educacional com Sistema de Estados
+ * Gerencia WALKING, INSPECTING e FIGHTING_RESOLVED
  */
 
 class CodeQuestGame {
@@ -10,12 +11,29 @@ class CodeQuestGame {
         }
 
         this.currentLevel = 1;
-        
+
+        // ==================== SISTEMA DE ESTADOS ====================
+        // Estados do jogo para o fluxo educacional
+        this.GameState = {
+            WALKING: 'WALKING',           // Herói andando, aguardando colisão com gatilho
+            INSPECTING: 'INSPECTING',     // Herói parado, painel JSON aberto, aguardando resposta
+            FIGHTING_RESOLVED: 'FIGHTING_RESOLVED',  // Pergunta respondida corretamente
+            MENU: 'MENU',                 // No menu principal
+            FINAL: 'FINAL'                // Jogo finalizado
+        };
+
+        // Estado atual do jogo
+        this.currentState = this.GameState.MENU;
+
+        // Callbacks para mudança de estado
+        this.onStateChange = null;
+
+        // ==================== DADOS DO JOGO ====================
         // Core JSON Databases - loaded from external JSON files
         this.databases = {
             heroi: {
-                nome: "",
-                classe: "",
+                nome: "Arthur",
+                classe: "Programador",
                 nivel: 1,
                 experiencia: 0,
                 vida: 100,
@@ -23,9 +41,9 @@ class CodeQuestGame {
                 mana: 50,
                 mana_maxima: 50,
                 forca: 10,
-                inteligencia: 10,
+                inteligencia: 15,  // Alta inteligência para programador
                 destreza: 10,
-                habilidades: [],
+                habilidades: ["análise_de_código", "depuração"],
                 conquistas: []
             },
             inventario: {
@@ -40,9 +58,9 @@ class CodeQuestGame {
             mundo: {
                 hora: "06:00",
                 clima: "SOL",
-                localizacao: "vila_inicial",
-                regiao: "reino_central",
-                cena_atual: "despertar",
+                localizacao: "floresta_inicial",
+                regiao: "reino_codigo",
+                cena_atual: "intro",
                 eventos_ativos: [],
                 estado_mundo: "normal"
             },
@@ -76,29 +94,30 @@ class CodeQuestGame {
                 }
             },
             npcs: {
-                ferreiro: {
-                    nome: "Ferreiro",
-                    localizacao: "vila_inicial",
-                    dialogos: ["Bem-vindo à minha ferraria!", "Posso melhorar seu equipamento."],
-                    servicos: ["melhorar_arma", "melhorar_armadura"]
+                mago: {
+                    nome: "Mago Eldrin",
+                    localizacao: "torre_magica",
+                    dialogos: ["Bem-vindo, viajante!", "A magia é como código."],
+                    servicos: ["ensinar_magia", "dar_poção"]
                 },
                 mercador: {
-                    nome: "Mercador",
-                    localizacao: "vila_inicial",
+                    nome: "Mercador Gorb",
+                    localizacao: "mercado",
                     dialogos: ["Tenho os melhores itens!", "Olhe minha mercadoria."],
                     servicos: ["comprar_itens", "vender_itens"]
                 },
-                velho_sabio: {
-                    nome: "Velho Sábio",
-                    localizacao: "floresta_misteriosa",
-                    dialogos: ["O mundo está mudando...", "Você é o escolhido."],
-                    servicos: ["dar_missao", "dar_informacao"]
+                porta: {
+                    nome: "Porta do Conhecimento",
+                    localizacao: "final",
+                    dialogos: ["Responda corretamente para passar.", "A lógica é a chave."],
+                    servicos: ["abrir_porta"]
                 }
             }
         };
 
         this.blockCounter = 0;
 
+        // ==================== INICIALIZAÇÃO ====================
         // Load level 1 initially
         this.loadLevel(1);
 
@@ -244,6 +263,151 @@ class CodeQuestGame {
     resetLevel() {
         this.loadLevel(this.currentLevel);
     }
-}
 
-window.CodeQuestGame = CodeQuestGame;
+    // ==================== MÉTODOS DO SISTEMA DE ESTADOS ====================
+
+    /**
+     * Muda o estado atual do jogo
+     * @param {string} newState - Novo estado (WALKING, INSPECTING, FIGHTING_RESOLVED, MENU, FINAL)
+     * @param {Object} data - Dados opcionais para passar junto com a mudança de estado
+     */
+    setState(newState, data = {}) {
+        const oldState = this.currentState;
+        this.currentState = newState;
+
+        console.log(`[GameEngine] Estado mudou: ${oldState} -> ${newState}`, data);
+
+        // Dispara callback de mudança de estado se existir
+        if (this.onStateChange) {
+            this.onStateChange(oldState, newState, data);
+        }
+    }
+
+    /**
+     * Verifica se o jogo está em um estado específico
+     * @param {string} state - Estado para verificar
+     * @returns {boolean}
+     */
+    isState(state) {
+        return this.currentState === state;
+    }
+
+    /**
+     * Retorna o estado atual
+     * @returns {string}
+     */
+    getCurrentState() {
+        return this.currentState;
+    }
+
+    /**
+     * Inicia o estado WALKING
+     * Chamado pela game-scene.js quando o herói começa a andar
+     * O herói se move da esquerda para direita automaticamente
+     */
+    startWalking() {
+        this.setState(this.GameState.WALKING);
+    }
+
+    /**
+     * Inicia o estado INSPECTING
+     * Chamado pela game-scene.js quando o herói colide com um obstáculo
+     * O painel JSON é aberto em read-only e as opções de diálogo são exibidas
+     * @param {Object} obstacleData - Dados do obstáculo/NPC
+     */
+    startInspecting(obstacleData) {
+        this.setState(this.GameState.INSPECTING, {
+            obstacle: obstacleData,
+            nodeKey: obstacleData.node
+        });
+    }
+
+    /**
+     * Processa a resposta do jogador a uma pergunta educacional
+     * Chamado pela game-scene.js quando o jogador clica em uma opção
+     * @param {Object} choice - Objeto de escolha do history.js
+     * @returns {boolean} - true se a resposta foi correta, false se incorreta
+     */
+    handleChoice(choice) {
+        if (!this.isState(this.GameState.INSPECTING)) {
+            console.warn('[GameEngine] Tentativa de responder fora do estado INSPECTING');
+            return false;
+        }
+
+        if (choice.correct === true) {
+            // Resposta correta - avança para FIGHTING_RESOLVED
+            this.setState(this.GameState.FIGHTING_RESOLVED, {
+                choice: choice,
+                feedback: choice.feedback
+            });
+            return true;
+        } else {
+            // Resposta incorreta - permanece em INSPECTING para retry
+            console.log('[GameEngine] Resposta incorreta, jogador deve tentar novamente');
+            return false;
+        }
+    }
+
+    /**
+     * Finaliza o estado INSPECTING e volta ao WALKING
+     * Chamado pela game-scene.js após feedback visual de resposta correta
+     * O herói retoma a caminhada para o próximo obstáculo
+     */
+    resolveObstacle() {
+        if (this.isState(this.GameState.FIGHTING_RESOLVED)) {
+            this.setState(this.GameState.WALKING);
+        }
+    }
+
+    /**
+     * Inicia o estado MENU
+     * Chamado pela menu-scene.js
+     */
+    startMenu() {
+        this.setState(this.GameState.MENU);
+    }
+
+    /**
+     * Inicia o estado FINAL
+     * Chamado quando o jogador completa todos os cenários
+     */
+    startFinal() {
+        this.setState(this.GameState.FINAL);
+    }
+
+    // ==================== MÉTODOS DE COMUNICAÇÃO ENTRE COMPONENTES ====================
+
+    /**
+     * Registra um callback para mudanças de estado
+     * Usado pela game-scene.js para reagir a mudanças de estado
+     * @param {Function} callback - Função(oldState, newState, data)
+     */
+    onStateChange(callback) {
+        this.onStateChange = callback;
+    }
+
+    /**
+     * Notifica a game-scene.js que deve iniciar a caminhada
+     * Chamado após mudança de estado para WALKING
+     */
+    notifySceneToWalk() {
+        // A game-scene.js deve escutar mudanças de estado via onStateChange
+        // Este método é um placeholder para comunicação explícita se necessário
+        if (window.gameScene && window.gameScene.startWalking) {
+            window.gameScene.startWalking();
+        }
+    }
+
+    /**
+     * Notifica a game-scene.js que deve parar e mostrar diálogo
+     * Chamado após mudança de estado para INSPECTING
+     * @param {string} nodeKey - Chave do nó no history.js
+     */
+    notifySceneToInspect(nodeKey) {
+        // A game-scene.js deve escutar mudanças de estado via onStateChange
+        // Este método é um placeholder para comunicação explícita se necessário
+        if (window.gameScene && window.gameScene.loadNode) {
+            window.gameScene.loadNode(nodeKey);
+        }
+    }
+}

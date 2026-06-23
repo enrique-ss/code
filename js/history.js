@@ -1,568 +1,558 @@
+/**
+ * CODE QUEST - HISTORY & STORY
+ * Contém os 3 cenários educacionais principais
+ * Todos os diálogos do Narrador foram convertidos para falas do jogador em primeira pessoa.
+ */
+
 const StoryNodes = {
-    // ==================== ATO 1: O DESPERTAR NO MUNDO DE FANTASIA ====================
-    
-    despertar: {
-        bg: "planicie_inicial",
-        skipAmbience: true,
+    // ==================== MENU ====================
+    menu: {
+        bg: "menu",
         dialogs: [
-            { 
-                speaker: "Narrador", 
-                text: "Você abre os olhos lentamente. O céu acima é um azul brilhante, mais intenso do que qualquer céu que já viu. A grama é verdejante, macia sob seu corpo."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Ao seu lado, uma espada enferrujada descansa na grama. Você se levanta, confuso, e percebe que não está mais em seu ambiente familiar."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Que diabos... Eu estava programando até tarde... *(olha ao redor)* Isso não é meu quarto. Isso não é nem a Terra."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você foca sua visão, e de repente, um painel flutuante aparece diante de seus olhos — uma interface holográfica semelhante a um terminal de comando."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Isso... isso é JSON! *(sorri)* Eu entendi. Fui transportado para dentro de um jogo de fantasia medieval. Um Isekai clássico!"
-            },
-            { 
-                speaker: "Jogador", 
-                text: "E olha só... consigo ver os dados de tudo ao meu redor. *(examina o painel)* Mas espera... só tenho acesso de leitura ao meu próprio perfil. Não posso modificar meus atributos diretamente."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você percebe que, embora não possa alterar a si mesmo, pode inspecionar e manipular os dados de tudo mais no mundo — monstros, NPCs, itens, até o clima e o tempo."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Interessante. A realidade obedece a regras de programação. Se eu entender a lógica por trás desse código, talvez eu consiga encontrar um caminho de volta... ou pelo menos sobreviver até lá."
+            {
+                speaker: "Arthur",
+                text: "Estou prestes a entrar no Code Quest! Uma aventura sobre lógica de programação. Vamos lá!"
             }
         ],
         choices: [
-            { text: "Examinar meus próprios atributos", target: "examinar_atributos" },
-            { text: "Investigar a espada enferrujada", target: "examinar_espada" },
-            { text: "Explorar a planície", target: "explorar_planicie" }
+            { text: "Iniciar Jogo", target: "intro" },
+            { text: "Sobre", target: "sobre" }
         ]
     },
 
-    examinar_atributos: {
-        bg: "planicie_inicial",
+    sobre: {
+        bg: "menu",
         dialogs: [
-            { 
-                speaker: "Jogador", 
-                text: "Vamos ver o que o sistema tem sobre mim... *(foca no painel flutuante)*"
+            {
+                speaker: "Arthur",
+                text: "Este é o Code Quest, uma visual novel interativa onde serei transportado para um mundo de RPG de fantasia onde tudo é tratado como objeto."
             },
-            { 
-                speaker: "Narrador", 
-                text: "Você examina seus dados no painel JSON. Nível 1, vida máxima, mana, força, inteligência, destreza."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Inteligência alta... *(ri)* Faz sentido. Minha mente analítica de programador se traduziu em atributo de inteligência neste mundo."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "E olha essas habilidades: análise de código, depuração, otimização. O sistema reconheceu minhas habilidades de programação como habilidades mágicas."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você percebe que suas habilidades de programador podem ser usadas de maneiras inesperadas neste mundo de fantasia."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Se eu consigo entender a lógica por trás das magias e mecânicas deste mundo, posso usá-las a meu favor. Vamos explorar."
+            {
+                speaker: "Arthur",
+                text: "Terei que usar meu conhecimento e o painel JSON do mundo para inspecionar atributos e tomar decisões."
             }
         ],
         choices: [
-            { text: "Investigar a espada enferrujada", target: "examinar_espada" },
-            { text: "Explorar a planície", target: "explorar_planicie" }
+            { text: "Voltar", target: "menu" }
         ]
     },
 
-    examinar_espada: {
-        bg: "planicie_inicial",
+    // ==================== INTRODUÇÃO ====================
+    intro: {
+        bg: "forest_path",
         dialogs: [
-            { 
-                speaker: "Jogador", 
-                text: "Vamos ver o que essa espada tem... *(pega a espada enferrujada)*"
+            {
+                speaker: "Arthur",
+                text: "Ugh... Abri meus olhos em uma floresta totalmente desconhecida. O céu está azul e as árvores são incrivelmente verdes."
             },
-            { 
-                speaker: "Narrador", 
-                text: "Você foca na espada e o painel flutuante exibe seus dados JSON."
+            {
+                speaker: "Arthur",
+                text: "O que... onde eu estou? Lembro de estar programando no meu quarto e agora estou no meio do mato?"
             },
-            { 
-                speaker: "Jogador", 
-                text: "Espada Enferrujada. Dano baixo. *(pondera)* Não é grande coisa, mas é melhor do que nada."
+            {
+                speaker: "Arthur",
+                text: "Espere um segundo... Consigo ver caixas de dados flutuando no ar! É igual a um console de desenvolvedor!"
             },
-            { 
-                speaker: "Jogador", 
-                text: "Interessante... consigo ver a estrutura do objeto. Se eu entender como o sistema calcula dano, talvez eu possa otimizar isso."
+            {
+                speaker: "Arthur",
+                text: "Estou percebendo que consigo inspecionar os objetos deste mundo e ver seus atributos formatados em JSON."
             },
-            { 
-                speaker: "Narrador", 
-                text: "Você guarda a espada e sente-se mais confiante. Sua mente de programador já está analisando as possibilidades."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Vamos explorar. Preciso entender melhor como este mundo funciona — do ponto de vista do código."
+            {
+                speaker: "Arthur",
+                text: "Incrível! Sou basicamente um administrador com acesso somente leitura. Vou começar a explorar!"
             }
         ],
         choices: [
-            { text: "Examinar meus atributos", target: "examinar_atributos" },
-            { text: "Explorar a planície", target: "explorar_planicie" }
+            { text: "Continuar", target: "cenario_1_inicio" }
         ]
     },
 
-    explorar_planicie: {
-        bg: "planicie_inicial",
+    // ==================== CENÁRIO 1: A VARIÁVEL MÁGICA (let/const) ====================
+    cenario_1_inicio: {
+        bg: "magic_tower",
         dialogs: [
-            { 
-                speaker: "Narrador", 
-                text: "Você começa a caminhar pela planície. Ao longe, vê uma vila pequena e, mais perto, algo verde e gelatinoso se movendo."
+            {
+                speaker: "Arthur",
+                text: "Acabo de caminhar até uma grande torre mágica. Há um mago idoso do lado de fora e ele parece extremamente frustrado."
             },
-            { 
-                speaker: "Jogador", 
-                text: "O que é aquilo? *(foca a visão)* Um Slime Verde! Clássico."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "O painel flutuante exibe os dados do monstro: vida, ataque, defesa, experiência."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Vida, ataque... *(calcula mentalmente)* Com minha espada, vou precisar de alguns golpes para derrotá-lo."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "E se eu modificar os dados do monstro... *(experimenta)* Não, não consigo alterar dados de combate ativos. O sistema tem proteções."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você percebe que há limitações ao que pode manipular, mas ainda assim, o conhecimento é poder."
+            {
+                speaker: "Arthur",
+                text: "É o meu primeiro encontro com um habitante desse mundo! Vou inspecionar o JSON dele..."
             }
         ],
-        choices: [
-            { text: "Lutar contra o Slime Verde", target: "lutar_slime" },
-            { text: "Ir para a vila", target: "ir_vila" }
-        ]
-    },
-
-    lutar_slime: {
-        bg: "planicie_inicial",
-        effects: {
-            experience: 10,
-            addItem: {
-                name: "Gel de Slime",
-                quantity: 1
+        json_data: {
+            npc: {
+                nome: "Mago Eldrin",
+                tipo: "mentor",
+                estado: "confuso",
+                inventario: {
+                    poção: {
+                        tipo: "const",
+                        valor: "cura",
+                        modificavel: false
+                    },
+                    ingrediente_extra: {
+                        tipo: "let",
+                        valor: null,
+                        modificavel: true
+                    }
+                }
             }
         },
-        dialogs: [
-            { 
-                speaker: "Jogador", 
-                text: "Vamos testar minha teoria. *(saca a espada)*"
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você avança contra o Slime Verde. Calcula o ângulo de ataque, considerando a defesa do monstro."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Dano base menos defesa... *(ataca)*"
-            },
-            { 
-                speaker: "Narrador", 
-                text: "O Slime recebe o golpe e perde vida. Você continua calculando e atacando até o monstro ser derrotado."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Experiência ganha. *(sorri)* O sistema funciona exatamente como eu previ. Matemática pura."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "O Slime derrota deixa um item. Você o coleta."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Gel de Slime... provavelmente pode ser usado para crafting. Vou guardar."
-            }
-        ],
         choices: [
-            { text: "Ir para a vila", target: "ir_vila" }
+            { text: "Falar com o mago", target: "cenario_1_dialogo" }
         ]
     },
 
-    ir_vila: {
-        bg: "vila_pequena",
+    cenario_1_dialogo: {
+        bg: "magic_tower",
         dialogs: [
-            { 
-                speaker: "Narrador", 
-                text: "Você chega à vila pequena. Casas de madeira, uma fonte no centro, e NPCs andando por todos os lados."
+            {
+                speaker: "Mago Eldrin",
+                text: "Por favor, herói! Minha poção de cura está estragada! Tentei mudar o tipo dela, mas não funciona!"
             },
-            { 
-                speaker: "Jogador", 
-                text: "Interessante... *(foca em um aldeão)* Posso ver os dados de cada NPC. Vida, diálogo, missões disponíveis."
-            },
-            { 
-                speaker: "Aldeão", 
-                text: "Bem-vindo, viajante! Você parece novo por aqui."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Olá. Sou um viajante. *(pensa)* O diálogo dele é pré-programado, mas posso interagir normalmente."
-            },
-            { 
-                speaker: "Aldeão", 
-                text: "Nome incomum. Você é aventureiro?"
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Você pode dizer isso. Estou explorando este mundo... *(sorri)* e aprendendo como ele funciona."
+            {
+                speaker: "Arthur",
+                text: "Deixe-me ver... Estou analisando no JSON que a sua poção base está definida como 'const', logo é imutável. Já o ingrediente extra é 'let', ou seja, mutável."
             }
         ],
-        choices: [
-            { text: "Perguntar sobre o Reino", target: "perguntar_reino" },
-            { text: "Procurar o ferreiro", target: "procurar_ferreiro" },
-            { text: "Visitar o mercador", target: "visitar_mercador" }
-        ]
-    },
-
-    perguntar_reino: {
-        bg: "vila_pequena",
-        dialogs: [
-            { 
-                speaker: "Jogador", 
-                text: "O que você pode me contar sobre este reino?"
-            },
-            { 
-                speaker: "Aldeão", 
-                text: "Este é um reino de paz e magia. Nossa governante governa com sabedoria há muitos anos."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Governante... *(foca no painel)* O sistema tem dados sobre a governança. Isso pode ser útil."
-            },
-            { 
-                speaker: "Aldeão", 
-                text: "Mas ultimamente, monstros têm ficado mais agressivos perto da vila. Alguns dizem que algo está acontecendo na masmorra real."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Masmorra real... *(calcula)* Provavelmente uma área de conteúdo de nível mais alto. Vou precisar subir de nível antes."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você percebe que este mundo tem uma estrutura progressiva típica de RPGs."
+        json_data: {
+            npc: {
+                nome: "Mago Eldrin",
+                tipo: "mentor",
+                estado: "confuso",
+                inventario: {
+                    poção: {
+                        tipo: "const",
+                        valor: "cura",
+                        modificavel: false
+                    },
+                    ingrediente_extra: {
+                        tipo: "let",
+                        valor: null,
+                        modificavel: true
+                    }
+                }
             }
-        ],
-        choices: [
-            { text: "Procurar o ferreiro", target: "procurar_ferreiro" },
-            { text: "Visitar o mercador", target: "visitar_mercador" }
-        ]
-    },
-
-    procurar_ferreiro: {
-        bg: "ferreiria",
-        dialogs: [
-            { 
-                speaker: "Narrador", 
-                text: "Você encontra a ferreiria. O ferreiro está trabalhando em uma bigorna."
-            },
-            { 
-                speaker: "Ferreiro", 
-                text: "Precisa de armas, viajante?"
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Talvez. *(examina os dados do ferreiro)* Missão disponível."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Você tem uma missão para mim?"
-            },
-            { 
-                speaker: "Ferreiro", 
-                text: "Sim! Preciso de minério de ferro para fazer armas melhores. Se você me trouxer, posso melhorar sua espada."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Coletar minério... *(pensa)* Isso provavelmente envolve explorar uma mina ou derrotar monstros específicos. Quest clássica."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Aceito a missão. *(sorri)* Vou analisar onde encontrar o minério mais eficientemente."
-            }
-        ],
-        choices: [
-            { text: "Visitar o mercador primeiro", target: "visitar_mercador" },
-            { text: "Partir para coletar minério", target: "coletar_minerio" }
-        ]
-    },
-
-    visitar_mercador: {
-        bg: "loja_mercador",
-        dialogs: [
-            { 
-                speaker: "Narrador", 
-                text: "Você entra na loja do mercador. Prateleiras cheias de poções e itens."
-            },
-            { 
-                speaker: "Mercador", 
-                text: "Tenho as melhores poções! O que deseja?"
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Vamos ver... *(examina os itens)* Poção de Vida, Poção de Mana. Preços razoáveis."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Tenho 0 de ouro no inventário. *(verifica)* Vou precisar ganhar algum dinheiro primeiro."
-            },
-            { 
-                speaker: "Mercador", 
-                text: "Sem ouro? Sem problemas! Monstros dropam ouro, e você pode vender itens que encontra."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Entendido. Sistema econômico baseado em drops e vendas. Vou voltar quando tiver recursos."
-            }
-        ],
-        choices: [
-            { text: "Procurar o ferreiro", target: "procurar_ferreiro" },
-            { text: "Partir para coletar minério", target: "coletar_minerio" }
-        ]
-    },
-
-    coletar_minerio: {
-        bg: "mina_abandonada",
-        dialogs: [
-            { 
-                speaker: "Narrador", 
-                text: "Você parte para a mina abandonada. O local é escuro, mas consegue ver graças à luz que entra pelas aberturas."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Mina abandonada... *(foca no painel)* Localização, clima, probabilidade de monstros."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você encontra minério de ferro espalhado pelo chão, mas também encontra inimigos guardando a área."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Inimigos... *(calcula)* Posso derrotá-los, mas vou precisar de estratégia."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Vou usar minha habilidade de análise de código para encontrar padrões em seus movimentos."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você observa os inimigos e percebe que eles seguem rotinas previsíveis — como código mal escrito."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Eles têm um bug no comportamento de patrulha. Posso explorar isso para coletar o minério sem combate desnecessário."
-            }
-        ],
-        choices: [
-            { text: "Usar o bug para coletar minério", target: "coletar_com_bug" },
-            { text: "Lutar contra os inimigos", target: "lutar_inimigos" }
-        ]
-    },
-
-    coletar_com_bug: {
-        bg: "mina_abandonada",
-        effects: {
-            addItem: {
-                name: "Minério de Ferro",
-                quantity: 5
-            },
-            location: "Vila Pequena"
         },
-        dialogs: [
-            { 
-                speaker: "Jogador", 
-                text: "Vou esperar o momento certo... *(observa o padrão de movimento)*"
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você espera até os inimigos se afastarem e rapidamente coleta o minério de ferro."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Minério coletado. *(sorri)* Otimização completa. Sem dano recebido."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você volta para a vila com o minério, sentindo-se satisfeito com sua abordagem analítica."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Programação não é só sobre código — é sobre encontrar soluções eficientes. E isso se aplica a tudo neste mundo."
-            }
-        ],
         choices: [
-            { text: "Voltar ao ferreiro", target: "voltar_ferreiro" }
+            {
+                text: "Você precisa recriar a poção do zero.",
+                correct: false,
+                feedback: "O mago fica mais confuso. 'Mas eu não tenho os ingredientes!'",
+                target: "cenario_1_errado_1"
+            },
+            {
+                text: "A poção é `const` - ela não pode mudar. Use `let` no ingrediente extra para adicionar efeitos.",
+                correct: true,
+                feedback: "O mago entende! 'Ah! A poção base é imutável, mas posso modificar os ingredientes!'",
+                target: "cenario_1_correto"
+            },
+            {
+                text: "Tente mudar o valor da poção para 'veneno'.",
+                correct: false,
+                feedback: "O mago tenta, mas falha. 'Não consigo mudar! É como se fosse gravado em pedra!'",
+                target: "cenario_1_errado_2"
+            }
         ]
     },
 
-    lutar_inimigos: {
-        bg: "mina_abandonada",
-        effects: {
-            experience: 25,
-            addItem: {
-                name: "Minério de Ferro",
-                quantity: 5
+    cenario_1_correto: {
+        bg: "magic_tower",
+        dialogs: [
+            {
+                speaker: "Mago Eldrin",
+                text: "Obrigado, herói! Agora entendo a diferença entre `const` e `let`!"
             },
-            location: "Vila Pequena"
+            {
+                speaker: "Arthur",
+                text: "Disponha! `const` serve para valores que nunca mudam após definidos, e `let` para aqueles que podem variar."
+            },
+            {
+                speaker: "Arthur",
+                text: "Senti que ganhei um pouco de experiência de desenvolvedor com isso. É hora de prosseguir."
+            }
+        ],
+        choices: [
+            { text: "Continuar jornada", target: "cenario_2_inicio" }
+        ]
+    },
+
+    cenario_1_errado_1: {
+        bg: "magic_tower",
+        dialogs: [
+            {
+                speaker: "Mago Eldrin",
+                text: "Isso não vai funcionar... Preciso entender melhor as variáveis."
+            },
+            {
+                speaker: "Arthur",
+                text: "Vou pensar melhor. Preciso olhar as propriedades do JSON com mais atenção."
+            }
+        ],
+        choices: [
+            { text: "Tentar novamente", target: "cenario_1_dialogo" }
+        ]
+    },
+
+    cenario_1_errado_2: {
+        bg: "magic_tower",
+        dialogs: [
+            {
+                speaker: "Mago Eldrin",
+                text: "Não consigo mudar! Deve haver outra maneira..."
+            },
+            {
+                speaker: "Arthur",
+                text: "A resposta está no tipo de mutabilidade da variável. Vamos tentar de novo."
+            }
+        ],
+        choices: [
+            { text: "Tentar novamente", target: "cenario_1_dialogo" }
+        ]
+    },
+
+    // ==================== CENÁRIO 2: O INVENTÁRIO TIPADO (Tipos de Dados) ====================
+    cenario_2_inicio: {
+        bg: "market",
+        dialogs: [
+            {
+                speaker: "Arthur",
+                text: "Acabo de chegar a um mercado movimentado. Aquele mercador ali parece extremamente estressado organizando seus produtos."
+            },
+            {
+                speaker: "Arthur",
+                text: "Vou inspecionar o inventário dele para entender o que está acontecendo..."
+            }
+        ],
+        json_data: {
+            npc: {
+                nome: "Mercador Gorb",
+                tipo: "vendedor",
+                estado: "estressado",
+                inventario: {
+                    espada: {
+                        tipo: "object",
+                        propriedades: {
+                            dano: 25,
+                            durabilidade: 100,
+                            nome: "Espada de Ferro"
+                        }
+                    },
+                    moedas: {
+                        tipo: "number",
+                        valor: 150
+                    },
+                    tem_licenca: {
+                        tipo: "boolean",
+                        valor: true
+                    },
+                    produtos: {
+                        tipo: "array",
+                        valor: ["poção", "espada", "escudo"]
+                    }
+                }
+            }
         },
-        dialogs: [
-            { 
-                speaker: "Jogador", 
-                text: "Vou fazer da maneira tradicional. *(saca a espada)*"
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você luta contra os inimigos. Usa sua espada enferrujada, mas sua inteligência ajuda a prever os ataques."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Ataque contra minha defesa... *(desvia)* Consigo prever o padrão de ataque."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Após uma batalha difícil, você derrota os inimigos e coleta o minério."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Vida perdida, mas missão completa. *(recupera fôlego)* A abordagem analítica funcionou, mas foi mais custosa."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Próxima vez, vou tentar otimizar o processo. Eficiência é tudo."
-            }
-        ],
         choices: [
-            { text: "Voltar ao ferreiro", target: "voltar_ferreiro" }
+            { text: "Falar com o mercador", target: "cenario_2_dialogo" }
         ]
     },
 
-    voltar_ferreiro: {
-        bg: "ferreiria",
-        effects: {
-            removeItem: {
-                name: "Minério de Ferro",
-                quantity: 5
+    cenario_2_dialogo: {
+        bg: "market",
+        dialogs: [
+            {
+                speaker: "Mercador Gorb",
+                text: "Meu inventário está uma bagunça! Não consigo separar o que é número, o que é texto e o que é lista!"
             },
-            addItem: {
-                name: "Espada Melhorada",
-                quantity: 1,
-                properties: {
-                    dano: 8
+            {
+                speaker: "Arthur",
+                text: "Acho que identifiquei o seu problema olhando o JSON. Você está misturando tipos de dados sem organizá-los!"
+            }
+        ],
+        json_data: {
+            npc: {
+                nome: "Mercador Gorb",
+                tipo: "vendedor",
+                estado: "estressado",
+                inventario: {
+                    espada: {
+                        tipo: "object",
+                        propriedades: {
+                            dano: 25,
+                            durabilidade: 100,
+                            nome: "Espada de Ferro"
+                        }
+                    },
+                    moedas: {
+                        tipo: "number",
+                        valor: 150
+                    },
+                    tem_licenca: {
+                        tipo: "boolean",
+                        valor: true
+                    },
+                    produtos: {
+                        tipo: "array",
+                        valor: ["poção", "espada", "escudo"]
+                    }
+                }
+            }
+        },
+        choices: [
+            {
+                text: "Jogue tudo fora e comece de novo.",
+                correct: false,
+                feedback: "O mercador chora. 'Mas eu perco meu lucro!'",
+                target: "cenario_2_errado_1"
+            },
+            {
+                text: "Organize por tipo: `number` para moedas, `string` para nomes, `boolean` para estados, `array` para listas, `object` para itens complexos.",
+                correct: true,
+                feedback: "O mercador organiza tudo! 'Agora faz sentido! Cada coisa tem seu tipo!'",
+                target: "cenario_2_correto"
+            },
+            {
+                text: "Transforme tudo em texto (string).",
+                correct: false,
+                feedback: "O mercador tenta, mas os números perdem valor. 'Agora não consigo fazer contas!'",
+                target: "cenario_2_errado_2"
+            }
+        ]
+    },
+
+    cenario_2_correto: {
+        bg: "market",
+        dialogs: [
+            {
+                speaker: "Mercador Gorb",
+                text: "Muito obrigado! Agora meu inventário está organizado por tipos de dados!"
+            },
+            {
+                speaker: "Arthur",
+                text: "Sem problemas! Lembre-se: `number` guarda números, `string` guarda textos, `boolean` é para verdadeiro/falso, `array` é para listas e `object` é para dados compostos complexos."
+            },
+            {
+                speaker: "Arthur",
+                text: "Consegui mais experiência! Minhas habilidades estão evoluindo. Vou continuar explorando."
+            }
+        ],
+        choices: [
+            { text: "Continuar jornada", target: "cenario_3_inicio" }
+        ]
+    },
+
+    cenario_2_errado_1: {
+        bg: "market",
+        dialogs: [
+            {
+                speaker: "Mercador Gorb",
+                text: "Isso seria um desastre! Preciso de uma solução melhor..."
+            },
+            {
+                speaker: "Arthur",
+                text: "Vou pensar melhor. A chave está em atribuir o tipo correto para cada dado."
+            }
+        ],
+        choices: [
+            { text: "Tentar novamente", target: "cenario_2_dialogo" }
+        ]
+    },
+
+    cenario_2_errado_2: {
+        bg: "market",
+        dialogs: [
+            {
+                speaker: "Mercador Gorb",
+                text: "Isso não funcionou! Agora não consigo fazer cálculos com as moedas..."
+            },
+            {
+                speaker: "Arthur",
+                text: "O texto puro (string) não permite operações matemáticas diretas de moedas. Tenho que indicar o tipo certo."
+            }
+        ],
+        choices: [
+            { text: "Tentar novamente", target: "cenario_2_dialogo" }
+        ]
+    },
+
+    // ==================== CENÁRIO 3: A PORTA LÓGICA (Condicionais if/else) ====================
+    cenario_3_inicio: {
+        bg: "door",
+        dialogs: [
+            {
+                speaker: "Arthur",
+                text: "Me deparei com uma porta mágica monumental. Ela tem o que parece ser um sistema eletrônico ou mágico de segurança."
+            },
+            {
+                speaker: "Arthur",
+                text: "Deixa eu inspecionar a lógica desse mecanismo no meu painel JSON..."
+            }
+        ],
+        json_data: {
+            objeto: {
+                nome: "Porta do Conhecimento",
+                tipo: "passagem",
+                estado: "trancada",
+                requisitos: {
+                    chave_necessaria: true,
+                    nivel_minimo: 5,
+                    tem_permissoes: false
+                },
+                logica_abertura: {
+                    condicao: "if (tem_chave && nivel >= 5)",
+                    alternativa: "else if (tem_permissoes)"
                 }
             },
-            removeItem: {
-                name: "Espada Enferrujada",
-                quantity: 1
+            heroi: {
+                inventario: {
+                    chave: true,
+                    nivel: 7,
+                    permissoes: false
+                }
             }
         },
-        dialogs: [
-            { 
-                speaker: "Ferreiro", 
-                text: "Você voltou! Conseguiu o minério?"
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Sim. Minério de ferro. *(entrega)*"
-            },
-            { 
-                speaker: "Ferreiro", 
-                text: "Excelente! Vou melhorar sua espada agora mesmo."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "O ferreiro trabalha na espada e a devolve com uma qualidade melhor."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Espada Melhorada. Dano aumentado. *(examina os dados)* O sistema atualizou os atributos corretamente."
-            },
-            { 
-                speaker: "Ferreiro", 
-                text: "Com essa espada, você pode enfrentar desafios maiores. Boa sorte!"
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Obrigado. *(pensa)* Este mundo funciona de forma previsível. Se eu entender as regras, posso dominá-lo."
-            }
-        ],
         choices: [
-            { text: "Continuar a jornada", target: "continuar_jornada" }
+            { text: "Interagir com a porta", target: "cenario_3_dialogo" }
         ]
     },
 
-    continuar_jornada: {
-        bg: "planicie_inicial",
+    cenario_3_dialogo: {
+        bg: "door",
         dialogs: [
-            { 
-                speaker: "Narrador", 
-                text: "Você sai da vila com sua espada melhorada. Olha para o horizonte, pronto para explorar mais deste mundo."
+            {
+                speaker: "Porta do Conhecimento",
+                text: "Sistema de segurança ativado. Para abrir, você deve satisfazer uma das condições lógicas."
             },
-            { 
-                speaker: "Jogador", 
-                text: "Comecei do zero, mas já estou entendendo como este mundo funciona. *(sorri)* A programação me dá uma vantagem única."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "Vou continuar explorando, coletando dados, e otimizando minha jornada. Quem sabe, talvez eu encontre um bug no sistema que me leve de volta para casa."
-            },
-            { 
-                speaker: "Narrador", 
-                text: "Você caminha em direção ao desconhecido, sua mente analítica pronta para decifrar os segredos deste mundo de fantasia."
-            },
-            { 
-                speaker: "Jogador", 
-                text: "A aventura só está começando. *(foca no painel flutuante)* E eu tenho o código fonte do mundo nas mãos."
+            {
+                speaker: "Arthur",
+                text: "Que interessante! O trinco da porta usa condicionais `if/else` com operadores lógicos. Deixe-me ver o que tenho no meu inventário."
             }
         ],
+        json_data: {
+            objeto: {
+                nome: "Porta do Conhecimento",
+                tipo: "passagem",
+                estado: "trancada",
+                requisitos: {
+                    chave_necessaria: true,
+                    nivel_minimo: 5,
+                    tem_permissoes: false
+                },
+                logica_abertura: {
+                    condicao: "if (tem_chave && nivel >= 5)",
+                    alternativa: "else if (tem_permissoes)"
+                }
+            },
+            heroi: {
+                inventario: {
+                    chave: true,
+                    nivel: 7,
+                    permissoes: false
+                }
+            }
+        },
         choices: [
-            { text: "Continuar explorando", target: "fim_jogo" }
+            {
+                text: "Vou usar a chave apenas.",
+                correct: false,
+                feedback: "A porta não abre. 'Condição incompleta. Nível insuficiente avaliado.'",
+                target: "cenario_3_errado_1"
+            },
+            {
+                text: "Tenho a chave E meu nível é 7, que é maior que 5. A condição `tem_chave && nivel >= 5` é verdadeira.",
+                correct: true,
+                feedback: "A porta abre! 'Condição satisfeita. Acesso concedido.'",
+                target: "cenario_3_correto"
+            },
+            {
+                text: "Vou tentar usar permissões.",
+                correct: false,
+                feedback: "A porta não abre. 'Você não tem permissões. Condição falsa.'",
+                target: "cenario_3_errado_2"
+            }
         ]
     },
 
-    fim_jogo: {
-        bg: "planicie_inicial",
+    cenario_3_correto: {
+        bg: "door",
         dialogs: [
-            { 
-                speaker: "Narrador", 
-                text: "Você continua sua jornada pelo reino, usando sua mente de programador para navegar pelos desafios deste mundo de fantasia."
+            {
+                speaker: "Porta do Conhecimento",
+                text: "Acesso concedido. Bem-vindo ao próximo nível de conhecimento."
             },
-            { 
-                speaker: "Jogador", 
-                text: "Este é apenas o começo. *(sorri)* Vou descobrir todos os segredos deste código... e quem sabe, encontrar um caminho de volta para casa."
+            {
+                speaker: "Arthur",
+                text: "Entendi! Condicionais `if/else` decidem caminhos baseados em testes booleanos. O `&&` (E lógico) exige que ambos os testes sejam verdadeiros simultaneamente para dar 'true'."
             },
-            { 
-                speaker: "Narrador", 
-                text: "A história do Programador Isekai está apenas começando. Sua jornada épica se tornará uma grande aula de programação."
+            {
+                speaker: "Arthur",
+                text: "Estou atravessando o portal! Sinto que venci o desafio final desse local!"
             }
         ],
-        choices: []
+        choices: [
+            { text: "Finalizar Demo", target: "final" }
+        ]
+    },
+
+    cenario_3_errado_1: {
+        bg: "door",
+        dialogs: [
+            {
+                speaker: "Porta do Conhecimento",
+                text: "Condição incompleta. Você precisa satisfazer todos os requisitos da condição principal."
+            },
+            {
+                speaker: "Arthur",
+                text: "De fato, a chave por si só não basta. Como há um `&&`, preciso cumprir as duas condições."
+            }
+        ],
+        choices: [
+            { text: "Tentar novamente", target: "cenario_3_dialogo" }
+        ]
+    },
+
+    cenario_3_errado_2: {
+        bg: "door",
+        dialogs: [
+            {
+                speaker: "Porta do Conhecimento",
+                text: "Você não tem permissões. A condição alternativa não foi satisfeita."
+            },
+            {
+                speaker: "Arthur",
+                text: "Minha propriedade de permissões está como 'false'. O caminho correto deve ser a primeira condição."
+            }
+        ],
+        choices: [
+            { text: "Tentar novamente", target: "cenario_3_dialogo" }
+        ]
+    },
+
+    // ==================== FINAL ====================
+    final: {
+        bg: "menu",
+        dialogs: [
+            {
+                speaker: "Arthur",
+                text: "Incrível! Completei com sucesso os 3 cenários educacionais do Code Quest!"
+            },
+            {
+                speaker: "Arthur",
+                text: "Pude praticar e consolidar conceitos de variáveis mutáveis/imutáveis, tipos de dados do inventário e condicionais lógicas."
+            },
+            {
+                speaker: "Arthur",
+                text: "Agora sei que, em programação, tudo pode ser estruturado como um objeto composto de propriedades e valores."
+            },
+            {
+                speaker: "Arthur",
+                text: "Estou ansioso para seguir minha jornada rumo aos loops, funções e coleções avançadas de dados!"
+            }
+        ],
+        choices: [
+            { text: "Voltar ao Menu", target: "menu" }
+        ]
     }
 };
-
-function applyAmbienceToStoryNodes() {
-    Object.values(StoryNodes).forEach(node => {
-        if (!node.dialogs || !node.bg || node.skipAmbience) return;
-
-        const ambience = AMBIENCE_BY_BG[node.bg];
-        if (!ambience) return;
-
-        node.dialogs.forEach(dialog => {
-            if (dialog.speaker === "Narrador" && !dialog.text.includes("Protagonista")) {
-                dialog.text = `${dialog.text} ${ambience}`;
-            }
-        });
-    });
-}
-
-applyAmbienceToStoryNodes();
