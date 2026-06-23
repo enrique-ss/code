@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quest</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Outfit:wght@100..900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (para ícones modernos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Import -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- JS Import -->
+    <script src="js/config.js"></script>
+    <script src="js/game-engine.js"></script>
+    <script src="js/history.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui-manager.js"></script>
+</head>
+<body>
+
+    <div id="game-container">
+        
+        <!-- ==================== HACKER MENU PANEL (20% left) ==================== -->
+        <div id="hacker-menu-panel" class="hacker-menu-panel" style="display: none;">
+            <div class="json-tabs">
+                <button class="tab-btn blue active" data-tab="heroi">
+                    <span class="tab-emoji" style="color: #8BE9FD;">👤</span>
+                </button>
+                <button class="tab-btn green" data-tab="inventario">
+                    <span class="tab-emoji" style="color: #50FA7B;">🎒</span>
+                </button>
+                <button class="tab-btn yellow" data-tab="mundo">
+                    <span class="tab-emoji" style="color: #F1FA8C;">🌍</span>
+                </button>
+                <button class="tab-btn red" data-tab="monstros">
+                    <span class="tab-emoji" style="color: #FF5555;">🐉</span>
+                </button>
+                <button class="tab-btn purple" data-tab="npcs">
+                    <span class="tab-emoji" style="color: #BD93F9;">👥</span>
+                </button>
+            </div>
+
+            <div class="json-editor-section">
+                <div id="json-visual-editor" class="json-visual-editor">
+                    <!-- JSON fields rendered dynamically -->
+                </div>
+            </div>
+
+            <div class="resize-handle" id="resize-handle"></div>
+        </div>
+
+        <!-- ==================== GAME AREA (70% right) ==================== -->
+        <div id="game-area" class="game-area">
+        
+        <!-- ==================== TELA: MENU PRINCIPAL ==================== -->
+        <div id="screen-menu" class="screen active">
+            <div class="logo-container">
+                <h1 class="game-title">Code Quest</h1>
+            </div>
+            
+            <div class="menu-buttons">
+                <button class="btn btn-primary" onclick="showCharacterCreation()">
+                    <i class="fa-solid fa-play"></i> Iniciar Jogo
+                </button>
+                <button class="btn" onclick="openModal('about-modal')">
+                    <i class="fa-solid fa-info-circle"></i> Sobre
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== TELA: CRIAÇÃO DE PERSONAGEM ==================== -->
+        <div id="screen-character-creation" class="screen">
+            <div class="character-creation-container">
+                <h1 class="creation-title">Crie seu Personagem</h1>
+                
+                <div class="creation-form">
+                    <div class="form-group">
+                        <label for="player-name">Nome:</label>
+                        <input type="text" id="player-name" class="creation-input" placeholder="Digite seu nome" maxlength="20">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Classe:</label>
+                        <div class="class-selection">
+                            <button class="class-btn" data-class="Guerreiro" onclick="selectClass('Guerreiro')">
+                                <i class="fa-solid fa-shield"></i>
+                                <span>Guerreiro</span>
+                            </button>
+                            <button class="class-btn" data-class="Mago" onclick="selectClass('Mago')">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>Mago</span>
+                            </button>
+                            <button class="class-btn" data-class="Ladino" onclick="selectClass('Ladino')">
+                                <i class="fa-solid fa-user-ninja"></i>
+                                <span>Ladino</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="confirmCharacterCreation()">
+                        <i class="fa-solid fa-check"></i> Confirmar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TELA FINAL ==================== -->
+        <div id="screen-final" class="screen">
+            <div class="goodnight-container">
+                <h1 class="goodnight-title">Fim de Jogo</h1>
+                <p class="goodnight-subtitle">Obrigado por jogar Code Quest</p>
+                <button class="btn btn-primary" onclick="startGame()" style="z-index: 10; max-width: 250px; margin-top: 2rem;">
+                    <i class="fa-solid fa-rotate-right"></i> Recomeçar
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== TELA: JOGO (VISUAL NOVEL) ==================== -->
+        <div id="screen-game" class="screen">
+            
+            <!-- Apenas dialog-box, sem HUD -->
+
+            <!-- Camada de Sprites dos Personagens -->
+            <div class="sprites-layer">
+                <!-- Sprites inseridos dinamicamente pelo JavaScript -->
+            </div>
+
+            <!-- Fog/Gradiente de fundo -->
+            <div class="dialog-fog"></div>
+
+            <!-- Camada de Diálogo e Escolhas -->
+            <div class="dialog-layer">
+                <!-- Container de Decisões -->
+                <div id="choices-container" class="choices-container" style="display: none;">
+                    <!-- Botões de escolha inseridos dinamicamente aqui -->
+                </div>
+
+                <!-- Caixa de Diálogo Principal -->
+                <div id="dialog-box" class="dialog-box" onclick="onDialogBoxClick()">
+                    <div id="dialog-name" class="dialog-name-tag">Narrador</div>
+                    <div id="dialog-text" class="dialog-text">
+                        Carregando dia...
+                    </div>
+                    <div class="dialog-cursor">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        </div> <!-- End game-area -->
+
+    </div>
+
+</body>
+</html>
