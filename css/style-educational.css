@@ -237,6 +237,18 @@
     .feedback-text {
         font-size: 16px;
     }
+
+    /* Mostrar botão de tela cheia apenas em mobile */
+    #btn-fullscreen {
+        display: flex !important;
+    }
+}
+
+/* Esconder botão de tela cheia em desktop */
+@media (min-width: 769px) {
+    #btn-fullscreen {
+        display: none !important;
+    }
 }
 
 @media (max-width: 480px) {

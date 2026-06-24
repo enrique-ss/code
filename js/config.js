@@ -61,7 +61,11 @@ const ASSETS = {
         forest_layer_0: 'assets/backgrounds/GrassLand_Background_1.png',
         forest_layer_1: 'assets/backgrounds/GrassLand_Background_2.png',
         forest_layer_2: 'assets/backgrounds/GrassLand_Background_3.png',
-        forest_layer_3: 'assets/backgrounds/GrassLand_Background_4.png'
+        forest_layer_3: 'assets/backgrounds/GrassLand_Background_4.png',
+        forest_layer_4: 'assets/backgrounds/GrassLand_Background_5.png',
+        cloud_1: 'assets/backgrounds/GrassLand_Cloud_1.png',
+        cloud_2: 'assets/backgrounds/GrassLand_Cloud_2.png',
+        cloud_3: 'assets/backgrounds/GrassLand_Cloud_3.png'
     },
     sprites: {
         arthur: 'assets/sprites/arthur.gif',

@@ -151,6 +151,13 @@ const UIManager = {
             });
         }
 
+        const btnFullscreen = document.getElementById('btn-fullscreen');
+        if (btnFullscreen) {
+            btnFullscreen.addEventListener('click', () => {
+                this.toggleFullscreen();
+            });
+        }
+
         const btnCloseJson = document.getElementById('btn-close-json');
         if (btnCloseJson) {
             btnCloseJson.addEventListener('click', () => {
@@ -209,6 +216,18 @@ const UIManager = {
                 }
                 this.updateHUD();
             };
+        }
+    },
+
+    toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log(`Erro ao ativar tela cheia: ${err.message}`);
+            });
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
         }
     },
 

@@ -53,13 +53,13 @@ class GameScene extends Phaser.Scene {
         // Set bounds
         this.physics.world.setBounds(0, 0, width * 3, height);
 
-        // Setup Parallax Background (4 layers)
-        // Fallback graphics are drawn dynamically in HSL Dracula color scheme if images don't exist
+        // Setup Parallax Background (5 layers)
         this.parallaxLayers = [
             { sprite: this.createParallaxLayer(0, 'forest_layer_0', width, height), factor: 0.05 },
             { sprite: this.createParallaxLayer(1, 'forest_layer_1', width, height), factor: 0.15 },
             { sprite: this.createParallaxLayer(2, 'forest_layer_2', width, height), factor: 0.4 },
-            { sprite: this.createParallaxLayer(3, 'forest_layer_3', width, height), factor: 1.0 }
+            { sprite: this.createParallaxLayer(3, 'forest_layer_3', width, height), factor: 0.7 },
+            { sprite: this.createParallaxLayer(4, 'forest_layer_4', width, height), factor: 1.0 }
         ];
 
         // Create hero sprite (use visual graphic circle if asset is missing)
@@ -448,15 +448,15 @@ class GameScene extends Phaser.Scene {
      */
     createParallaxLayer(index, key, width, height) {
         if (this.textures.exists(key)) {
-            // Setup preloaded image asset
-            const ts = this.add.tileSprite(0, 0, width, height, key)
-                .setOrigin(0, 0)
-                .setScrollFactor(0)
-                .setTileScale(1, 1);
+            // Get original texture dimensions
+            const texture = this.textures.get(key);
+            const textureHeight = texture.getSourceImage().height;
             
-            // Scaled dynamically to preserve nearest neighbor look if necessary
-            ts.tileScaleX = 1;
-            ts.tileScaleY = 1;
+            // Setup tileSprite with original height (no vertical tiling), screen width (horizontal tiling)
+            const ts = this.add.tileSprite(width / 2, height / 2, width, textureHeight, key)
+                .setOrigin(0.5, 0.5)
+                .setScrollFactor(0);
+            
             return ts;
         }
 
