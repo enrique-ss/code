@@ -104,6 +104,7 @@ class GameScene extends Phaser.Scene {
     create() {
         const width = this.cameras.main.width;
         const height = this.cameras.main.height;
+        const characterY = height * 0.8;
 
         // Game state
         this.isWalking = true;
@@ -158,12 +159,12 @@ class GameScene extends Phaser.Scene {
 
         // Create hero using Character class
         if (this.textures.exists('sprite_arthur')) {
-            this.hero = this.physics.add.sprite(100, height * 0.65, 'sprite_arthur')
+            this.hero = this.physics.add.sprite(100, characterY, 'sprite_arthur')
                 .setScale(0.8)
                 .setCollideWorldBounds(true);
             this.heroCharacter = null;
         } else {
-            this.heroCharacter = new Character(this, 100, height * 0.65, {
+            this.heroCharacter = new Character(this, 100, characterY, {
                 id: 'hero',
                 color: 0x8be9fd,
                 width: 50,
@@ -193,7 +194,7 @@ class GameScene extends Phaser.Scene {
             let sprite;
             
             if (this.textures.exists(spriteKey)) {
-                sprite = this.add.image(obs.x, height * 0.65, spriteKey)
+                sprite = this.add.image(obs.x, characterY, spriteKey)
                     .setScale(0.8);
             } else {
                 // Character configs for each obstacle type
@@ -231,7 +232,7 @@ class GameScene extends Phaser.Scene {
                 };
 
                 const config = characterConfigs[obs.type] || characterConfigs.mage;
-                const character = new Character(this, obs.x, height * 0.65, config);
+                const character = new Character(this, obs.x, characterY, config);
                 sprite = character.sprite;
                 this.obstacleCharacters.push(character);
             }
@@ -261,7 +262,10 @@ class GameScene extends Phaser.Scene {
         // Load introduction narrative node
         this.loadNode('intro');
 
-        // Handle viewport resize — update parallax layers and world bounds
+        // Initial positioning to ensure characters are at correct Y position
+        this.repositionCharacters(height);
+
+        // Handle viewport resize — update world bounds and characters
         this.scale.on('resize', (gameSize) => {
             const w = gameSize.width;
             const h = gameSize.height;
@@ -269,41 +273,40 @@ class GameScene extends Phaser.Scene {
             // Update physics world bounds
             this.physics.world.setBounds(0, 0, w * 3, h);
 
-            // Resize parallax tileSprites to cover new viewport
-            if (this.parallaxLayers) {
-                this.parallaxLayers.forEach(layer => {
-                    layer.sprite.setSize(w, h);
-                    layer.sprite.setPosition(w / 2, h / 2);
-                });
-            }
-
-            // Reposition hero vertically
-            if (this.hero) {
-                this.hero.y = h * 0.65;
-                if (this.hero.body) {
-                    this.hero.body.y = h * 0.65;
-                }
-            }
-
-            // Reposition hero halo and pedestal
-            if (this.heroCharacter) {
-                this.heroCharacter.sprite.y = h * 0.65;
-                if (this.heroCharacter.sprite.body) {
-                    this.heroCharacter.sprite.body.y = h * 0.65;
-                }
-                this.heroCharacter.updatePosition();
-            } else if (this.heroHalo) {
-                this.heroHalo.y = h * 0.65;
-            }
-
-            // Reposition obstacles vertically
-            if (this.obstacleCharacters) {
-                this.obstacleCharacters.forEach(char => {
-                    char.sprite.y = h * 0.65;
-                    char.updatePosition();
-                });
-            }
+            // Reposition all characters vertically
+            this.repositionCharacters(h);
         });
+    }
+
+    repositionCharacters(height) {
+        const characterY = height * 0.8;
+
+        // Reposition hero vertically
+        if (this.hero) {
+            this.hero.y = characterY;
+            if (this.hero.body) {
+                this.hero.body.y = characterY;
+            }
+        }
+
+        // Reposition hero character (halo, pedestal, label)
+        if (this.heroCharacter) {
+            this.heroCharacter.sprite.y = characterY;
+            if (this.heroCharacter.sprite.body) {
+                this.heroCharacter.sprite.body.y = characterY;
+            }
+            this.heroCharacter.updatePosition();
+        } else if (this.heroHalo) {
+            this.heroHalo.y = characterY;
+        }
+
+        // Reposition obstacles vertically
+        if (this.obstacleCharacters) {
+            this.obstacleCharacters.forEach(char => {
+                char.sprite.y = characterY;
+                char.updatePosition();
+            });
+        }
     }
 
     handleStateChange(oldState, newState, data) {
@@ -600,9 +603,10 @@ class GameScene extends Phaser.Scene {
         if (this.textures.exists(key)) {
             // Get original texture dimensions
             const texture = this.textures.get(key);
+            const textureWidth = texture.getSourceImage().width;
             const textureHeight = texture.getSourceImage().height;
             
-            // Setup tileSprite with original height (no vertical tiling), screen width (horizontal tiling)
+            // Setup tileSprite: tile horizontally, no vertical tiling, centered
             const ts = this.add.tileSprite(width / 2, height / 2, width, textureHeight, key)
                 .setOrigin(0.5, 0.5)
                 .setScrollFactor(0);
