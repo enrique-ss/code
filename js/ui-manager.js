@@ -8,7 +8,7 @@ const UIManager = {
     onDialogClickCallback: null,
 
     alignUI() {
-        // UI layer is now 100%×100% viewport overlay — no scaling needed
+        // Camada de UI agora é sobreposição de viewport 100%×100% — sem necessidade de escalonamento
         const uiLayer = document.getElementById('ui-layer');
         if (!uiLayer) return;
         uiLayer.style.position = 'absolute';
@@ -22,7 +22,7 @@ const UIManager = {
     initDOM() {
         console.log('[UIManager] Inicializando interface DOM');
         
-        // Align UI on init and resize
+        // Alinha UI na inicialização e redimensionamento
         this.alignUI();
         window.addEventListener('resize', () => this.alignUI());
 

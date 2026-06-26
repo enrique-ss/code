@@ -3,7 +3,7 @@
  * Motion Comic Educativa sobre Programação
  */
 
-// Phaser Game Configuration
+// Configuração do Jogo Phaser
 const GAME_CONFIG = {
     type: Phaser.AUTO,
     width: 1280,
@@ -22,13 +22,13 @@ const GAME_CONFIG = {
     }
 };
 
-// Game Constants
+// Constantes do Jogo
 const CONSTANTS = {
     FONT_FAMILY: 'Fredoka, Arial, sans-serif',
     FONT_FAMILY_UI: 'Outfit, Arial, sans-serif',
     FONT_FAMILY_CODE: 'Courier New, monospace',
     
-    // Colors
+    // Cores
     COLORS: {
         PRIMARY: '#8be9fd',
         SECONDARY: '#50fa7b',
@@ -41,16 +41,16 @@ const CONSTANTS = {
         TEXT_MUTED: '#6272a4'
     },
     
-    // Animation Speeds
+    // Velocidades de Animação
     TYPING_SPEED: 30,
     ZOOM_DURATION: 500,
     WALK_SPEED: 100
 };
 
-// Assets Configuration (Standardized 16-bit Pixel Art paths)
-// - Backgrounds standard resolution: 1280x720px
-// - Sprites standard resolution: 128x128px (or 256x256px for higher detail)
-// - UI elements should match standard component sizing
+// Configuração de Assets (Caminhos de Pixel Art 16-bit padronizados)
+// - Resolução padrão de fundos: 1280x720px
+// - Resolução padrão de sprites: 128x128px (ou 256x256px para maior detalhe)
+// - Elementos de UI devem corresponder ao tamanho padrão de componentes
 const ASSETS = {
     backgrounds: {
         menu: 'assets/backgrounds/menu.png',
@@ -80,7 +80,7 @@ const ASSETS = {
     }
 };
 
-// JSON Panel Styling (Terminal-like)
+// Estilização do Painel JSON (Estilo Terminal)
 const JSON_PANEL_STYLES = {
     backgroundColor: '#0d0d12',
     borderColor: '#44475a',
@@ -95,7 +95,7 @@ const JSON_PANEL_STYLES = {
     fontFamily: 'Courier New, monospace'
 };
 
-// Character Styles
+// Estilos de Personagem
 const CHARACTER_STYLES = {
     arthur: {
         name: 'Arthur',

@@ -1,5 +1,5 @@
 /**
- * FINAL SCENE - Twinkling stars effect and background
+ * CENA FINAL - Efeito de estrelas cintilantes e fundo
  */
 
 class FinalScene extends Phaser.Scene {
@@ -11,17 +11,17 @@ class FinalScene extends Phaser.Scene {
         const width = this.cameras.main.width;
         const height = this.cameras.main.height;
 
-        // Background (larger than canvas to prevent gaps)
+        // Fundo (maior que o canvas para evitar lacunas)
         if (this.textures.exists('bg_final')) {
             this.finalBg = this.add.image(width / 2, height / 2, 'bg_final').setDisplaySize(width * 1.3, height * 1.3);
         } else {
-            // Draw a beautiful dark space background
+            // Desenha um belo fundo espacial escuro
             this.finalBg = this.add.graphics();
             this.finalBg.fillGradientStyle(0x0a0518, 0x0a0518, 0x1d143c, 0x1d143c, 1);
             this.finalBg.fillRect(-200, -200, width + 400, height + 400);
         }
 
-        // Handle resize
+        // Trata redimensionamento
         this.scale.on('resize', (gameSize) => {
             const w = gameSize.width;
             const h = gameSize.height;
@@ -35,7 +35,7 @@ class FinalScene extends Phaser.Scene {
             }
         });
 
-        // Twinkling stars effect
+        // Efeito de estrelas cintilantes
         this.createStars();
     }
 

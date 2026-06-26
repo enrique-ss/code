@@ -8,21 +8,21 @@ class PreloadScene extends Phaser.Scene {
     }
 
     preload() {
-        // Load background images (apenas se caminho não for null)
+        // Carrega imagens de fundo (apenas se caminho não for null)
         Object.entries(ASSETS.backgrounds).forEach(([key, path]) => {
             if (path) {
                 this.load.image(key, path);
             }
         });
 
-        // Load character sprites (apenas se caminho não for null)
+        // Carrega sprites de personagens (apenas se caminho não for null)
         Object.entries(ASSETS.sprites).forEach(([key, path]) => {
             if (path) {
                 this.load.image(`sprite_${key}`, path);
             }
         });
 
-        // Load stickers (apenas se caminho não for null)
+        // Carrega adesivos (apenas se caminho não for null)
         Object.entries(ASSETS.stickers || {}).forEach(([key, path]) => {
             if (path) {
                 this.load.image(`sticker_${key}`, path);
@@ -31,7 +31,7 @@ class PreloadScene extends Phaser.Scene {
     }
 
     create() {
-        // Initialize game engine
+        // Inicializa motor do jogo
         if (!window.gameEngine) {
             window.gameEngine = new CodeQuestGame();
         }

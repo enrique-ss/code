@@ -1,6 +1,6 @@
 /**
- * CODE QUEST - PHASER 3 MAIN ENTRY POINT
- * Visual Novel Game with Fourth Wall Breaking
+ * CODE QUEST - PONTO DE ENTRADA PRINCIPAL PHASER 3
+ * Visual Novel com Quebra da Quarta Parede
  */
 
 const config = {

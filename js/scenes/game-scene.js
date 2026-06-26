@@ -1,8 +1,8 @@
 /**
- * GAME SCENE - Side-scroller and physics sync with DOM UI overlays
+ * CENA DO JOGO - Side-scroller e sincronização de física com sobreposições de UI DOM
  */
 
-// Character class for standardized styling
+// Classe Character para estilização padronizada
 class Character {
     constructor(scene, x, y, config) {
         this.scene = scene;
@@ -10,7 +10,7 @@ class Character {
         this.y = y;
         this.config = config;
 
-        // Default config
+        // Configuração padrão
         this.color = config.color || 0x8be9fd;
         this.width = config.width || 50;
         this.height = config.height || 80;
@@ -24,9 +24,9 @@ class Character {
     }
 
     createSprite() {
-        // Draw pedestal first (so it appears behind the sprite)
+        // Desenha o pedestal primeiro (para que apareça atrás do sprite)
         if (this.hasPedestal) {
-            this.scene.add.ellipse(this.x, this.y + 30, 80, 25, 0x000000, 0.5);
+            this.pedestal = this.scene.add.ellipse(this.x, this.y + 40, 80, 25, 0x000000, 0.5);
         }
 
         const graphics = this.scene.add.graphics();
@@ -42,12 +42,11 @@ class Character {
         let sprite;
         if (this.isPhysics) {
             sprite = this.scene.physics.add.sprite(this.x, this.y, textureKey);
-            sprite.setCollideWorldBounds(true);
         } else {
             sprite = this.scene.add.image(this.x, this.y, textureKey);
         }
 
-        // Draw label if provided
+        // Desenha o rótulo se fornecido
         if (this.label) {
             const label = this.scene.add.text(this.x, this.y - this.height / 2 - 15, this.label, {
                 fontFamily: 'Outfit, Arial, sans-serif',
@@ -85,6 +84,10 @@ class Character {
     }
 
     updatePosition() {
+        if (this.pedestal) {
+            this.pedestal.x = this.sprite.x;
+            this.pedestal.y = this.sprite.y + 40;
+        }
         if (this.halo) {
             this.halo.x = this.sprite.x;
             this.halo.y = this.sprite.y;
@@ -104,9 +107,9 @@ class GameScene extends Phaser.Scene {
     create() {
         const width = this.cameras.main.width;
         const height = this.cameras.main.height;
-        const characterY = height * 0.8;
+        const characterY = height * 0.525;
 
-        // Game state
+        // Estado do jogo
         this.isWalking = true;
         this.currentNodeKey = null;
         this.obstacles = [];
@@ -114,7 +117,7 @@ class GameScene extends Phaser.Scene {
         this.storyQueue = [];
         this.queueIndex = 0;
 
-        // Setup DOM sprites container for animated GIFs
+        // Configuração do contêiner de sprites DOM para GIFs animados
         const uiLayer = document.getElementById('ui-layer');
         this.domSprites = {};
         
@@ -145,10 +148,11 @@ class GameScene extends Phaser.Scene {
             window.gameScene = this;
         }
 
-        // Set bounds
+        // Define limites e desabilita gravidade
         this.physics.world.setBounds(0, 0, width * 3, height);
+        this.physics.world.gravity.y = 0;
 
-        // Setup Parallax Background (5 layers)
+        // Configuração de Fundo Parallax (5 camadas)
         this.parallaxLayers = [
             { sprite: this.createParallaxLayer(0, 'forest_layer_0', width, height), factor: 0.05 },
             { sprite: this.createParallaxLayer(1, 'forest_layer_1', width, height), factor: 0.15 },
@@ -157,11 +161,10 @@ class GameScene extends Phaser.Scene {
             { sprite: this.createParallaxLayer(4, 'forest_layer_4', width, height), factor: 1.0 }
         ];
 
-        // Create hero using Character class
+        // Cria herói usando a classe Character
         if (this.textures.exists('sprite_arthur')) {
             this.hero = this.physics.add.sprite(100, characterY, 'sprite_arthur')
-                .setScale(0.8)
-                .setCollideWorldBounds(true);
+                .setScale(0.8);
             this.heroCharacter = null;
         } else {
             this.heroCharacter = new Character(this, 100, characterY, {
@@ -177,17 +180,17 @@ class GameScene extends Phaser.Scene {
             this.heroHalo = this.heroCharacter.halo;
         }
 
-        // Add the DOM GIF overlay for Arthur
+        // Adiciona a sobreposição de GIF DOM para Arthur
         this.createDOMSprite('arthur', this.hero, 0.8, 128);
 
-        // Define obstacles/encounters positions (X coordinates)
+        // Define posições de obstáculos/encontros (coordenadas X)
         this.obstacles = [
             { x: 500, type: 'mage', node: 'cenario_1_inicio' },
             { x: 1200, type: 'merchant', node: 'cenario_2_inicio' },
             { x: 2000, type: 'door', node: 'cenario_3_inicio' }
         ];
 
-        // Create obstacle sprites using Character class
+        // Cria sprites de obstáculos usando a classe Character
         this.obstacleCharacters = [];
         this.obstacles.forEach((obs, index) => {
             const spriteKey = `sprite_${obs.type}`;
@@ -197,7 +200,7 @@ class GameScene extends Phaser.Scene {
                 sprite = this.add.image(obs.x, characterY, spriteKey)
                     .setScale(0.8);
             } else {
-                // Character configs for each obstacle type
+                // Configurações de personagem para cada tipo de obstáculo
                 const characterConfigs = {
                     mage: {
                         id: 'mage',
@@ -240,73 +243,26 @@ class GameScene extends Phaser.Scene {
             sprite.setData('index', index);
             sprite.setData('node', obs.node);
 
-            // Add the DOM GIF overlay for this obstacle (Door uses larger sprite frame)
+            // Adiciona a sobreposição de GIF DOM para este obstáculo (Porta usa frame de sprite maior)
             const defaultSize = (obs.type === 'door') ? 160 : 128;
             this.createDOMSprite(obs.type, sprite, 0.8, defaultSize);
         });
 
-        // Setup camera to follow hero smoothly
-        this.cameras.main.startFollow(this.hero, true, 0.1, 0.1);
+        // Configuração da câmera - acompanhamento horizontal manual apenas
         this.cameras.main.setZoom(1);
 
-        // Hide all dialogues on UI DOM initial loading
+        // Oculta todos os diálogos no carregamento inicial do UI DOM
         if (window.UIManager) {
             window.UIManager.hideDialogue();
             window.UIManager.hideChoices();
             window.UIManager.updateHUD();
         }
 
-        // Start walking
+        // Inicia caminhada
         this.startWalking();
 
-        // Load introduction narrative node
+        // Carrega nó narrativo de introdução
         this.loadNode('intro');
-
-        // Initial positioning to ensure characters are at correct Y position
-        this.repositionCharacters(height);
-
-        // Handle viewport resize — update world bounds and characters
-        this.scale.on('resize', (gameSize) => {
-            const w = gameSize.width;
-            const h = gameSize.height;
-
-            // Update physics world bounds
-            this.physics.world.setBounds(0, 0, w * 3, h);
-
-            // Reposition all characters vertically
-            this.repositionCharacters(h);
-        });
-    }
-
-    repositionCharacters(height) {
-        const characterY = height * 0.8;
-
-        // Reposition hero vertically
-        if (this.hero) {
-            this.hero.y = characterY;
-            if (this.hero.body) {
-                this.hero.body.y = characterY;
-            }
-        }
-
-        // Reposition hero character (halo, pedestal, label)
-        if (this.heroCharacter) {
-            this.heroCharacter.sprite.y = characterY;
-            if (this.heroCharacter.sprite.body) {
-                this.heroCharacter.sprite.body.y = characterY;
-            }
-            this.heroCharacter.updatePosition();
-        } else if (this.heroHalo) {
-            this.heroHalo.y = characterY;
-        }
-
-        // Reposition obstacles vertically
-        if (this.obstacleCharacters) {
-            this.obstacleCharacters.forEach(char => {
-                char.sprite.y = characterY;
-                char.updatePosition();
-            });
-        }
     }
 
     handleStateChange(oldState, newState, data) {
@@ -319,7 +275,7 @@ class GameScene extends Phaser.Scene {
                     window.UIManager.hideChoices();
                 }
                 this.currentObstacleIndex++;
-                this.cameras.main.zoomTo(1, 500, 'Power2');
+                // this.cameras.main.zoomTo(1, 500, 'Power2');
                 this.startWalking();
                 break;
 
@@ -330,7 +286,7 @@ class GameScene extends Phaser.Scene {
                 break;
 
             case 'FIGHTING_RESOLVED':
-                // Handled directly inside handleChoice click logic
+                // Tratado diretamente dentro da lógica de clique handleChoice
                 break;
 
             case 'MENU':
@@ -356,21 +312,30 @@ class GameScene extends Phaser.Scene {
     }
 
     update() {
-        // Sync hero character position (halo, label)
+        // Acompanhamento horizontal manual da câmera (apenas quando não em diálogo)
+        if (this.hero && this.isWalking) {
+            const targetX = this.hero.x - this.cameras.main.width / 2;
+            this.cameras.main.scrollX = Phaser.Math.Linear(this.cameras.main.scrollX, targetX, 0.1);
+        }
+
+        // Mantém scrollY fixo para evitar que o zoom mova personagens verticalmente
+        this.cameras.main.scrollY = 0;
+
+        // Sincroniza posição do personagem herói (halo, rótulo)
         if (this.heroCharacter) {
             this.heroCharacter.updatePosition();
         } else if (this.heroHalo && this.hero) {
-            // Fallback for asset-based hero
+            // Fallback para herói baseado em assets
             this.heroHalo.x = this.hero.x;
             this.heroHalo.y = this.hero.y;
         }
 
-        // Sync obstacle characters positions (halo, label)
+        // Sincroniza posições dos personagens obstáculos (halo, rótulo)
         if (this.obstacleCharacters) {
             this.obstacleCharacters.forEach(char => char.updatePosition());
         }
 
-        // Update parallax layers scroll position based on camera movement
+        // Atualiza posição de rolagem das camadas parallax com base no movimento da câmera
         if (this.parallaxLayers) {
             const camScrollX = this.cameras.main.scrollX;
             this.parallaxLayers.forEach(layer => {
@@ -378,27 +343,28 @@ class GameScene extends Phaser.Scene {
             });
         }
 
-        // Update DOM sprites positions to match Phaser physics sprites
+        // Atualiza posições dos sprites DOM para corresponder aos sprites de física do Phaser
         if (this.domSprites) {
             const cam = this.cameras.main;
+            const zoom = cam.zoom;
             Object.keys(this.domSprites).forEach(key => {
                 const spriteData = this.domSprites[key];
                 const phaserSprite = spriteData.phaserSprite;
                 const el = spriteData.element;
                 
                 if (phaserSprite && el && el.style.display !== 'none') {
-                    // Calculate screen position based on camera scroll
-                    const screenX = phaserSprite.x - cam.scrollX;
-                    const screenY = phaserSprite.y - cam.scrollY;
+                    // Calculate screen position based on camera scroll and zoom
+                    const screenX = (phaserSprite.x - cam.scrollX) * zoom;
+                    const screenY = (phaserSprite.y - cam.scrollY) * zoom;
                     
-                    const size = spriteData.defaultSize * phaserSprite.scaleX;
+                    const size = spriteData.defaultSize * phaserSprite.scaleX * zoom;
                     
                     el.style.width = `${size}px`;
                     el.style.height = `${size}px`;
                     el.style.left = `${screenX - size / 2}px`;
                     el.style.top = `${screenY - size * spriteData.originY}px`;
                     
-                    // Mirroring (flipping horizontally) based on velocity
+                    // Espelhamento (virar horizontalmente) com base na velocidade
                     if (phaserSprite.body && phaserSprite.body.velocity) {
                         if (phaserSprite.body.velocity.x < 0) {
                             el.style.transform = 'scaleX(-1)';
@@ -410,12 +376,12 @@ class GameScene extends Phaser.Scene {
             });
         }
 
-        // Trigger inspection when hero arrives at next obstacle
+        // Aciona inspeção quando o herói chega ao próximo obstáculo
         if (this.isWalking && this.currentObstacleIndex < this.obstacles.length) {
             const obstacle = this.obstacles[this.currentObstacleIndex];
             const distance = Phaser.Math.Distance.Between(this.hero.x, this.hero.y, obstacle.x, this.hero.y);
 
-            if (distance < 60) {
+            if (distance < 200) {
                 this.triggerEncounter(obstacle);
             }
         }
@@ -428,9 +394,37 @@ class GameScene extends Phaser.Scene {
             window.gameEngine.startInspecting(obstacle);
         }
 
-        // Visual zoom and focus
-        this.cameras.main.pan(obstacle.x, this.hero.y, 800, 'Power2');
-        this.cameras.main.zoomTo(1.15, 800, 'Power2');
+        // Foco visual (apenas panorâmica horizontal)
+        this.cameras.main.pan(obstacle.x, this.cameras.main.scrollY, 800, 'Power2');
+    }
+
+    focusCameraOnSpeaker(speaker) {
+        let targetX = this.hero.x;
+
+        // Mapeia nomes de falantes para tipos de obstáculos
+        const speakerToType = {
+            'Arthur': 'hero',
+            'Mago Eldrin': 'mage',
+            'Eldrin': 'mage',
+            'Mercador Gorb': 'merchant',
+            'Gorb': 'merchant',
+            'Porta do Conhecimento': 'door',
+            'Porta': 'door'
+        };
+
+        const type = speakerToType[speaker];
+
+        if (type === 'hero') {
+            targetX = this.hero.x;
+        } else if (type && this.obstacleCharacters) {
+            const character = this.obstacleCharacters.find(char => char.config.id === type);
+            if (character) {
+                targetX = character.sprite.x;
+            }
+        }
+
+        // Move a câmera para o falante (apenas horizontal)
+        this.cameras.main.pan(targetX, this.cameras.main.scrollY, 500, 'Power2');
     }
 
     loadNode(nodeKey) {
@@ -475,13 +469,16 @@ class GameScene extends Phaser.Scene {
             const item = this.storyQueue[this.queueIndex];
             this.queueIndex++;
 
+            // Foca a câmera no falante
+            this.focusCameraOnSpeaker(item.speaker);
+
             if (window.UIManager) {
                 window.UIManager.showDialogue(item.speaker, item.text, () => {
                     this.playNextDialog(currentNodeObj);
                 });
             }
         } else {
-            // Dialogue completed, display choice options
+            // Diálogo concluído, exibe opções de escolha
             if (currentNodeObj.choices) {
                 // Se houver apenas uma escolha de transição de caminhada/fim, avança automaticamente
                 if (currentNodeObj.choices.length === 1 && currentNodeObj.choices[0].target && 
@@ -514,7 +511,7 @@ class GameScene extends Phaser.Scene {
             const isCorrect = window.gameEngine.handleChoice(choice);
 
             if (!isCorrect) {
-                // Incorrect
+                // Incorreto
                 if (window.UIManager) {
                     window.UIManager.showFeedback(choice.feedback || "Resposta incorreta!", false);
                 }
@@ -522,7 +519,7 @@ class GameScene extends Phaser.Scene {
                     this.loadNode(this.currentNodeKey);
                 });
             } else {
-                // Correct
+                // Correto
                 if (choice.feedback) {
                     if (window.UIManager) {
                         window.UIManager.showFeedback(choice.feedback, true);
@@ -597,16 +594,16 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * Creates a parallax background layer (either from loaded image asset or generated beautiful fallback)
+     * Cria uma camada de fundo parallax (a partir de asset de imagem carregada ou fallback gerado)
      */
     createParallaxLayer(index, key, width, height) {
         if (this.textures.exists(key)) {
-            // Get original texture dimensions
+            // Obtém dimensões originais da textura
             const texture = this.textures.get(key);
             const textureWidth = texture.getSourceImage().width;
             const textureHeight = texture.getSourceImage().height;
             
-            // Setup tileSprite: tile horizontally, no vertical tiling, centered
+            // Configura tileSprite: ladrilho horizontalmente, sem ladrilho vertical, centralizado
             const ts = this.add.tileSprite(width / 2, height / 2, width, textureHeight, key)
                 .setOrigin(0.5, 0.5)
                 .setScrollFactor(0);
@@ -614,15 +611,15 @@ class GameScene extends Phaser.Scene {
             return ts;
         }
 
-        // Generate high-quality retro styled pixel-art fallbacks using Dracula Theme palette
+        // Gera fallbacks de pixel art retrô de alta qualidade usando a paleta do tema Dracula
         const graphics = this.make.graphics({ x: 0, y: 0, add: false });
         
         if (index === 0) {
-            // Layer 0: Deep space / Sky
+            // Camada 0: Espaço profundo / Céu
             graphics.fillGradientStyle(0x0e0e1b, 0x0e0e1b, 0x1d1d35, 0x1d1d35, 1);
             graphics.fillRect(0, 0, width, height);
             
-            // Glowing stars
+            // Estrelas brilhantes
             graphics.fillStyle(0x8be9fd, 0.4);
             for (let i = 0; i < 35; i++) {
                 const rx = Phaser.Math.Between(0, width);
@@ -630,13 +627,13 @@ class GameScene extends Phaser.Scene {
                 graphics.fillCircle(rx, ry, Phaser.Math.Between(1, 3));
             }
             
-            // Distant faint nebula clouds
+            // Nuvens de nebulosas distantes e fracas
             graphics.fillStyle(0xbd93f9, 0.08);
             graphics.fillEllipse(width * 0.3, height * 0.25, 300, 100);
             graphics.fillEllipse(width * 0.7, height * 0.35, 400, 150);
             
         } else if (index === 1) {
-            // Layer 1: Distant mountains/skyline silhouttes
+            // Camada 1: Silhuetas de montanhas distantes/horizonte
             graphics.fillStyle(0x282a36, 1);
             graphics.beginPath();
             graphics.moveTo(0, height);
@@ -653,7 +650,7 @@ class GameScene extends Phaser.Scene {
             graphics.fillPath();
             
         } else if (index === 2) {
-            // Layer 2: Midground pine forest
+            // Camada 2: Floresta de pinheiros em segundo plano
             graphics.fillStyle(0x44475a, 1);
             for (let cx = 15; cx < width; cx += Phaser.Math.Between(45, 80)) {
                 const treeH = Phaser.Math.Between(90, 150);
@@ -664,21 +661,21 @@ class GameScene extends Phaser.Scene {
                 graphics.lineTo(cx + 25, height * 0.67);
                 graphics.closePath();
                 graphics.fillPath();
-                // Draw trunk down to bottom
+                // Desenha o tronco até o fundo
                 graphics.fillRect(cx - 4, height * 0.67, 8, height * 0.33);
             }
             
         } else if (index === 3) {
-            // Layer 3: Foreground trees, path & walk ground
-            // Draw soil
+            // Camada 3: Árvores em primeiro plano, caminho e solo caminhável
+            // Desenha o solo
             graphics.fillStyle(0x1a1a2e, 1);
             graphics.fillRect(0, height * 0.68, width, height * 0.32);
             
-            // Draw path detail
+            // Desenha detalhes do caminho
             graphics.fillStyle(0x6272a4, 0.4);
             graphics.fillRect(0, height * 0.68, width, 18);
             
-            // Draw grass blades and detail
+            // Desenha lâminas de grama e detalhes
             graphics.fillStyle(0x50fa7b, 0.95);
             graphics.fillRect(0, height * 0.68 - 4, width, 4);
             for (let cx = 0; cx < width; cx += 12) {
@@ -695,7 +692,7 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * Creates a DOM image element overlay for playing animated GIF files
+     * Cria uma sobreposição de elemento de imagem DOM para reproduzir arquivos GIF animados
      */
     createDOMSprite(key, phaserSprite, originY = 0.5, defaultSize = 128) {
         if (!this.domSpritesContainer) return;
@@ -707,10 +704,10 @@ class GameScene extends Phaser.Scene {
         img.src = path;
         img.style.position = 'absolute';
         img.style.pointerEvents = 'none';
-        img.style.imageRendering = 'pixelated'; // Keep pixel art sharp!
+        img.style.imageRendering = 'pixelated'; // Mantém a pixel art nítida!
         img.style.display = 'block';
         
-        // Hide the original Phaser sprite visually but keep it for physics
+        // Oculta visualmente o sprite original do Phaser, mas o mantém para física
         phaserSprite.setAlpha(0);
         
         img.onerror = () => {

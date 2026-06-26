@@ -29,7 +29,7 @@ class CodeQuestGame {
         this.onStateChange = null;
 
         // ==================== DADOS DO JOGO ====================
-        // Core JSON Databases - loaded from external JSON files
+        // Bancos de dados JSON principais - carregados de arquivos JSON externos
         this.databases = {
             heroi: {
                 nome: "Arthur",
@@ -122,10 +122,10 @@ class CodeQuestGame {
         };
 
         // ==================== INICIALIZAÇÃO ====================
-        // Load level 1 initially
+        // Carrega nível 1 inicialmente
         this.loadLevel(1);
 
-        // Load external JSON data asynchronously
+        // Carrega dados JSON externos de forma assíncrona
         this.loadJSONData();
 
         window.__codeQuestGameInstance = this;
@@ -161,7 +161,7 @@ class CodeQuestGame {
             this.databases.npcs = {};
 
             console.log('JSON data loaded successfully');
-            // Trigger UI update after loading
+            // Aciona atualização da UI após carregamento
             if (this.onDatabaseUpdate) {
                 this.onDatabaseUpdate('heroi', this.databases.heroi);
                 this.onDatabaseUpdate('inventario', this.databases.inventario);
@@ -185,7 +185,7 @@ class CodeQuestGame {
         }
     }
 
-    // Dynamic JSON update methods - reflect player actions
+    // Métodos de atualização JSON dinâmica - refletem ações do jogador
     updateHeroStat(stat, value) {
         if (this.databases.heroi[stat] !== undefined) {
             this.databases.heroi[stat] = value;
@@ -196,7 +196,7 @@ class CodeQuestGame {
     addExperience(amount) {
         this.databases.heroi.experiencia += amount;
         
-        // Level up logic
+        // Lógica de subir de nível
         const expNeeded = this.databases.heroi.nivel * 100;
         if (this.databases.heroi.experiencia >= expNeeded) {
             this.databases.heroi.nivel++;

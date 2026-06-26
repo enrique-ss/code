@@ -1,5 +1,5 @@
 /**
- * CHARACTER CREATION SCENE - Background visuals
+ * CENA DE CRIAÇÃO DE PERSONAGEM - Visuais de fundo
  */
 
 class CharacterCreationScene extends Phaser.Scene {
