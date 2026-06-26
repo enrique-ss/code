@@ -32,19 +32,15 @@ class CodeQuestGame {
         // Bancos de dados JSON principais - carregados de arquivos JSON externos
         this.databases = {
             heroi: {
-                nome: "Arthur",
                 classe: "Programador",
                 nivel: 1,
                 experiencia: 0,
                 vida: 100,
-                vida_maxima: 100,
                 mana: 50,
-                mana_maxima: 50,
                 forca: 10,
                 inteligencia: 15,  // Alta inteligência para programador
                 destreza: 10,
-                habilidades: ["análise_de_código", "depuração"],
-                conquistas: []
+                habilidades: ["análise_de_código", "depuração"]
             },
             inventario: {
                 ouro: 0,
@@ -64,39 +60,40 @@ class CodeQuestGame {
                 eventos_ativos: [],
                 estado_mundo: "normal"
             },
-            monstros: {
-                slime: {
-                    nome: "Slime",
-                    nivel: 1,
-                    vida: 20,
-                    ataque: 5,
-                    defesa: 2,
-                    experiencia: 10,
-                    drops: ["gel_de_slime"]
-                },
-                goblin: {
-                    nome: "Goblin",
-                    nivel: 2,
-                    vida: 30,
-                    ataque: 8,
-                    defesa: 3,
-                    experiencia: 20,
-                    drops: ["osso_goblin", "pele_goblin"]
-                },
-                lobo: {
-                    nome: "Lobo",
-                    nivel: 3,
-                    vida: 40,
-                    ataque: 12,
-                    defesa: 4,
-                    experiencia: 30,
-                    drops: ["pele_lobo", "dente_lobo"]
-                }
-            },
+            monstros: {},  //Monstros são revelados dinamicamente conforme o jogador os encontra
             npcs: {}  // NPCs são revelados dinamicamente conforme o jogador os encontra
         };
 
         this.blockCounter = 0;
+
+        // ==================== MONSTROS REVELADOS ====================
+        // Catálogo completo de monstros (dados completos, nunca expostos diretamente)
+        this._monsterCatalog = {
+            slime: {
+                nome: "Slime",
+                nivel: 1,
+                vida: 20,
+                ataque: 5,
+                defesa: 2,
+                drops: ["gel_de_slime"]
+            },
+            goblin: {
+                nome: "Goblin",
+                nivel: 2,
+                vida: 30,
+                ataque: 8,
+                defesa: 3,
+                drops: ["osso_goblin", "pele_goblin"]
+            },
+            lobo: {
+                nome: "Lobo",
+                nivel: 3,
+                vida: 40,
+                ataque: 12,
+                defesa: 4,
+                drops: ["pele_lobo", "dente_lobo"]
+            }
+        };
 
         // ==================== NPCs REVELADOS ====================
         // Catálogo completo de NPCs (dados completos, nunca expostos diretamente)
@@ -157,8 +154,9 @@ class CodeQuestGame {
                 this.databases[tab] = await response.json();
             }
 
-            // Garante que npcs sempre começa vazio (revelação progressiva)
+            // Garante que npcs e monstros sempre começam vazios (revelação progressiva)
             this.databases.npcs = {};
+            this.databases.monstros = {};
 
             console.log('JSON data loaded successfully');
             // Aciona atualização da UI após carregamento
@@ -201,10 +199,8 @@ class CodeQuestGame {
         if (this.databases.heroi.experiencia >= expNeeded) {
             this.databases.heroi.nivel++;
             this.databases.heroi.experiencia -= expNeeded;
-            this.databases.heroi.vida_maxima += 10;
-            this.databases.heroi.vida = this.databases.heroi.vida_maxima;
-            this.databases.heroi.mana_maxima += 5;
-            this.databases.heroi.mana = this.databases.heroi.mana_maxima;
+            this.databases.heroi.vida += 10;
+            this.databases.heroi.mana += 5;
         }
         
         this.triggerDatabaseUpdate('heroi');
@@ -278,6 +274,23 @@ class CodeQuestGame {
 
         this.triggerDatabaseUpdate('npcs');
         console.log(`[GameEngine] NPC revelado: ${npcKey}`);
+    }
+
+    /**
+     * Revela um monstro no painel JSON, tornando seus dados visíveis ao jogador.
+     * Mescla os dados do catálogo interno com os dados dinâmicos do encontro.
+     * @param {string} monsterKey - Chave do monstro ('slime', 'goblin', 'lobo')
+     * @param {Object} encounterData - Dados extras do encontro atual (do StoryNodes.json_data)
+     */
+    revealMonster(monsterKey, encounterData = {}) {
+        const base = this._monsterCatalog[monsterKey];
+        if (!base) return;
+
+        // Mescla os dados base do catálogo com os dados dinâmicos do encontro
+        this.databases.monstros[monsterKey] = Object.assign({}, base, encounterData);
+
+        this.triggerDatabaseUpdate('monstros');
+        console.log(`[GameEngine] Monstro revelado: ${monsterKey}`);
     }
 
     loadLevel(levelId) {

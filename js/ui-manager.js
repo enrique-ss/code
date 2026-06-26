@@ -82,10 +82,9 @@ const UIManager = {
                     return;
                 }
 
-                console.log(`[UIManager] Confirmando herói: Nome=${name}, Classe=${this.selectedClass}`);
+                console.log(`[UIManager] Confirmando herói: Classe=${this.selectedClass}`);
 
                 if (window.gameEngine) {
-                    window.gameEngine.databases.heroi.nome = name;
                     window.gameEngine.databases.heroi.classe = this.selectedClass;
                     
                     switch(this.selectedClass) {
@@ -93,23 +92,36 @@ const UIManager = {
                             window.gameEngine.databases.heroi.inteligencia = 10;
                             window.gameEngine.databases.heroi.forca = 18;
                             window.gameEngine.databases.heroi.destreza = 12;
-                            window.gameEngine.databases.heroi.vida_maxima = 120;
                             window.gameEngine.databases.heroi.vida = 120;
                             window.gameEngine.databases.heroi.habilidades = ['ataque_poderoso', 'defesa_escudo'];
+                            window.gameEngine.databases.inventario.equipamentos = {
+                                arma: { nome: 'Espada de Ferro', tipo: 'espada', bonus: '+3 forca' },
+                                armadura: { nome: 'Armadura de Couro', tipo: 'armadura', bonus: '+5 defesa' },
+                                acessorio: { nome: 'Anel de Força', tipo: 'anel', bonus: '+2 forca' }
+                            };
                             break;
                         case 'Mago':
                             window.gameEngine.databases.heroi.inteligencia = 18;
                             window.gameEngine.databases.heroi.forca = 6;
                             window.gameEngine.databases.heroi.destreza = 10;
-                            window.gameEngine.databases.heroi.mana_maxima = 80;
                             window.gameEngine.databases.heroi.mana = 80;
                             window.gameEngine.databases.heroi.habilidades = ['bola_de_fogo', 'escudo_magico'];
+                            window.gameEngine.databases.inventario.equipamentos = {
+                                arma: { nome: 'Cajado Básico', tipo: 'cajado', bonus: '+5 inteligencia' },
+                                armadura: { nome: 'Túnica de Linho', tipo: 'tunica', bonus: '+3 mana' },
+                                acessorio: { nome: 'Amuleto Arcano', tipo: 'amuleto', bonus: '+2 inteligencia' }
+                            };
                             break;
-                        case 'Ladino':
+                        case 'Arqueiro':
                             window.gameEngine.databases.heroi.inteligencia = 12;
                             window.gameEngine.databases.heroi.forca = 10;
                             window.gameEngine.databases.heroi.destreza = 18;
-                            window.gameEngine.databases.heroi.habilidades = ['furtividade', 'ataque_critico'];
+                            window.gameEngine.databases.heroi.habilidades = ['tiro_preciso', 'furtividade'];
+                            window.gameEngine.databases.inventario.equipamentos = {
+                                arma: { nome: 'Arco Curto', tipo: 'arco', bonus: '+3 destreza' },
+                                armadura: { nome: 'Armadura Leve', tipo: 'armadura', bonus: '+3 defesa' },
+                                acessorio: { nome: 'Capa de Caçador', tipo: 'capa', bonus: '+2 destreza' }
+                            };
                             break;
                     }
                     window.gameEngine.triggerDatabaseUpdate('heroi');
@@ -235,15 +247,10 @@ const UIManager = {
         const heroi = window.gameEngine.databases.heroi;
         const mundo = window.gameEngine.databases.mundo;
 
-        const hudClass = document.getElementById('hud-hero-class');
-        const hudLevel = document.getElementById('hud-hero-level');
         const hudTime = document.getElementById('hud-world-time');
         const hudWeather = document.getElementById('hud-world-weather');
         const hudWeatherIcon = document.getElementById('hud-weather-icon');
         const hudTimeIcon = document.getElementById('hud-time-icon');
-
-        if (hudClass) hudClass.textContent = heroi.classe || 'Programador';
-        if (hudLevel) hudLevel.textContent = heroi.nivel || '1';
 
         if (hudTime) {
             const timeValue = (mundo.hora || 'manha').toLowerCase();
@@ -286,7 +293,7 @@ const UIManager = {
 
         if (finalClass) finalClass.textContent = heroi.classe || 'Programador';
         if (finalLevel) finalLevel.textContent = heroi.nivel || '1';
-        if (finalMana) finalMana.textContent = heroi.mana_maxima || '50';
+        if (finalMana) finalMana.textContent = heroi.mana || '50';
         if (finalSkills) finalSkills.textContent = (heroi.habilidades || []).join(', ');
     },
 
@@ -300,10 +307,15 @@ const UIManager = {
         // Mensagem especial quando a aba npcs ainda está vazia (nenhum personagem encontrado)
         if (this.activeTab === 'npcs' && (!data || Object.keys(data).length === 0)) {
             container.innerHTML = `<span style="color:#6272a4; font-style:italic; font-size:13px; line-height:1.7">
-// Nenhum personagem descoberto ainda.<br>
-// Continue avançando na história<br>
-// para revelar os habitantes deste mundo.<br><br>
-<span style="color:#44475a">// npcs: {}</span>
+// Nenhum personagem descoberto ainda.
+</span>`;
+            return;
+        }
+
+        // Mensagem especial quando a aba monstros ainda está vazia (nenhum monstro encontrado)
+        if (this.activeTab === 'monstros' && (!data || Object.keys(data).length === 0)) {
+            container.innerHTML = `<span style="color:#6272a4; font-style:italic; font-size:13px; line-height:1.7">
+// Nenhum monstro encontrado ainda.
 </span>`;
             return;
         }
@@ -464,19 +476,15 @@ const UIManager = {
 
         if (window.gameEngine) {
             window.gameEngine.databases.heroi = {
-                nome: "",
                 classe: "",
                 nivel: 1,
                 experiencia: 0,
                 vida: 100,
-                vida_maxima: 100,
                 mana: 50,
-                mana_maxima: 50,
                 forca: 10,
                 inteligencia: 10,
                 destreza: 10,
-                habilidades: [],
-                conquistas: []
+                habilidades: []
             };
             window.gameEngine.databases.inventario = {
                 ouro: 0,
@@ -496,13 +504,15 @@ const UIManager = {
                 eventos_ativos: [],
                 estado_mundo: "normal"
             };
-            // Reinicia os NPCs — serão revelados novamente conforme o jogador avança
+            // Reinicia os NPCs e monstros — serão revelados novamente conforme o jogador avança
             window.gameEngine.databases.npcs = {};
+            window.gameEngine.databases.monstros = {};
             window.gameEngine.currentState = window.gameEngine.GameState.MENU;
             window.gameEngine.triggerDatabaseUpdate('heroi');
             window.gameEngine.triggerDatabaseUpdate('inventario');
             window.gameEngine.triggerDatabaseUpdate('mundo');
             window.gameEngine.triggerDatabaseUpdate('npcs');
+            window.gameEngine.triggerDatabaseUpdate('monstros');
 
             // Limpa o cache do localStorage para não restaurar dados de sessões anteriores
             ['heroi', 'inventario', 'mundo', 'npcs', 'monstros'].forEach(tab => {
