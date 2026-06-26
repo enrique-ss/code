@@ -2,6 +2,100 @@
  * GAME SCENE - Side-scroller and physics sync with DOM UI overlays
  */
 
+// Character class for standardized styling
+class Character {
+    constructor(scene, x, y, config) {
+        this.scene = scene;
+        this.x = x;
+        this.y = y;
+        this.config = config;
+
+        // Default config
+        this.color = config.color || 0x8be9fd;
+        this.width = config.width || 50;
+        this.height = config.height || 80;
+        this.label = config.label || '';
+        this.isPhysics = config.isPhysics || false;
+        this.hasPedestal = config.hasPedestal !== undefined ? config.hasPedestal : true;
+        this.hasHalo = config.hasHalo !== undefined ? config.hasHalo : true;
+
+        this.sprite = this.createSprite();
+        this.halo = this.hasHalo ? this.createHalo() : null;
+    }
+
+    createSprite() {
+        // Draw pedestal first (so it appears behind the sprite)
+        if (this.hasPedestal) {
+            this.scene.add.ellipse(this.x, this.y + 30, 80, 25, 0x000000, 0.5);
+        }
+
+        const graphics = this.scene.add.graphics();
+        graphics.fillStyle(this.color, 0.95);
+        graphics.fillRect(0, 0, this.width, this.height);
+        graphics.lineStyle(3, 0xffffff);
+        graphics.strokeRect(0, 0, this.width, this.height);
+        
+        const textureKey = `char_${this.config.id || 'default'}`;
+        graphics.generateTexture(textureKey, this.width, this.height);
+        graphics.destroy();
+
+        let sprite;
+        if (this.isPhysics) {
+            sprite = this.scene.physics.add.sprite(this.x, this.y, textureKey);
+            sprite.setCollideWorldBounds(true);
+        } else {
+            sprite = this.scene.add.image(this.x, this.y, textureKey);
+        }
+
+        // Draw label if provided
+        if (this.label) {
+            const label = this.scene.add.text(this.x, this.y - this.height / 2 - 15, this.label, {
+                fontFamily: 'Outfit, Arial, sans-serif',
+                fontSize: '16px',
+                color: '#f8f8f2',
+                backgroundColor: '#1a1a2e',
+                padding: { x: 8, y: 4 }
+            }).setOrigin(0.5);
+            sprite.label = label;
+        }
+
+        return sprite;
+    }
+
+    createHalo() {
+        const halo = this.scene.add.rectangle(
+            this.x,
+            this.y,
+            this.width + 20,
+            this.height + 30,
+            this.color,
+            0.25
+        );
+
+        this.scene.tweens.add({
+            targets: halo,
+            scale: { from: 0.8, to: 1.2 },
+            alpha: { from: 0.2, to: 0.4 },
+            duration: 1000,
+            yoyo: true,
+            repeat: -1
+        });
+
+        return halo;
+    }
+
+    updatePosition() {
+        if (this.halo) {
+            this.halo.x = this.sprite.x;
+            this.halo.y = this.sprite.y;
+        }
+        if (this.sprite.label) {
+            this.sprite.label.x = this.sprite.x;
+            this.sprite.label.y = this.sprite.y - this.height / 2 - 15;
+        }
+    }
+}
+
 class GameScene extends Phaser.Scene {
     constructor() {
         super('GameScene');
@@ -62,34 +156,24 @@ class GameScene extends Phaser.Scene {
             { sprite: this.createParallaxLayer(4, 'forest_layer_4', width, height), factor: 1.0 }
         ];
 
-        // Create hero sprite (use visual graphic circle if asset is missing)
+        // Create hero using Character class
         if (this.textures.exists('sprite_arthur')) {
             this.hero = this.physics.add.sprite(100, height * 0.65, 'sprite_arthur')
                 .setScale(0.8)
                 .setCollideWorldBounds(true);
+            this.heroCharacter = null;
         } else {
-            // Create a premium glowing representative for the hero
-            this.hero = this.physics.add.sprite(100, height * 0.65);
-            const graphics = this.add.graphics();
-            graphics.fillStyle(0x8be9fd, 1);
-            graphics.fillCircle(20, 20, 20);
-            graphics.generateTexture('hero_placeholder', 40, 40);
-            graphics.destroy();
-            
-            this.hero.setTexture('hero_placeholder');
-            this.hero.setCollideWorldBounds(true);
-            
-            // Light halo effect around hero
-            const halo = this.add.circle(0, 0, 35, 0x8be9fd, 0.25);
-            this.tweens.add({
-                targets: halo,
-                scale: { from: 0.8, to: 1.2 },
-                alpha: { from: 0.2, to: 0.4 },
-                duration: 1000,
-                yoyo: true,
-                repeat: -1
+            this.heroCharacter = new Character(this, 100, height * 0.65, {
+                id: 'hero',
+                color: 0x8be9fd,
+                width: 50,
+                height: 80,
+                isPhysics: true,
+                hasPedestal: true,
+                hasHalo: false
             });
-            this.heroHalo = halo;
+            this.hero = this.heroCharacter.sprite;
+            this.heroHalo = this.heroCharacter.halo;
         }
 
         // Add the DOM GIF overlay for Arthur
@@ -102,40 +186,54 @@ class GameScene extends Phaser.Scene {
             { x: 2000, type: 'door', node: 'cenario_3_inicio' }
         ];
 
-        // Create obstacle sprites
+        // Create obstacle sprites using Character class
+        this.obstacleCharacters = [];
         this.obstacles.forEach((obs, index) => {
             const spriteKey = `sprite_${obs.type}`;
             let sprite;
+            
             if (this.textures.exists(spriteKey)) {
                 sprite = this.add.image(obs.x, height * 0.65, spriteKey)
                     .setScale(0.8);
             } else {
-                // Colored graphic placeholders for the obstacles
-                const colors = {
-                    mage: 0xbd93f9,
-                    merchant: 0xf1fa8c,
-                    door: 0xff5555
+                // Character configs for each obstacle type
+                const characterConfigs = {
+                    mage: {
+                        id: 'mage',
+                        color: 0xbd93f9,
+                        width: 50,
+                        height: 80,
+                        label: '🧙‍♂️ Eldrin',
+                        isPhysics: false,
+                        hasPedestal: true,
+                        hasHalo: false
+                    },
+                    merchant: {
+                        id: 'merchant',
+                        color: 0xf1fa8c,
+                        width: 50,
+                        height: 80,
+                        label: '🎒 Gorb',
+                        isPhysics: false,
+                        hasPedestal: true,
+                        hasHalo: false
+                    },
+                    door: {
+                        id: 'door',
+                        color: 0xff5555,
+                        width: 50,
+                        height: 80,
+                        label: '🚪 Porta',
+                        isPhysics: false,
+                        hasPedestal: true,
+                        hasHalo: false
+                    }
                 };
-                const labels = {
-                    mage: '🧙‍♂️ Eldrin',
-                    merchant: '🎒 Gorb',
-                    door: '🚪 Porta'
-                };
-                
-                // Draw a nice pedestal/glow for the obstacles
-                const pColor = colors[obs.type] || 0x8be9fd;
-                this.add.ellipse(obs.x, height * 0.65 + 30, 80, 25, 0x000000, 0.5);
-                
-                sprite = this.add.rectangle(obs.x, height * 0.65, 50, 80, pColor, 0.95);
-                sprite.setStrokeStyle(3, 0xffffff);
-                
-                const label = this.add.text(obs.x, height * 0.65 - 65, labels[obs.type], {
-                    fontFamily: 'Outfit, Arial, sans-serif',
-                    fontSize: '16px',
-                    color: '#f8f8f2',
-                    backgroundColor: '#1a1a2e',
-                    padding: { x: 8, y: 4 }
-                }).setOrigin(0.5);
+
+                const config = characterConfigs[obs.type] || characterConfigs.mage;
+                const character = new Character(this, obs.x, height * 0.65, config);
+                sprite = character.sprite;
+                this.obstacleCharacters.push(character);
             }
             
             sprite.setData('index', index);
@@ -162,6 +260,50 @@ class GameScene extends Phaser.Scene {
 
         // Load introduction narrative node
         this.loadNode('intro');
+
+        // Handle viewport resize — update parallax layers and world bounds
+        this.scale.on('resize', (gameSize) => {
+            const w = gameSize.width;
+            const h = gameSize.height;
+
+            // Update physics world bounds
+            this.physics.world.setBounds(0, 0, w * 3, h);
+
+            // Resize parallax tileSprites to cover new viewport
+            if (this.parallaxLayers) {
+                this.parallaxLayers.forEach(layer => {
+                    layer.sprite.setSize(w, h);
+                    layer.sprite.setPosition(w / 2, h / 2);
+                });
+            }
+
+            // Reposition hero vertically
+            if (this.hero) {
+                this.hero.y = h * 0.65;
+                if (this.hero.body) {
+                    this.hero.body.y = h * 0.65;
+                }
+            }
+
+            // Reposition hero halo and pedestal
+            if (this.heroCharacter) {
+                this.heroCharacter.sprite.y = h * 0.65;
+                if (this.heroCharacter.sprite.body) {
+                    this.heroCharacter.sprite.body.y = h * 0.65;
+                }
+                this.heroCharacter.updatePosition();
+            } else if (this.heroHalo) {
+                this.heroHalo.y = h * 0.65;
+            }
+
+            // Reposition obstacles vertically
+            if (this.obstacleCharacters) {
+                this.obstacleCharacters.forEach(char => {
+                    char.sprite.y = h * 0.65;
+                    char.updatePosition();
+                });
+            }
+        });
     }
 
     handleStateChange(oldState, newState, data) {
@@ -211,10 +353,18 @@ class GameScene extends Phaser.Scene {
     }
 
     update() {
-        // Sync halo position if applicable
-        if (this.heroHalo && this.hero) {
+        // Sync hero character position (halo, label)
+        if (this.heroCharacter) {
+            this.heroCharacter.updatePosition();
+        } else if (this.heroHalo && this.hero) {
+            // Fallback for asset-based hero
             this.heroHalo.x = this.hero.x;
             this.heroHalo.y = this.hero.y;
+        }
+
+        // Sync obstacle characters positions (halo, label)
+        if (this.obstacleCharacters) {
+            this.obstacleCharacters.forEach(char => char.updatePosition());
         }
 
         // Update parallax layers scroll position based on camera movement
@@ -535,8 +685,8 @@ class GameScene extends Phaser.Scene {
         graphics.generateTexture(key, width, height);
         graphics.destroy();
 
-        return this.add.tileSprite(0, 0, width, height, key)
-            .setOrigin(0, 0)
+        return this.add.tileSprite(width / 2, height / 2, width, height, key)
+            .setOrigin(0.5, 0.5)
             .setScrollFactor(0);
     }
 

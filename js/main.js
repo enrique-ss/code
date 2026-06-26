@@ -10,7 +10,7 @@ const config = {
     parent: 'game-container',
     backgroundColor: '#1a1a2e',
     scale: {
-        mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     scene: [PreloadScene, MenuScene, CharacterCreationScene, GameScene, FinalScene],

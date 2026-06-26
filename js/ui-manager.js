@@ -8,38 +8,23 @@ const UIManager = {
     onDialogClickCallback: null,
 
     alignUI() {
-        const canvas = document.querySelector('#game-container canvas');
+        // UI layer is now 100%×100% viewport overlay — no scaling needed
         const uiLayer = document.getElementById('ui-layer');
-        const gameContainer = document.getElementById('game-container');
-        if (!canvas || !uiLayer || !gameContainer) return;
-
-        const canvasRect = canvas.getBoundingClientRect();
-        const parentRect = gameContainer.getBoundingClientRect();
-
-        const left = canvasRect.left - parentRect.left;
-        const top = canvasRect.top - parentRect.top;
-        const width = canvasRect.width;
-        const height = canvasRect.height;
-        
-        // Scale ui-layer (1280x720) to match canvas dimensions
-        const scale = width / 1280;
-
+        if (!uiLayer) return;
         uiLayer.style.position = 'absolute';
-        uiLayer.style.width = '1280px';
-        uiLayer.style.height = '720px';
-        uiLayer.style.left = '0px';
-        uiLayer.style.top = '0px';
-        uiLayer.style.transformOrigin = 'top left';
-        uiLayer.style.transform = `translate(${left}px, ${top}px) scale(${scale})`;
+        uiLayer.style.width = '100%';
+        uiLayer.style.height = '100%';
+        uiLayer.style.left = '0';
+        uiLayer.style.top = '0';
+        uiLayer.style.transform = 'none';
     },
 
     initDOM() {
         console.log('[UIManager] Inicializando interface DOM');
         
-        // Align UI to canvas on init, resize and periodically
+        // Align UI on init and resize
         this.alignUI();
         window.addEventListener('resize', () => this.alignUI());
-        setInterval(() => this.alignUI(), 200);
 
         const btnStartGame = document.getElementById('btn-start-game');
         if (btnStartGame) {
