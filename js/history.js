@@ -1,7 +1,6 @@
 /**
  * CODE QUEST - HISTORY & STORY
- * Contém os 3 cenários educacionais principais
- * Todos os diálogos do Narrador foram convertidos para falas do jogador em primeira pessoa.
+ * Contém os 3 cenários educacionais e encontros de combate interativos
  */
 
 const StoryNodes = {
@@ -43,7 +42,7 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Arthur",
-                text: "Ugh... Abri meus olhos em uma floresta totalmente desconhecida. O céu está azul e as árvores são incrivelmente verdes."
+                text: "Ugh... Abri meus olhos in uma floresta totalmente desconhecida. O céu está azul e as árvores são incrivelmente verdes."
             },
             {
                 speaker: "Arthur",
@@ -137,22 +136,16 @@ const StoryNodes = {
         },
         choices: [
             {
-                text: "Você precisa recriar a poção do zero.",
-                correct: false,
-                feedback: "O mago fica mais confuso. 'Mas eu não tenho os ingredientes!'",
-                target: "cenario_1_errado_1"
-            },
-            {
-                text: "A poção é `const` - ela não pode mudar. Use `let` no ingrediente extra para adicionar efeitos.",
+                text: "[SIM] A poção base é const (imutável). Devo adicionar efeitos usando o let do ingrediente?",
                 correct: true,
                 feedback: "O mago entende! 'Ah! A poção base é imutável, mas posso modificar os ingredientes!'",
                 target: "cenario_1_correto"
             },
             {
-                text: "Tente mudar o valor da poção para 'veneno'.",
+                text: "[NÃO] Devo tentar reatribuir o valor da poção de cura diretamente?",
                 correct: false,
-                feedback: "O mago tenta, mas falha. 'Não consigo mudar! É como se fosse gravado em pedra!'",
-                target: "cenario_1_errado_2"
+                feedback: "O mago tenta reatribuir, mas falha. 'Não consigo mudar! É const, está travada!'",
+                target: "cenario_1_errado_1"
             }
         ]
     },
@@ -162,19 +155,15 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Mago Eldrin",
-                text: "Obrigado, herói! Agora entendo a diferença entre `const` e `let`!"
+                text: "Obrigado, herói! Tome esta erva mágica que encontrei. Ela serve para criar poções!"
             },
             {
                 speaker: "Arthur",
-                text: "Disponha! `const` serve para valores que nunca mudam após definidos, e `let` para aqueles que podem variar."
-            },
-            {
-                speaker: "Arthur",
-                text: "Senti que ganhei um pouco de experiência de desenvolvedor com isso. É hora de prosseguir."
+                text: "Obrigado! Lembre-se: `const` serve para valores imutáveis e `let` para variáveis que mudam."
             }
         ],
         choices: [
-            { text: "Continuar jornada", target: "cenario_2_inicio" }
+            { text: "Continuar jornada", target: "combate_slime" }
         ]
     },
 
@@ -184,10 +173,6 @@ const StoryNodes = {
             {
                 speaker: "Mago Eldrin",
                 text: "Isso não vai funcionar... Preciso entender melhor as variáveis."
-            },
-            {
-                speaker: "Arthur",
-                text: "Vou pensar melhor. Preciso olhar as propriedades do JSON com mais atenção."
             }
         ],
         choices: [
@@ -195,20 +180,64 @@ const StoryNodes = {
         ]
     },
 
-    cenario_1_errado_2: {
-        bg: "magic_tower",
+    // ==================== COMBATE 1: SLIME (Natureza) ====================
+    combate_slime: {
+        bg: "forest_path",
         dialogs: [
             {
-                speaker: "Mago Eldrin",
-                text: "Não consigo mudar! Deve haver outra maneira..."
+                speaker: "Arthur",
+                text: "Oh! Um Slime selvagem bloqueia meu caminho!"
             },
             {
                 speaker: "Arthur",
-                text: "A resposta está no tipo de mutabilidade da variável. Vamos tentar de novo."
+                text: "Vou abrir a aba de Monstros no console para verificar a afinidade elementar dele!"
+            }
+        ],
+        json_data: {
+            monstros: {
+                slime: {
+                    nome: "Slime de Natureza",
+                    nivel: 1,
+                    vida: 20,
+                    maxVida: 20,
+                    elemento: "natureza",
+                    ataque: 5,
+                    defesa: 2
+                }
+            }
+        },
+        choices: [
+            { text: "Atacar o Slime", target: "combate_slime_timing" }
+        ]
+    },
+
+    combate_slime_timing: {
+        bg: "forest_path",
+        dialogs: [
+            {
+                speaker: "Arthur",
+                text: "Vou sincronizar meu ataque no momento certo da barra de timing!"
             }
         ],
         choices: [
-            { text: "Tentar novamente", target: "cenario_1_dialogo" }
+            { text: "Iniciar Mini-game", target: "combate_slime_resultado" }
+        ]
+    },
+
+    combate_slime_resultado: {
+        bg: "forest_path",
+        dialogs: [
+            {
+                speaker: "Arthur",
+                text: "Ataque desferido com sucesso! O Slime de Natureza foi derrotado!"
+            },
+            {
+                speaker: "Arthur",
+                text: "Ele deixou cair 1x erva! Coletei para meu inventário."
+            }
+        ],
+        choices: [
+            { text: "Continuar caminhando", target: "cenario_2_inicio" }
         ]
     },
 
@@ -218,11 +247,11 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Arthur",
-                text: "Acabo de chegar a um mercado movimentado. Aquele mercador ali parece extremamente estressado organizando seus produtos."
+                text: "Cheguei ao mercado. O Mercador Gorb está tendo problemas para classificar seus itens de venda."
             },
             {
                 speaker: "Arthur",
-                text: "Vou inspecionar o inventário dele para entender o que está acontecendo..."
+                text: "Inspecionando os tipos de dados do inventário dele..."
             }
         ],
         json_data: {
@@ -264,60 +293,21 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Mercador Gorb",
-                text: "Meu inventário está uma bagunça! Não consigo separar o que é número, o que é texto e o que é lista!"
-            },
-            {
-                speaker: "Arthur",
-                text: "Acho que identifiquei o seu problema olhando o JSON. Você está misturando tipos de dados sem organizá-los!"
+                text: "Herói, meu inventário é um caos! Tudo está misturado e sem tipo definido!"
             }
         ],
-        json_data: {
-            npc: {
-                nome: "Mercador Gorb",
-                tipo: "vendedor",
-                estado: "estressado",
-                inventario: {
-                    espada: {
-                        tipo: "object",
-                        propriedades: {
-                            dano: 25,
-                            durabilidade: 100,
-                            nome: "Espada de Ferro"
-                        }
-                    },
-                    moedas: {
-                        tipo: "number",
-                        valor: 150
-                    },
-                    tem_licenca: {
-                        tipo: "boolean",
-                        valor: true
-                    },
-                    produtos: {
-                        tipo: "array",
-                        valor: ["poção", "espada", "escudo"]
-                    }
-                }
-            }
-        },
         choices: [
             {
-                text: "Jogue tudo fora e comece de novo.",
-                correct: false,
-                feedback: "O mercador chora. 'Mas eu perco meu lucro!'",
-                target: "cenario_2_errado_1"
-            },
-            {
-                text: "Organize por tipo: `number` para moedas, `string` para nomes, `boolean` para estados, `array` para listas, `object` para itens complexos.",
+                text: "[SIM] Organizar por tipos: moedas como number, licença como boolean, e itens como object/array?",
                 correct: true,
-                feedback: "O mercador organiza tudo! 'Agora faz sentido! Cada coisa tem seu tipo!'",
+                feedback: "O mercador sorri. 'Excelente! Agora consigo gerenciar as vendas!'",
                 target: "cenario_2_correto"
             },
             {
-                text: "Transforme tudo em texto (string).",
+                text: "[NÃO] Manter tudo como string (texto) simples?",
                 correct: false,
-                feedback: "O mercador tenta, mas os números perdem valor. 'Agora não consigo fazer contas!'",
-                target: "cenario_2_errado_2"
+                feedback: "O mercador reclama: 'Mas se tudo for texto, como vou calcular meus lucros?'",
+                target: "cenario_2_errado_1"
             }
         ]
     },
@@ -327,19 +317,11 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Mercador Gorb",
-                text: "Muito obrigado! Agora meu inventário está organizado por tipos de dados!"
-            },
-            {
-                speaker: "Arthur",
-                text: "Sem problemas! Lembre-se: `number` guarda números, `string` guarda textos, `boolean` é para verdadeiro/falso, `array` é para listas e `object` é para dados compostos complexos."
-            },
-            {
-                speaker: "Arthur",
-                text: "Consegui mais experiência! Minhas habilidades estão evoluindo. Vou continuar explorando."
+                text: "Obrigado! Pegue esses 2x minérios. Eles podem ser úteis para forjar novos equipamentos."
             }
         ],
         choices: [
-            { text: "Continuar jornada", target: "cenario_3_inicio" }
+            { text: "Continuar jornada", target: "combate_goblin" }
         ]
     },
 
@@ -348,11 +330,7 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Mercador Gorb",
-                text: "Isso seria um desastre! Preciso de uma solução melhor..."
-            },
-            {
-                speaker: "Arthur",
-                text: "Vou pensar melhor. A chave está em atribuir o tipo correto para cada dado."
+                text: "Não funcionou... Tenho certeza de que strings puras não dão certo para tudo."
             }
         ],
         choices: [
@@ -360,20 +338,60 @@ const StoryNodes = {
         ]
     },
 
-    cenario_2_errado_2: {
-        bg: "market",
+    // ==================== COMBATE 2: GOBLIN (Fogo) ====================
+    combate_goblin: {
+        bg: "forest_path",
         dialogs: [
             {
-                speaker: "Mercador Gorb",
-                text: "Isso não funcionou! Agora não consigo fazer cálculos com as moedas..."
+                speaker: "Arthur",
+                text: "Atenção! Um Goblin de Fogo aparece para me assaltar!"
             },
             {
                 speaker: "Arthur",
-                text: "O texto puro (string) não permite operações matemáticas diretas de moedas. Tenho que indicar o tipo certo."
+                text: "Seu elemento Fogo o torna muito fraco se estiver chovendo, mas ele é forte sob o calor!"
+            }
+        ],
+        json_data: {
+            monstros: {
+                goblin: {
+                    nome: "Goblin de Fogo",
+                    nivel: 2,
+                    vida: 30,
+                    maxVida: 30,
+                    elemento: "fogo",
+                    ataque: 8,
+                    defesa: 3
+                }
+            }
+        },
+        choices: [
+            { text: "Atacar o Goblin", target: "combate_goblin_timing" }
+        ]
+    },
+
+    combate_goblin_timing: {
+        bg: "forest_path",
+        dialogs: [
+            {
+                speaker: "Arthur",
+                text: "Hora de desferir o ataque usando a barra de precisão!"
             }
         ],
         choices: [
-            { text: "Tentar novamente", target: "cenario_2_dialogo" }
+            { text: "Iniciar Mini-game", target: "combate_goblin_resultado" }
+        ]
+    },
+
+    combate_goblin_resultado: {
+        bg: "forest_path",
+        dialogs: [
+            {
+                speaker: "Arthur",
+                text: "Goblin derrotado! Ele dropou 1x minério."
+            }
+        ],
+        choices: [
+            { text: "Continuar para o templo", target: "cenario_3_inicio" }
         ]
     },
 
@@ -383,11 +401,11 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Arthur",
-                text: "Me deparei com uma porta mágica monumental. Ela tem o que parece ser um sistema eletrônico ou mágico de segurança."
+                text: "A grandiosa Porta do Conhecimento está trancada por uma instrução condicional complexa."
             },
             {
                 speaker: "Arthur",
-                text: "Deixa eu inspecionar a lógica desse mecanismo no meu painel JSON..."
+                text: "Abrindo o console JSON para estudar as condicionais..."
             }
         ],
         json_data: {
@@ -414,7 +432,7 @@ const StoryNodes = {
             }
         },
         choices: [
-            { text: "Interagir com a porta", target: "cenario_3_dialogo" }
+            { text: "Estudar lógica", target: "cenario_3_dialogo" }
         ]
     },
 
@@ -423,54 +441,21 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Porta do Conhecimento",
-                text: "Sistema de segurança ativado. Para abrir, você deve satisfazer uma das condições lógicas."
-            },
-            {
-                speaker: "Arthur",
-                text: "Que interessante! O trinco da porta usa condicionais `if/else` com operadores lógicos. Deixe-me ver o que tenho no meu inventário."
+                text: "Identidade requerida. Apenas aqueles que avaliarem as expressões lógicas para TRUE podem passar."
             }
         ],
-        json_data: {
-            objeto: {
-                nome: "Porta do Conhecimento",
-                tipo: "passagem",
-                estado: "trancada",
-                requisitos: {
-                    chave_necessaria: true,
-                    nivel_minimo: 5,
-                    tem_permissoes: false
-                },
-                logica_abertura: {
-                    condicao: "if (tem_chave && nivel >= 5)",
-                    alternativa: "else if (tem_permissoes)"
-                }
-            },
-            heroi: {
-                inventario: {
-                    chave: true,
-                    nivel: 7,
-                    permissoes: false
-                }
-            }
-        },
         choices: [
             {
-                text: "Vou usar a chave apenas.",
-                correct: false,
-                feedback: "A porta não abre. 'Condição incompleta. Nível insuficiente avaliado.'",
-                target: "cenario_3_errado_1"
-            },
-            {
-                text: "Tenho a chave E meu nível é 7, que é maior que 5. A condição `tem_chave && nivel >= 5` é verdadeira.",
+                text: "[SIM] Satisfaço a condição tem_chave (true) E nível >= 5 (nível 7, logo true)?",
                 correct: true,
-                feedback: "A porta abre! 'Condição satisfeita. Acesso concedido.'",
+                feedback: "A porta range e destranca! 'Validação aceita. Acesso concedido.'",
                 target: "cenario_3_correto"
             },
             {
-                text: "Vou tentar usar permissões.",
+                text: "[NÃO] Devo tentar entrar apenas com a condição else-if de permissões?",
                 correct: false,
-                feedback: "A porta não abre. 'Você não tem permissões. Condição falsa.'",
-                target: "cenario_3_errado_2"
+                feedback: "A porta pulsa vermelho: 'Acesso negado. A propriedade tem_permissoes é false.'",
+                target: "cenario_3_errado_1"
             }
         ]
     },
@@ -480,19 +465,11 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Porta do Conhecimento",
-                text: "Acesso concedido. Bem-vindo ao próximo nível de conhecimento."
-            },
-            {
-                speaker: "Arthur",
-                text: "Entendi! Condicionais `if/else` decidem caminhos baseados em testes booleanos. O `&&` (E lógico) exige que ambos os testes sejam verdadeiros simultaneamente para dar 'true'."
-            },
-            {
-                speaker: "Arthur",
-                text: "Estou atravessando o portal! Sinto que venci o desafio final desse local!"
+                text: "Você passou pelo desafio final da lógica com sucesso!"
             }
         ],
         choices: [
-            { text: "Finalizar Demo", target: "final" }
+            { text: "Acessar o Portal Final", target: "final" }
         ]
     },
 
@@ -501,28 +478,7 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Porta do Conhecimento",
-                text: "Condição incompleta. Você precisa satisfazer todos os requisitos da condição principal."
-            },
-            {
-                speaker: "Arthur",
-                text: "De fato, a chave por si só não basta. Como há um `&&`, preciso cumprir as duas condições."
-            }
-        ],
-        choices: [
-            { text: "Tentar novamente", target: "cenario_3_dialogo" }
-        ]
-    },
-
-    cenario_3_errado_2: {
-        bg: "door",
-        dialogs: [
-            {
-                speaker: "Porta do Conhecimento",
-                text: "Você não tem permissões. A condição alternativa não foi satisfeita."
-            },
-            {
-                speaker: "Arthur",
-                text: "Minha propriedade de permissões está como 'false'. O caminho correto deve ser a primeira condição."
+                text: "Expressão avaliada como FALSE. O trinco continua travado."
             }
         ],
         choices: [
@@ -536,23 +492,13 @@ const StoryNodes = {
         dialogs: [
             {
                 speaker: "Arthur",
-                text: "Incrível! Completei com sucesso os 3 cenários educacionais do Code Quest!"
-            },
-            {
-                speaker: "Arthur",
-                text: "Pude praticar e consolidar conceitos de variáveis mutáveis/imutáveis, tipos de dados do inventário e condicionais lógicas."
-            },
-            {
-                speaker: "Arthur",
-                text: "Agora sei que, em programação, tudo pode ser estruturado como um objeto composto de propriedades e valores."
-            },
-            {
-                speaker: "Arthur",
-                text: "Estou ansioso para seguir minha jornada rumo aos loops, funções e coleções avançadas de dados!"
+                text: "Cheguei ao fim da minha jornada lógica! Meu console está estabilizado."
             }
         ],
         choices: [
-            { text: "Voltar ao Menu", target: "menu" }
+            { text: "Ver Resultados Finais", target: "final" }
         ]
     }
 };
+
+window.StoryNodes = StoryNodes;

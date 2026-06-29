@@ -186,8 +186,10 @@ class GameScene extends Phaser.Scene {
         // Define posições de obstáculos/encontros (coordenadas X)
         this.obstacles = [
             { x: 500, type: 'mage', node: 'cenario_1_inicio' },
-            { x: 1200, type: 'merchant', node: 'cenario_2_inicio' },
-            { x: 2000, type: 'door', node: 'cenario_3_inicio' }
+            { x: 950, type: 'slime', node: 'combate_slime' },
+            { x: 1400, type: 'merchant', node: 'cenario_2_inicio' },
+            { x: 1850, type: 'goblin', node: 'combate_goblin' },
+            { x: 2300, type: 'door', node: 'cenario_3_inicio' }
         ];
 
         // Cria sprites de obstáculos usando a classe Character
@@ -212,12 +214,32 @@ class GameScene extends Phaser.Scene {
                         hasPedestal: true,
                         hasHalo: false
                     },
+                    slime: {
+                        id: 'slime',
+                        color: 0x50fa7b,
+                        width: 50,
+                        height: 50,
+                        label: '🟢 Slime',
+                        isPhysics: false,
+                        hasPedestal: true,
+                        hasHalo: false
+                    },
                     merchant: {
                         id: 'merchant',
                         color: 0xf1fa8c,
                         width: 50,
                         height: 80,
                         label: '🎒 Gorb',
+                        isPhysics: false,
+                        hasPedestal: true,
+                        hasHalo: false
+                    },
+                    goblin: {
+                        id: 'goblin',
+                        color: 0xff5555,
+                        width: 50,
+                        height: 70,
+                        label: '👺 Goblin',
                         isPhysics: false,
                         hasPedestal: true,
                         hasHalo: false
@@ -247,6 +269,11 @@ class GameScene extends Phaser.Scene {
             const defaultSize = (obs.type === 'door') ? 160 : 128;
             this.createDOMSprite(obs.type, sprite, 0.8, defaultSize);
         });
+
+        // Gráficos de overlay de Dia/Noite, Clima e Vida
+        this.skyOverlay = this.add.graphics().setScrollFactor(0).setDepth(1999);
+        this.weatherParticles = this.add.graphics().setScrollFactor(0).setDepth(2001);
+        this.hpBar = this.add.graphics().setDepth(2002);
 
         // Configuração da câmera - acompanhamento horizontal manual apenas
         this.cameras.main.setZoom(1);
@@ -326,6 +353,82 @@ class GameScene extends Phaser.Scene {
 
         // Mantém scrollY fixo para evitar que o zoom mova personagens verticalmente
         this.cameras.main.scrollY = 0;
+
+        // Renderiza overlays de ciclo de Dia/Noite e partículas de Clima
+        if (this.weatherParticles && window.gameEngine) {
+            this.weatherParticles.clear();
+            const clima = (window.gameEngine.databases.mundo.clima || 'sol').toLowerCase();
+            const timeOfDay = (window.gameEngine.databases.mundo.hora || 'manha').toLowerCase();
+            
+            // Desenha ciclo dia/noite no céu
+            if (this.skyOverlay) {
+                this.skyOverlay.clear();
+                if (timeOfDay === 'tarde') {
+                    this.skyOverlay.fillStyle(0xff79c6, 0.2); // sunset pink
+                    this.skyOverlay.fillRect(0, 0, this.cameras.main.width, this.cameras.main.height);
+                } else if (timeOfDay === 'noite') {
+                    this.skyOverlay.fillStyle(0x1a1a5a, 0.45); // night blue
+                    this.skyOverlay.fillRect(0, 0, this.cameras.main.width, this.cameras.main.height);
+                }
+            }
+
+            // Partículas de Clima
+            if (clima === 'chuva' || clima === 'tempestade') {
+                this.weatherParticles.lineStyle(1.5, 0x8be9fd, 0.6);
+                for (let i = 0; i < 40; i++) {
+                    const rx = (this.time.now * 0.5 + i * 45) % this.cameras.main.width;
+                    const ry = (this.time.now * 1.2 + i * 33) % this.cameras.main.height;
+                    this.weatherParticles.lineBetween(rx, ry, rx - 3, ry + 15);
+                }
+                
+                // Relâmpagos em tempestades
+                if (clima === 'tempestade' && Math.random() < 0.015) {
+                    this.cameras.main.flash(150, 255, 255, 255);
+                }
+            } else if (clima === 'neve') {
+                this.weatherParticles.fillStyle(0xffffff, 0.8);
+                for (let i = 0; i < 30; i++) {
+                    const rx = (this.time.now * 0.1 + i * 64) % this.cameras.main.width;
+                    const ry = (this.time.now * 0.2 + i * 41) % this.cameras.main.height;
+                    this.weatherParticles.fillCircle(rx, ry, 2.5);
+                }
+            } else if (clima === 'neblina') {
+                this.weatherParticles.fillStyle(0x6272a4, 0.25);
+                this.weatherParticles.fillRect(0, 0, this.cameras.main.width, this.cameras.main.height);
+            }
+        }
+
+        // Desenha a Barra de Vida (HP) reativa sobre a cabeça do Arthur
+        if (this.hpBar && this.hero && window.gameEngine) {
+            this.hpBar.clear();
+            const heroi = window.gameEngine.databases.heroi;
+            const hpRatio = Math.max(0, Math.min(1, heroi.vida / heroi.maxVida));
+            
+            const barWidth = 60;
+            const barHeight = 8;
+            const bx = this.hero.x - barWidth / 2;
+            const by = this.hero.y - 65; // acima da cabeça
+
+            // Fundo preto
+            this.hpBar.fillStyle(0x000000, 0.7);
+            this.hpBar.fillRect(bx, by, barWidth, barHeight);
+
+            // Cor de acordo com o HP restante
+            let color = 0x50fa7b; // Verde
+            if (hpRatio < 0.3) {
+                color = 0xff5555; // Vermelho
+            } else if (hpRatio < 0.6) {
+                color = 0xf1fa8c; // Amarelo
+            }
+
+            // Barra interna
+            this.hpBar.fillStyle(color, 1);
+            this.hpBar.fillRect(bx, by, barWidth * hpRatio, barHeight);
+
+            // Borda
+            this.hpBar.lineStyle(1.5, 0xffffff, 0.8);
+            this.hpBar.strokeRect(bx, by, barWidth, barHeight);
+        }
 
         // Sincroniza posição do personagem herói (halo, rótulo)
         if (this.heroCharacter) {
@@ -441,22 +544,27 @@ class GameScene extends Phaser.Scene {
         // Garante que o jogador fique parado enquanto o diálogo estiver ativo
         this.stopWalking();
 
-        // Revela NPCs dinamicamente no painel JSON conforme o jogador os encontra
+        // Incrementa o contador de interações no motor do jogo
+        if (window.gameEngine) {
+            window.gameEngine.advanceInteraction();
+        }
+
+        // Revela NPCs/Monstros dinamicamente no painel JSON conforme o jogador os encontra
         if (node.json_data && window.gameEngine) {
             if (nodeKey.includes('cenario_1')) {
-                // Mago Eldrin: revela no primeiro encontro, depois atualiza com dados do nó
                 window.gameEngine.revealNPC('mago', node.json_data.npc || {});
             } else if (nodeKey.includes('cenario_2')) {
-                // Mercador Gorb: revela ao chegar no mercado
                 window.gameEngine.revealNPC('mercador', node.json_data.npc || {});
             } else if (nodeKey.includes('cenario_3')) {
-                // Porta do Conhecimento: revela no último cenário
                 window.gameEngine.revealNPC('porta', node.json_data.objeto || {});
-                // Também atualiza inventário do herói com os dados do cenário
                 if (node.json_data.heroi && node.json_data.heroi.inventario) {
                     Object.assign(window.gameEngine.databases.inventario, node.json_data.heroi.inventario);
                     window.gameEngine.triggerDatabaseUpdate('inventario');
                 }
+            } else if (nodeKey === 'combate_slime') {
+                window.gameEngine.revealMonster('slime', node.json_data.monstros.slime || {});
+            } else if (nodeKey === 'combate_goblin') {
+                window.gameEngine.revealMonster('goblin', node.json_data.monstros.goblin || {});
             }
         }
 
@@ -480,15 +588,28 @@ class GameScene extends Phaser.Scene {
 
             if (window.UIManager) {
                 window.UIManager.showDialogue(item.speaker, item.text, () => {
+                    if (window.gameEngine) {
+                        window.gameEngine.advanceInteraction();
+                    }
                     this.playNextDialog(currentNodeObj);
                 });
             }
         } else {
-            // Diálogo concluído, exibe opções de escolha
+            // Diálogo concluído
+            if (this.currentNodeKey && this.currentNodeKey.includes('timing')) {
+                if (window.UIManager) {
+                    window.UIManager.hideDialogue();
+                    window.UIManager.startTimingGame((result) => {
+                        this.handleTimingResult(result);
+                    });
+                }
+                return;
+            }
+
             if (currentNodeObj.choices) {
                 // Se houver apenas uma escolha de transição de caminhada/fim, avança automaticamente
                 if (currentNodeObj.choices.length === 1 && currentNodeObj.choices[0].target && 
-                    (currentNodeObj.choices[0].target.endsWith('_inicio') || currentNodeObj.choices[0].target === 'final')) {
+                    (currentNodeObj.choices[0].target.endsWith('_inicio') || currentNodeObj.choices[0].target === 'final' || currentNodeObj.choices[0].target.startsWith('combate_'))) {
                     const singleChoice = currentNodeObj.choices[0];
                     this.handleChoice(singleChoice);
                 } else {
@@ -500,6 +621,56 @@ class GameScene extends Phaser.Scene {
                 }
             }
         }
+    }
+
+    handleTimingResult(result) {
+        let msg = "";
+        let isCritical = false;
+
+        if (result === "critical") {
+            isCritical = true;
+            msg = "CRÍTICO PERFEITO! Dano Massivo!";
+            this.cameras.main.shake(300, 0.02);
+            this.cameras.main.flash(200, 255, 255, 255);
+            
+            // Recompensa dobrada
+            if (this.currentNodeKey.includes('slime')) {
+                window.gameEngine.addItem("erva", 2);
+            } else {
+                window.gameEngine.addItem("minério", 2);
+            }
+            window.gameEngine.addGold(30);
+        } else if (result === "normal") {
+            msg = "Acerto normal! Inimigo derrotado.";
+            if (this.currentNodeKey.includes('slime')) {
+                window.gameEngine.addItem("erva", 1);
+            } else {
+                window.gameEngine.addItem("minério", 1);
+            }
+            window.gameEngine.addGold(15);
+        } else {
+            msg = "FALHA NO TIMING! Você ficou vulnerável e levou dano!";
+            // Dano ao jogador
+            window.gameEngine.databases.heroi.vida = Math.max(0, window.gameEngine.databases.heroi.vida - 25);
+            window.gameEngine.triggerDatabaseUpdate('heroi');
+            
+            // Sem gold, drops mínimos
+            if (this.currentNodeKey.includes('slime')) {
+                window.gameEngine.addItem("erva", 1);
+            } else {
+                window.gameEngine.addItem("minério", 1);
+            }
+        }
+
+        if (window.UIManager) {
+            window.UIManager.showFeedback(msg, isCritical || result === "normal");
+        }
+
+        // Aguarda exibição do feedback e carrega o nó de resultado
+        this.time.delayedCall(2200, () => {
+            const targetNode = this.currentNodeKey.includes('slime') ? 'combate_slime_resultado' : 'combate_goblin_resultado';
+            this.loadNode(targetNode);
+        });
     }
 
     handleChoice(choice) {

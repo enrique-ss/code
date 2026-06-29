@@ -148,6 +148,48 @@ const UIManager = {
             });
         }
 
+        // Delegador de cliques para edição de JSON no console
+        const jsonVisualEditor = document.getElementById('json-visual-editor');
+        if (jsonVisualEditor) {
+            jsonVisualEditor.addEventListener('click', (e) => {
+                const target = e.target.closest('.json-value-editable');
+                if (target) {
+                    const path = target.getAttribute('data-path');
+                    const tab = this.activeTab;
+                    const currentVal = target.textContent.replace(/"/g, ''); // limpa aspas
+                    
+                    const newVal = prompt(`Modificar valor de [${tab}] em "${path}":`, currentVal);
+                    if (newVal !== null && newVal !== currentVal) {
+                        const res = window.gameEngine.updateJSONDirectly(tab, path, newVal);
+                        if (res.success) {
+                            this.updateJSON();
+                            this.updateHUD();
+                        } else {
+                            alert("Erro ao editar: " + res.error);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Métodos auxiliares globais expostos para os botões do DOM
+        window.UIManager = this;
+        window.UIManager.triggerCraft = (recipeName) => {
+            const res = window.gameEngine.craftItem(recipeName);
+            alert(res.message);
+            this.updateJSON();
+            this.updateHUD();
+        };
+
+        window.UIManager.triggerLearnSkill = (skillName) => {
+            const heroi = window.gameEngine.databases.heroi;
+            heroi.habilidades.push(skillName);
+            window.gameEngine.triggerDatabaseUpdate('heroi');
+            this.updateJSON();
+            this.updateHUD();
+            alert(`Habilidade '${skillName}' desbloqueada!`);
+        };
+
         const btnFullscreen = document.getElementById('btn-fullscreen');
         if (btnFullscreen) {
             btnFullscreen.addEventListener('click', () => {
@@ -286,15 +328,93 @@ const UIManager = {
             }
         }
 
+        // Atualização do Painel de Status Lateral
+        const sidebar = document.getElementById('status-sidebar-panel');
+        if (sidebar) {
+            if (this.activeScreen === 'game') {
+                sidebar.style.display = 'block';
+                
+                // Calcula Dano base
+                let dmg = heroi.forca;
+                if (heroi.classe === 'Mago') dmg = heroi.inteligencia;
+                else if (heroi.classe === 'Arqueiro') dmg = heroi.destreza;
+
+                // Equipamento bônus
+                const arma = window.gameEngine.databases.inventario.equipamentos.arma;
+                if (arma) {
+                    const bonusMatch = (arma.bonus || '').match(/\+(\d+)/);
+                    if (bonusMatch) dmg += Number(bonusMatch[1]);
+                }
+
+                // Buff de clima
+                const clima = (mundo.clima || 'sol').toLowerCase();
+                let climaBuffText = "";
+                if (clima === 'calor' && heroi.classe === 'Mago') {
+                    dmg += 4;
+                    climaBuffText = " (+4 Mágico)";
+                } else if (clima === 'chuva' && heroi.classe === 'Mago') {
+                    dmg -= 3;
+                    climaBuffText = " (-3 Chuva)";
+                }
+
+                document.getElementById('status-val-dano').textContent = `${dmg}${climaBuffText}`;
+
+                // Armadura
+                let def = 0;
+                const armadura = window.gameEngine.databases.inventario.equipamentos.armadura;
+                if (armadura) {
+                    const bonusMatch = (armadura.bonus || '').match(/\+(\d+)/);
+                    if (bonusMatch) def += Number(bonusMatch[1]);
+                }
+                document.getElementById('status-val-armadura').textContent = def;
+
+                // Fama
+                document.getElementById('status-val-fama').textContent = heroi.fama;
+
+                // Ouro
+                document.getElementById('status-val-ouro').textContent = window.gameEngine.databases.inventario.ouro;
+            } else {
+                sidebar.style.display = 'none';
+            }
+        }
+
+        // Controla estado de glitch visual
+        document.body.classList.toggle('glitch-active', !!mundo.glitch_ativo);
+
         const finalClass = document.getElementById('final-char-class');
         const finalLevel = document.getElementById('final-char-level');
         const finalMana = document.getElementById('final-char-mana');
         const finalSkills = document.getElementById('final-char-skills');
+        const finalEnding = document.getElementById('final-ending-desc');
 
         if (finalClass) finalClass.textContent = heroi.classe || 'Programador';
         if (finalLevel) finalLevel.textContent = heroi.nivel || '1';
         if (finalMana) finalMana.textContent = heroi.mana || '50';
         if (finalSkills) finalSkills.textContent = (heroi.habilidades || []).join(', ');
+
+        if (finalEnding) {
+            let endingText = "";
+            if (heroi.fama >= 60) {
+                endingText = "Herói da Comunidade - Seus atos de cooperação com os NPCs do Reino do Código espalharam sua fama por todo o continente.";
+            } else if (heroi.fama <= 40) {
+                endingText = "Desenvolvedor Pragmático - Você resolveu os desafios de forma estritamente racional, ignorando a opinião alheia.";
+            } else {
+                endingText = "Final Equilibrado - Você manteve uma postura neutra, resolvendo os problemas e garantindo sua passagem de volta.";
+            }
+
+            if (mundo.segredo_desbloqueado) {
+                endingText += " [Hacker Lendário] Além disso, você manipulou as variáveis profundas do universo para destrancar caminhos ocultos!";
+            }
+
+            const clima = (mundo.clima || 'sol').toLowerCase();
+            if (clima === 'sol') endingText += " O Reino amanheceu sob um lindo Sol, celebrando sua jornada.";
+            else if (clima === 'chuva') endingText += " Uma Chuva reconfortante cobriu o portal na sua despedida.";
+            else if (clima === 'neve') endingText += " Flocos de Neve decoraram o portal durante sua transição.";
+            else if (clima === 'tempestade') endingText += " Relâmpagos de uma Tempestade épica ecoaram no horizonte.";
+            else if (clima === 'neblina') endingText += " Uma misteriosa Neblina encobriu seus passos de volta para casa.";
+
+            finalEnding.textContent = endingText;
+        }
     },
 
     updateJSON() {
@@ -303,6 +423,48 @@ const UIManager = {
         const data = window.gameEngine.databases[this.activeTab];
         const container = document.getElementById('json-visual-editor');
         if (!container) return;
+
+        // Custom formatting for Crafting Tab
+        if (this.activeTab === 'crafting') {
+            let html = `<span style="color:#bd93f9; font-weight:bold;">// SISTEMA DE CRAFTING</span>\n\n`;
+            html += `<span style="color:#6272a4;">Recursos Disponíveis:</span>\n`;
+            const resources = window.gameEngine.databases.inventario.itens;
+            const erva = resources.find(i => i.nome === 'erva')?.quantidade || 0;
+            const minerio = resources.find(i => i.nome === 'minério')?.quantidade || 0;
+            html += `  <span class="json-key">"erva"</span>: <span class="json-number">${erva}</span>,\n`;
+            html += `  <span class="json-key">"minério"</span>: <span class="json-number">${minerio}</span>\n\n`;
+            
+            html += `<span style="color:#6272a4;">Receitas Desbloqueadas:</span>\n`;
+            data.receitas.forEach(recipe => {
+                const reqs = Object.entries(recipe.ingredientes).map(([ing, qty]) => `${qty}x ${ing}`).join(', ');
+                html += `<div style="margin: 8px 0; padding: 10px; border: 1.5px dashed #6272a4; border-radius: 8px; background: rgba(98, 114, 164, 0.05); display: flex; justify-content: space-between; align-items: center;">`;
+                html += `  <div><span style="color:#f1fa8c; font-weight:bold; font-size:13px;">${recipe.nome}</span> <span style="color:#6272a4; font-size:11px;">(${reqs})</span></div>`;
+                html += `  <button onclick="UIManager.triggerCraft('${recipe.nome}')" style="background:#50fa7b; color:#282a36; border:none; border-radius:6px; padding:4px 10px; font-weight:bold; cursor:pointer; font-size:11px; font-family:'Outfit', sans-serif;">CRIAR</button>`;
+                html += `</div>`;
+            });
+            container.innerHTML = html;
+            return;
+        }
+
+        // Custom formatting for Skills Tree Tab
+        if (this.activeTab === 'habilidades_classe') {
+            const heroi = window.gameEngine.databases.heroi;
+            const skillsList = data[heroi.classe] || [];
+            let html = `<span style="color:#ff79c6; font-weight:bold;">// ÁRVORE DE HABILIDADES (${heroi.classe.toUpperCase()})</span>\n\n`;
+            skillsList.forEach(skill => {
+                const hasSkill = heroi.habilidades.includes(skill);
+                html += `<div style="margin: 8px 0; padding: 10px; border: 1.5px solid ${hasSkill ? '#50fa7b' : '#6272a4'}; background: ${hasSkill ? 'rgba(80,250,123,0.05)' : 'rgba(0,0,0,0.2)'}; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">`;
+                html += `  <span style="color:${hasSkill ? '#50fa7b' : '#f8f8f2'}; font-weight:bold; font-size:13px;">${skill}</span>`;
+                if (hasSkill) {
+                    html += `  <span style="color:#50fa7b; font-size:11px; font-weight:bold;"><i class="fa-solid fa-check"></i> Ativa</span>`;
+                } else {
+                    html += `  <button onclick="UIManager.triggerLearnSkill('${skill}')" style="background:#8be9fd; color:#282a36; border:none; border-radius:6px; padding:4px 10px; font-weight:bold; cursor:pointer; font-size:11px; font-family:'Outfit', sans-serif;">APRENDER</button>`;
+                }
+                html += `</div>`;
+            });
+            container.innerHTML = html;
+            return;
+        }
 
         // Mensagem especial quando a aba npcs ainda está vazia (nenhum personagem encontrado)
         if (this.activeTab === 'npcs' && (!data || Object.keys(data).length === 0)) {
@@ -328,11 +490,11 @@ const UIManager = {
         container.innerHTML = this.renderJSONtoHTML(data);
     },
 
-    renderJSONtoHTML(obj, depth = 0) {
-        if (obj === null) return `<span class="json-null">null</span>`;
-        if (typeof obj === 'boolean') return `<span class="json-boolean">${obj}</span>`;
-        if (typeof obj === 'number') return `<span class="json-number">${obj}</span>`;
-        if (typeof obj === 'string') return `<span class="json-string">"${obj}"</span>`;
+    renderJSONtoHTML(obj, depth = 0, path = '') {
+        if (obj === null) return `<span class="json-null json-value-editable" data-path="${path}">null</span>`;
+        if (typeof obj === 'boolean') return `<span class="json-boolean json-value-editable" data-path="${path}">${obj}</span>`;
+        if (typeof obj === 'number') return `<span class="json-number json-value-editable" data-path="${path}">${obj}</span>`;
+        if (typeof obj === 'string') return `<span class="json-string json-value-editable" data-path="${path}">"${obj}"</span>`;
         
         const indent = '  '.repeat(depth);
         const childIndent = '  '.repeat(depth + 1);
@@ -340,7 +502,7 @@ const UIManager = {
         if (Array.isArray(obj)) {
             if (obj.length === 0) return `<span class="json-bracket">[]</span>`;
             let html = `<span class="json-bracket">[</span>\n`;
-            html += obj.map(item => childIndent + this.renderJSONtoHTML(item, depth + 1)).join(',\n');
+            html += obj.map((item, index) => childIndent + this.renderJSONtoHTML(item, depth + 1, `${path}[${index}]`)).join(',\n');
             html += '\n' + indent + `<span class="json-bracket">]</span>`;
             return html;
         }
@@ -350,7 +512,8 @@ const UIManager = {
             if (keys.length === 0) return `<span class="json-bracket">{}</span>`;
             let html = `<span class="json-bracket">{</span>\n`;
             html += keys.map(key => {
-                return childIndent + `<span class="json-key">"${key}"</span>: ` + this.renderJSONtoHTML(obj[key], depth + 1);
+                const nextPath = path ? `${path}.${key}` : key;
+                return childIndent + `<span class="json-key">"${key}"</span>: ` + this.renderJSONtoHTML(obj[key], depth + 1, nextPath);
             }).join(',\n');
             html += '\n' + indent + `<span class="json-bracket">}</span>`;
             return html;
@@ -531,6 +694,75 @@ const UIManager = {
             window.game.scene.stop('FinalScene');
             window.game.scene.start('CharacterCreationScene');
         }
+    },
+
+    startTimingGame(callback) {
+        const container = document.getElementById('combat-timing-container');
+        const indicator = document.getElementById('timing-indicator');
+        const hitBtn = document.getElementById('btn-timing-hit');
+        if (!container || !indicator || !hitBtn) {
+            callback("normal");
+            return;
+        }
+
+        container.style.display = 'block';
+        
+        let position = 0;
+        let speed = 2.5;
+        
+        const clima = (window.gameEngine && window.gameEngine.databases.mundo.clima || 'sol').toLowerCase();
+        if (clima === 'neblina') {
+            speed = 4.5;
+        }
+
+        let direction = 1;
+        let active = true;
+
+        const updateSlider = () => {
+            if (!active) return;
+            position += speed * direction;
+            if (position >= 96) {
+                position = 96;
+                direction = -1;
+            } else if (position <= 0) {
+                position = 0;
+                direction = 1;
+            }
+            indicator.style.left = `${position}%`;
+            requestAnimationFrame(updateSlider);
+        };
+
+        requestAnimationFrame(updateSlider);
+
+        const stopAndCheck = () => {
+            if (!active) return;
+            active = false;
+            
+            hitBtn.removeEventListener('click', stopAndCheck);
+            document.removeEventListener('keydown', keyHandler);
+
+            let result = "fail";
+            if (position >= 65 && position <= 80) {
+                result = "critical";
+            } else if (position >= 40 && position <= 90) {
+                result = "normal";
+            }
+
+            setTimeout(() => {
+                container.style.display = 'none';
+                callback(result);
+            }, 1000);
+        };
+
+        const keyHandler = (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                stopAndCheck();
+            }
+        };
+
+        hitBtn.addEventListener('click', stopAndCheck);
+        document.addEventListener('keydown', keyHandler);
     }
 };
 

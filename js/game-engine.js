@@ -36,15 +36,22 @@ class CodeQuestGame {
                 nivel: 1,
                 experiencia: 0,
                 vida: 100,
+                maxVida: 100,
                 mana: 50,
+                maxMana: 50,
                 forca: 10,
                 inteligencia: 15,  // Alta inteligência para programador
                 destreza: 10,
+                carisma: 10,
+                fama: 50,
                 habilidades: ["análise_de_código", "depuração"]
             },
             inventario: {
-                ouro: 0,
-                itens: [],
+                ouro: 50,
+                itens: [
+                    { nome: "erva", quantidade: 1 },
+                    { nome: "minério", quantidade: 1 }
+                ],
                 equipamentos: {
                     arma: null,
                     armadura: null,
@@ -58,13 +65,27 @@ class CodeQuestGame {
                 regiao: "reino_codigo",
                 cena_atual: "intro",
                 eventos_ativos: [],
-                estado_mundo: "normal"
+                estado_mundo: "normal",
+                glitch_ativo: false,
+                segredo_desbloqueado: false
+            },
+            crafting: {
+                receitas: [
+                    { nome: "Poção de Vida", ingredientes: { "erva": 2 }, resultado: "poção_vida" },
+                    { nome: "Amuleto de Carisma", ingredientes: { "minério": 2, "erva": 1 }, resultado: "amuleto_carisma" }
+                ]
+            },
+            habilidades_classe: {
+                Guerreiro: ["Golpe Devastador", "Pele de Aço", "Fúria Indomável"],
+                Mago: ["Ignição Arcana", "Barreira Elemental", "Meteoro"],
+                Arqueiro: ["Tiro Certeiro", "Esquiva Ágil", "Chuva de Flechas"]
             },
             monstros: {},  //Monstros são revelados dinamicamente conforme o jogador os encontra
             npcs: {}  // NPCs são revelados dinamicamente conforme o jogador os encontra
         };
 
         this.blockCounter = 0;
+        this.interactionCount = 0;
 
         // ==================== MONSTROS REVELADOS ====================
         // Catálogo completo de monstros (dados completos, nunca expostos diretamente)
@@ -73,25 +94,31 @@ class CodeQuestGame {
                 nome: "Slime",
                 nivel: 1,
                 vida: 20,
+                maxVida: 20,
                 ataque: 5,
                 defesa: 2,
-                drops: ["gel_de_slime"]
+                elemento: "natureza",
+                drops: ["erva"]
             },
             goblin: {
                 nome: "Goblin",
                 nivel: 2,
                 vida: 30,
+                maxVida: 30,
                 ataque: 8,
                 defesa: 3,
-                drops: ["osso_goblin", "pele_goblin"]
+                elemento: "fogo",
+                drops: ["minério"]
             },
             lobo: {
                 nome: "Lobo",
                 nivel: 3,
                 vida: 40,
+                maxVida: 40,
                 ataque: 12,
                 defesa: 4,
-                drops: ["pele_lobo", "dente_lobo"]
+                elemento: "gelo",
+                drops: ["pele_lobo"]
             }
         };
 
@@ -250,6 +277,113 @@ class CodeQuestGame {
     updateWorldTime(time) {
         this.databases.mundo.hora = time;
         this.triggerDatabaseUpdate('mundo');
+    }
+
+    advanceInteraction() {
+        this.interactionCount++;
+        
+        // Regeneração de HP
+        const isNight = this.databases.mundo.hora === 'noite';
+        if (!isNight && this.databases.heroi.vida < this.databases.heroi.maxVida) {
+            this.databases.heroi.vida = Math.min(this.databases.heroi.maxVida, this.databases.heroi.vida + 2);
+            this.triggerDatabaseUpdate('heroi');
+        }
+
+        if (this.interactionCount % 5 === 0) {
+            const timeCycles = ["manha", "tarde", "noite"];
+            const currentIndex = timeCycles.indexOf(this.databases.mundo.hora);
+            const nextIndex = (currentIndex + 1) % timeCycles.length;
+            const nextTime = timeCycles[nextIndex];
+            
+            this.updateWorldTime(nextTime);
+
+            // Sorteia clima se amanheceu
+            if (nextTime === "manha") {
+                const weathers = ["sol", "chuva", "neve", "tempestade", "neblina"];
+                const nextWeather = weathers[Math.floor(Math.random() * weathers.length)];
+                this.updateWeather(nextWeather);
+            }
+        }
+    }
+
+    craftItem(recipeName) {
+        const recipe = this.databases.crafting.receitas.find(r => r.nome === recipeName);
+        if (!recipe) return { success: false, message: "Receita não encontrada!" };
+
+        // Verifica ingredientes
+        for (const [ing, reqQty] of Object.entries(recipe.ingredientes)) {
+            const invItem = this.databases.inventario.itens.find(i => i.nome === ing);
+            if (!invItem || invItem.quantidade < reqQty) {
+                return { success: false, message: `Ingredientes insuficientes! Precisa de ${reqQty}x ${ing}` };
+            }
+        }
+
+        // Consome ingredientes
+        for (const [ing, reqQty] of Object.entries(recipe.ingredientes)) {
+            this.removeItem(ing, reqQty);
+        }
+
+        // Adiciona resultado
+        if (recipe.resultado === "poção_vida") {
+            this.addItem("Poção de Vida", 1, { efeito: "Recupera 50 HP", tipo: "consumível" });
+        } else if (recipe.resultado === "amuleto_carisma") {
+            this.addItem("Amuleto de Carisma", 1, { efeito: "+5 Carisma", tipo: "acessorio" });
+            this.databases.heroi.carisma += 5;
+            this.triggerDatabaseUpdate('heroi');
+        } else {
+            this.addItem(recipe.resultado, 1);
+        }
+
+        return { success: true, message: `Sucesso ao criar ${recipe.nome}!` };
+    }
+
+    updateJSONDirectly(tab, keyPath, value) {
+        try {
+            // Se tentar alterar algo inválido/restrito
+            if (tab === 'heroi' && keyPath.includes('classe')) {
+                throw new Error("Classe não pode ser modificada diretamente!");
+            }
+
+            // Acessa e altera a propriedade no objeto databases
+            let obj = this.databases[tab];
+            const parts = keyPath.split('.');
+            for (let i = 0; i < parts.length - 1; i++) {
+                obj = obj[parts[i]];
+            }
+            
+            const lastKey = parts[parts.length - 1];
+            
+            // Converte tipo de valor se necessário
+            let parsedVal = value;
+            if (value === "true") parsedVal = true;
+            else if (value === "false") parsedVal = false;
+            else if (value === "null") parsedVal = null;
+            else if (!isNaN(value) && value.trim() !== '') parsedVal = Number(value);
+
+            obj[lastKey] = parsedVal;
+            
+            // Checa caminhos secretos
+            if (tab === 'mundo' && keyPath === 'estado_mundo' && parsedVal === 'secreto') {
+                this.databases.mundo.segredo_desbloqueado = true;
+                this.databases.mundo.glitch_ativo = false;
+            } else if (tab === 'npcs' && keyPath.includes('chave_necessaria') && parsedVal === false) {
+                this.databases.mundo.segredo_desbloqueado = true;
+                this.databases.mundo.glitch_ativo = false;
+            } else {
+                // Modificação incorreta/aleatória gera glitch se fugir do esperado
+                if (tab === 'mundo' && keyPath === 'estado_mundo' && parsedVal !== 'normal') {
+                    this.databases.mundo.glitch_ativo = true;
+                }
+            }
+
+            this.triggerDatabaseUpdate(tab);
+            return { success: true };
+        } catch (e) {
+            console.error("Erro ao modificar JSON:", e);
+            this.databases.mundo.glitch_ativo = true;
+            this.triggerDatabaseUpdate('mundo');
+            return { success: false, error: e.message };
+        }
     }
 
     triggerDatabaseUpdate(tab) {
