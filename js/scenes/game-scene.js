@@ -263,6 +263,12 @@ class GameScene extends Phaser.Scene {
 
         // Carrega nó narrativo de introdução
         this.loadNode('intro');
+
+        // Adiciona listener para recarregar cena quando a tela mudar de tamanho
+        this.scale.on('resize', (gameSize, baseSize, displaySize, resolution) => {
+            console.log('[GameScene] Tela alterado - recarregando cena');
+            this.scene.restart();
+        });
     }
 
     handleStateChange(oldState, newState, data) {
