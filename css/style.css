@@ -455,6 +455,14 @@ body {
     gap: 2rem;
 }
 
+.dialog-bottom-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: stretch;
+    width: 100%;
+}
+
 .dialog-fog {
     position: absolute;
     bottom: 0;
@@ -484,6 +492,19 @@ body {
 
 .dialog-box:hover {
     border-color: rgba(224, 108, 117, 0.4);
+}
+
+.dialog-box.choices-active {
+    cursor: default;
+    border-color: var(--surface-border);
+}
+
+.dialog-box.choices-active:hover {
+    border-color: var(--surface-border);
+}
+
+.dialog-box.choices-active .dialog-cursor {
+    display: none;
 }
 
 .dialog-name-tag {
@@ -1223,6 +1244,78 @@ body {
 
 .drawer-meters .meter-bar-outer {
     width: 100%;
+}
+
+/* ----------------------------------------------------
+   STATUS SIDEBAR PANEL (Top-left floating with glassmorphism)
+   ---------------------------------------------------- */
+#status-sidebar-panel {
+    position: relative;
+    width: 170px;
+    height: 180px;
+    background: rgba(30, 31, 41, 0.9);
+    border: 1px solid var(--surface-border);
+    border-radius: 16px;
+    padding: 1.2rem 1.1rem;
+    color: #f8f8f2;
+    font-family: 'Outfit', sans-serif;
+    z-index: 1000;
+    box-shadow: 0 -4px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.8rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+#status-sidebar-panel::-webkit-scrollbar {
+    width: 4px;
+}
+#status-sidebar-panel::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+}
+
+#status-sidebar-panel:hover {
+    border-color: rgba(224, 108, 117, 0.4);
+}
+
+.status-sidebar-title {
+    font-weight: bold;
+    color: #8be9fd;
+    font-family: 'Fredoka', sans-serif;
+    border-bottom: 2px solid var(--surface-border);
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.status-item {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+}
+
+.status-item i {
+    width: 20px;
+    color: #8be9fd;
+}
+
+.status-val-dano,
+.status-val-armadura,
+.status-val-fama,
+.status-val-ouro {
+    font-weight: 700;
+    color: #f1fa8c;
 }
 
 /* ----------------------------------------------------

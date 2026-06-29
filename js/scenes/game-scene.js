@@ -588,9 +588,6 @@ class GameScene extends Phaser.Scene {
 
             if (window.UIManager) {
                 window.UIManager.showDialogue(item.speaker, item.text, () => {
-                    if (window.gameEngine) {
-                        window.gameEngine.advanceInteraction();
-                    }
                     this.playNextDialog(currentNodeObj);
                 });
             }

@@ -266,44 +266,7 @@
 }
 
 /* --- PAINEL DE STATUS LATERAL --- */
-#status-sidebar-panel {
-    width: 240px;
-    height: 180px;
-    background: rgba(30, 31, 41, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 1.2rem 1.5rem;
-    color: #f8f8f2;
-    font-family: 'Outfit', sans-serif;
-    z-index: 1000;
-    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(20px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-}
-.status-sidebar-title {
-    font-weight: bold;
-    color: #8be9fd;
-    font-family: 'Fredoka', sans-serif;
-    border-bottom: 1.5px solid #44475a;
-    padding-bottom: 6px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-}
-.status-item {
-    font-size: 13.5px;
-    margin: 8px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.status-item i {
-    width: 20px;
-}
+/* Styles moved to style.css for centralized management */
 
 /* --- BARRA DE TIMING DE COMBATE --- */
 #combat-timing-container {

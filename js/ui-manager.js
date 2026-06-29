@@ -217,6 +217,12 @@ const UIManager = {
         const dialogBox = document.getElementById('game-dialog-box');
         if (dialogBox) {
             dialogBox.addEventListener('click', () => {
+                // Ignore clicks if choices are active
+                const choicesContainer = document.getElementById('game-choices-container');
+                if (choicesContainer && choicesContainer.style.display === 'flex') {
+                    return;
+                }
+                
                 if (this.isTyping) {
                     clearInterval(this.typingTimer);
                     this.isTyping = false;
@@ -250,9 +256,8 @@ const UIManager = {
 
         if (window.gameEngine) {
             window.gameEngine.onDatabaseUpdate = (tab) => {
-                if (tab === this.activeTab) {
-                    this.updateJSON();
-                }
+                // Always update both JSON and HUD for complete synchronization
+                this.updateJSON();
                 this.updateHUD();
             };
         }
@@ -332,7 +337,7 @@ const UIManager = {
         const sidebar = document.getElementById('status-sidebar-panel');
         if (sidebar) {
             if (this.activeScreen === 'game') {
-                sidebar.style.display = 'block';
+                sidebar.style.display = 'flex';
                 
                 // Calcula Dano base
                 let dmg = heroi.forca;
@@ -577,15 +582,22 @@ const UIManager = {
         const dialogBox = document.getElementById('game-dialog-box');
         if (dialogBox) {
             dialogBox.style.display = 'none';
+            dialogBox.classList.remove('choices-active');
         }
     },
 
     showChoices(choices, onSelectCallback) {
         const choicesContainer = document.getElementById('game-choices-container');
+        const dialogBox = document.getElementById('game-dialog-box');
         if (!choicesContainer) return;
 
         choicesContainer.innerHTML = '';
         choicesContainer.style.display = 'flex';
+
+        // Add choices-active class to dialog box to disable hover effects
+        if (dialogBox) {
+            dialogBox.classList.add('choices-active');
+        }
 
         choices.forEach(choice => {
             const btn = document.createElement('button');
@@ -596,6 +608,10 @@ const UIManager = {
             `;
             btn.addEventListener('click', () => {
                 choicesContainer.style.display = 'none';
+                // Remove choices-active class when choices are hidden
+                if (dialogBox) {
+                    dialogBox.classList.remove('choices-active');
+                }
                 onSelectCallback(choice);
             });
             choicesContainer.appendChild(btn);
@@ -604,8 +620,13 @@ const UIManager = {
 
     hideChoices() {
         const choicesContainer = document.getElementById('game-choices-container');
+        const dialogBox = document.getElementById('game-dialog-box');
         if (choicesContainer) {
             choicesContainer.style.display = 'none';
+        }
+        // Remove choices-active class when choices are hidden
+        if (dialogBox) {
+            dialogBox.classList.remove('choices-active');
         }
     },
 
