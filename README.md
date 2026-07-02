@@ -106,9 +106,6 @@ Crie arquivos JSON em `assets/maps/` com os dados do mapa (backgrounds, parallax
 
 O jogo usa arquivos JSON para todos os dados:
 
-- **classes.json**: Definição das classes do jogo
-- **memorias.json**: Definição das memórias do mundo
-- **climas.json**: Tipos de clima disponíveis
 - **events.json**: Banco de eventos do jogo
 - **npcs/*.json**: Dados dos NPCs
 - **maps/*.json**: Dados dos mapas

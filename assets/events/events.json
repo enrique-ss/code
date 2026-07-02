@@ -1,43 +1,8268 @@
 {
   "eventos": [
     {
-      "id": "D1M_DESPERTAR",
-      "locais": ["Campo"],
-      "dias": [1],
-      "periodos": ["manha"],
-      "clima": ["Todos"],
+      "id": "D1M_FIX_CAMPO_01",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        1
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
       "memoria_gatilho": null,
       "memoria_ganha": null,
       "peso": 0,
       "tipo": "Fixo",
-      "dialogos": [],
-      "escolhas": []
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "voc?",
+      "obstacle": {
+        "id": "voc?",
+        "sprite": "merchant",
+        "label": "Voc?",
+        "uiTone": "despertar"
+      },
+      "dialogos": [
+        {
+          "falante": "Voc?",
+          "texto": "O her?i desperta em sil?ncio."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "campo ? manha",
+      "sceneTone": "despertar",
+      "overlayPortrait": "voc",
+      "jsonVision": {
+        "speaker": "Voc?",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        1
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "npc",
+      "obstacle_id": "voc?",
+      "speaker": "Voc?",
+      "dialogs": [
+        "O her?i desperta em sil?ncio."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "voc",
+        "portrait": "merchant",
+        "label": "Voc?",
+        "subtitle": "campo ? Dia 1"
+      }
     },
     {
-      "id": "D1M_VILA_CONVITE",
-      "locais": ["Campo"],
-      "dias": [1],
-      "periodos": ["manha"],
-      "clima": ["Todos"],
+      "id": "D1M_FIX_CAMPO_02",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        1
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
       "memoria_gatilho": null,
-      "memoria_ganha": "vila_desbloqueada",
+      "memoria_ganha": null,
       "peso": 0,
       "tipo": "Fixo",
-      "dialogos": [],
-      "escolhas": []
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "A vila est? logo adiante."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "campo ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        1
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "A vila est? logo adiante."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "campo ? Dia 1"
+      }
+    },
+    {
+      "id": "D1T_FIX_CAMPO_03",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        1
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "O caminho come?a a se abrir."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "campo ? tarde",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        1
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "O caminho come?a a se abrir."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "campo ? Dia 1"
+      }
+    },
+    {
+      "id": "D1T_FIX_ESTRADAS_04",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        1
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "A noite se aproxima."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "estradas ? tarde",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        1
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "A noite se aproxima."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "estradas ? Dia 1"
+      }
+    },
+    {
+      "id": "D1N_FIX_CAMPO_05",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        1
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "O c?u revela pistas."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "campo ? noite",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        1
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "O c?u revela pistas."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "campo ? Dia 1"
+      }
+    },
+    {
+      "id": "D1N_FIX_VILA_INICIAL_06",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        1
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "H? tempo para refletir."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "vila_inicial ? noite",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        1
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "H? tempo para refletir."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "vila_inicial ? Dia 1"
+      }
+    },
+    {
+      "id": "D2M_FIX_VILA_INICIAL_07",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        2
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "A vila desperta."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "vila_inicial ? manha",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        2
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "A vila desperta."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "vila_inicial ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_FIX_VILA_INICIAL_08",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        2
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "O ferreiro se mostra atento."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "vila_inicial ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        2
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "O ferreiro se mostra atento."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "vila_inicial ? Dia 2"
+      }
+    },
+    {
+      "id": "D2T_FIX_VILA_INICIAL_09",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        2
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "H? rumores sobre o Boss."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "vila_inicial ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        2
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "H? rumores sobre o Boss."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "vila_inicial ? Dia 2"
+      }
+    },
+    {
+      "id": "D2T_FIX_ESTRADAS_10",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        2
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "O caminho exige cautela."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "estradas ? tarde",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        2
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "O caminho exige cautela."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "estradas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2N_FIX_FLORESTA_SOMBRIA_11",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        2
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "A floresta sussurra."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "floresta_sombria ? noite",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        2
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "A floresta sussurra."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "floresta_sombria ? Dia 2"
+      }
+    },
+    {
+      "id": "D2N_FIX_ESTRADAS_12",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        2
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "Descansar ? sobreviver."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "estradas ? noite",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        2
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "Descansar ? sobreviver."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "estradas ? Dia 2"
+      }
+    },
+    {
+      "id": "D3M_FIX_ESTRADAS_13",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        3
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "Tudo aponta para o fim."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "estradas ? manha",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        3
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "Tudo aponta para o fim."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "estradas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_FIX_FLORESTA_SOMBRIA_14",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        3
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "A floresta se fecha."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "floresta_sombria ? manha",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        3
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "A floresta se fecha."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "floresta_sombria ? Dia 3"
+      }
+    },
+    {
+      "id": "D3T_FIX_RUINAS_ANTIGAS_15",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "As ru?nas chamam."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "ruinas_antigas ? tarde",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "As ru?nas chamam."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3T_FIX_RUINAS_ANTIGAS_16",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "objeto",
+      "obstaculo_id": "porta",
+      "obstacle": {
+        "id": "porta",
+        "sprite": "door",
+        "label": "Guardi?o",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Guardi?o",
+          "texto": "O port?o final se ergue."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "ruinas_antigas ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "guardi_o",
+      "jsonVision": {
+        "speaker": "Guardi?o",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "objeto",
+      "obstacle_id": "porta",
+      "speaker": "Guardi?o",
+      "dialogs": [
+        "O port?o final se ergue."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "guardi_o",
+        "portrait": "door",
+        "label": "Guardi?o",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3N_FIX_RUINAS_ANTIGAS_17",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "O confronto final come?a."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "ruinas_antigas ? noite",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "O confronto final come?a."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3N_FIX_RUINAS_ANTIGAS_18",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "marcador",
+      "obstacle": {
+        "id": "generic",
+        "sprite": "generic",
+        "label": "Narrador",
+        "uiTone": "misterioso"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "O destino se cumpre."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Continuar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "ruinas_antigas ? noite",
+      "sceneTone": "misterioso",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "marcador",
+      "speaker": "Narrador",
+      "dialogs": [
+        "O destino se cumpre."
+      ],
+      "choices": [
+        {
+          "text": "Continuar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Narrador",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
+    },
+    {
+      "id": "D1M_NOR_CAMPO_21",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 3 em campo, per?odo m."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 3 em campo, per?odo m.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "campo ? Dia 1"
+      }
+    },
+    {
+      "id": "D1M_NOR_ESTRADAS_24",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 6 em estradas, per?odo m."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 6 em estradas, per?odo m.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "estradas ? Dia 1"
+      }
+    },
+    {
+      "id": "D1M_NOR_ESTRADAS_27",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 9 em estradas, per?odo t."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 9 em estradas, per?odo t.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "estradas ? Dia 1"
+      }
+    },
+    {
+      "id": "D1M_NOR_VILA_INICIAL_30",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 12 em vila_inicial, per?odo t."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 12 em vila_inicial, per?odo t.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "vila_inicial ? Dia 1"
+      }
+    },
+    {
+      "id": "D1M_NOR_VILA_INICIAL_33",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_15",
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 15 em vila_inicial, per?odo n."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_15"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": "memoria_15",
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_15",
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 15 em vila_inicial, per?odo n.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            },
+            {
+              "type": "memory",
+              "value": "memoria_15"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "vila_inicial ? Dia 1"
+      }
+    },
+    {
+      "id": "D1M_NOR_FLORESTA_SOMBRIA_36",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 18 em floresta_sombria, per?odo n."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 18 em floresta_sombria, per?odo n.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "floresta_sombria ? Dia 1"
+      }
+    },
+    {
+      "id": "D1M_NOR_RUINAS_ANTIGAS_23",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_5",
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 5 em ruinas_antigas, per?odo m."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_5"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": "memoria_5",
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_5",
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 5 em ruinas_antigas, per?odo m.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            },
+            {
+              "type": "memory",
+              "value": "memoria_5"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "ruinas_antigas ? Dia 1"
+      }
+    },
+    {
+      "id": "D1M_NOR_CAMPO_29",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 11 em campo, per?odo t."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 11 em campo, per?odo t.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "campo ? Dia 1"
+      }
+    },
+    {
+      "id": "D1M_NOR_ESTRADAS_35",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 17 em estradas, per?odo n."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 17 em estradas, per?odo n.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "estradas ? Dia 1"
+      }
+    },
+    {
+      "id": "D1T_NOR_ESTRADAS_19",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 1 em estradas, per?odo m."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 1 em estradas, per?odo m.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "estradas ? Dia 1"
+      }
+    },
+    {
+      "id": "D1T_NOR_VILA_INICIAL_22",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 4 em vila_inicial, per?odo m."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 4 em vila_inicial, per?odo m.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "vila_inicial ? Dia 1"
+      }
+    },
+    {
+      "id": "D1T_NOR_VILA_INICIAL_25",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": "ajudou_mercador",
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 7 em vila_inicial, per?odo t."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": "ajudou_mercador",
+        "weight": 4
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": "ajudou_mercador",
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 7 em vila_inicial, per?odo t.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "vila_inicial ? Dia 1"
+      }
+    },
+    {
+      "id": "D1T_NOR_FLORESTA_SOMBRIA_28",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_10",
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 10 em floresta_sombria, per?odo t."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_10"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": "memoria_10",
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_10",
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 10 em floresta_sombria, per?odo t.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            },
+            {
+              "type": "memory",
+              "value": "memoria_10"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "floresta_sombria ? Dia 1"
+      }
+    },
+    {
+      "id": "D1T_NOR_FLORESTA_SOMBRIA_31",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 13 em floresta_sombria, per?odo n."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 13 em floresta_sombria, per?odo n.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "floresta_sombria ? Dia 1"
+      }
+    },
+    {
+      "id": "D1T_NOR_RUINAS_ANTIGAS_34",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 16 em ruinas_antigas, per?odo n."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 16 em ruinas_antigas, per?odo n.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "ruinas_antigas ? Dia 1"
+      }
+    },
+    {
+      "id": "D1N_NOR_FLORESTA_SOMBRIA_20",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 2 em floresta_sombria, per?odo m."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 2 em floresta_sombria, per?odo m.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "floresta_sombria ? Dia 1"
+      }
+    },
+    {
+      "id": "D1N_NOR_RUINAS_ANTIGAS_26",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 8 em ruinas_antigas, per?odo t."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 8 em ruinas_antigas, per?odo t.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "ruinas_antigas ? Dia 1"
+      }
+    },
+    {
+      "id": "D1N_NOR_CAMPO_32",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        1,
+        2
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": "ajudou_mercador",
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 14 em campo, per?odo n."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": "ajudou_mercador",
+        "weight": 7
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        1,
+        2
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": "ajudou_mercador",
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 14 em campo, per?odo n.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "campo ? Dia 1"
+      }
+    },
+    {
+      "id": "D2M_NOR_FLORESTA_SOMBRIA_39",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": "ajudou_mercador",
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 21 em floresta_sombria, per?odo m."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": "ajudou_mercador",
+        "weight": 8
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": "ajudou_mercador",
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 21 em floresta_sombria, per?odo m.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "floresta_sombria ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_NOR_RUINAS_ANTIGAS_42",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 24 em ruinas_antigas, per?odo m."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 24 em ruinas_antigas, per?odo m.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "ruinas_antigas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_NOR_RUINAS_ANTIGAS_45",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 27 em ruinas_antigas, per?odo t."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 27 em ruinas_antigas, per?odo t.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "ruinas_antigas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_NOR_CAMPO_48",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_30",
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 30 em campo, per?odo t."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_30"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": "memoria_30",
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_30",
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 30 em campo, per?odo t.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            },
+            {
+              "type": "memory",
+              "value": "memoria_30"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "campo ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_NOR_CAMPO_51",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 33 em campo, per?odo n."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 33 em campo, per?odo n.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "campo ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_NOR_ESTRADAS_54",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 36 em estradas, per?odo n."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 36 em estradas, per?odo n.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "estradas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_NOR_VILA_INICIAL_41",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 23 em vila_inicial, per?odo m."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 23 em vila_inicial, per?odo m.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "vila_inicial ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_NOR_FLORESTA_SOMBRIA_47",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 29 em floresta_sombria, per?odo t."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 29 em floresta_sombria, per?odo t.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "floresta_sombria ? Dia 2"
+      }
+    },
+    {
+      "id": "D2M_NOR_RUINAS_ANTIGAS_53",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": "ajudou_mercador",
+      "memoria_ganha": "memoria_35",
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 35 em ruinas_antigas, per?odo n."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_35"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": "memoria_35",
+        "memoryTrigger": "ajudou_mercador",
+        "weight": 7
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": "ajudou_mercador",
+      "memoryGain": "memoria_35",
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 35 em ruinas_antigas, per?odo n.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            },
+            {
+              "type": "memory",
+              "value": "memoria_35"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "ruinas_antigas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2T_NOR_RUINAS_ANTIGAS_37",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 19 em ruinas_antigas, per?odo m."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 19 em ruinas_antigas, per?odo m.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "ruinas_antigas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2T_NOR_CAMPO_40",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 22 em campo, per?odo m."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 22 em campo, per?odo m.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "campo ? Dia 2"
+      }
+    },
+    {
+      "id": "D2T_NOR_CAMPO_43",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_25",
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 25 em campo, per?odo t."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_25"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": "memoria_25",
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_25",
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 25 em campo, per?odo t.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            },
+            {
+              "type": "memory",
+              "value": "memoria_25"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "campo ? Dia 2"
+      }
+    },
+    {
+      "id": "D2T_NOR_ESTRADAS_46",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": "ajudou_mercador",
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 28 em estradas, per?odo t."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": "ajudou_mercador",
+        "weight": 4
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": "ajudou_mercador",
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 28 em estradas, per?odo t.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "estradas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2T_NOR_ESTRADAS_49",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 31 em estradas, per?odo n."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 31 em estradas, per?odo n.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "estradas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2T_NOR_VILA_INICIAL_52",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 34 em vila_inicial, per?odo n."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 34 em vila_inicial, per?odo n.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "vila_inicial ? Dia 2"
+      }
+    },
+    {
+      "id": "D2N_NOR_ESTRADAS_38",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_20",
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 20 em estradas, per?odo m."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_20"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": "memoria_20",
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_20",
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 20 em estradas, per?odo m.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            },
+            {
+              "type": "memory",
+              "value": "memoria_20"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "estradas ? Dia 2"
+      }
+    },
+    {
+      "id": "D2N_NOR_VILA_INICIAL_44",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 26 em vila_inicial, per?odo t."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 26 em vila_inicial, per?odo t.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "vila_inicial ? Dia 2"
+      }
+    },
+    {
+      "id": "D2N_NOR_FLORESTA_SOMBRIA_50",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        2,
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 32 em floresta_sombria, per?odo n."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        2,
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 32 em floresta_sombria, per?odo n.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "floresta_sombria ? Dia 2"
+      }
+    },
+    {
+      "id": "D3M_NOR_ESTRADAS_57",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 39 em estradas, per?odo m."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 39 em estradas, per?odo m.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "estradas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_NOR_VILA_INICIAL_60",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": "ajudou_mercador",
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 42 em vila_inicial, per?odo m."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": "ajudou_mercador",
+        "weight": 8
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": "ajudou_mercador",
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 42 em vila_inicial, per?odo m.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "vila_inicial ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_NOR_VILA_INICIAL_63",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_45",
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 45 em vila_inicial, per?odo t."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_45"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": "memoria_45",
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_45",
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 45 em vila_inicial, per?odo t.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            },
+            {
+              "type": "memory",
+              "value": "memoria_45"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "vila_inicial ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_NOR_FLORESTA_SOMBRIA_66",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 48 em floresta_sombria, per?odo t."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 48 em floresta_sombria, per?odo t.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "floresta_sombria ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_NOR_FLORESTA_SOMBRIA_69",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 51 em floresta_sombria, per?odo n."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha",
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 51 em floresta_sombria, per?odo n.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "floresta_sombria ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_NOR_RUINAS_ANTIGAS_72",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 8,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "viajante",
+      "obstacle": {
+        "id": "viajante",
+        "sprite": "merchant",
+        "label": "Viajante",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Viajante",
+          "texto": "Evento normal 54 em ruinas_antigas, per?odo n."
+        },
+        {
+          "falante": "Viajante",
+          "texto": "Peso narrativo 8."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": -1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? manha",
+      "sceneTone": "neutro",
+      "overlayPortrait": "viajante",
+      "jsonVision": {
+        "speaker": "Viajante",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 8
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 8,
+      "obstacle_type": "npc",
+      "obstacle_id": "viajante",
+      "speaker": "Viajante",
+      "dialogs": [
+        "Evento normal 54 em ruinas_antigas, per?odo n.",
+        "Peso narrativo 8."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "viajante",
+        "portrait": "merchant",
+        "label": "Viajante",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_NOR_CAMPO_59",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 41 em campo, per?odo m."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 41 em campo, per?odo m.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "campo ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_NOR_ESTRADAS_65",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 47 em estradas, per?odo t."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 47 em estradas, per?odo t.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "estradas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3M_NOR_VILA_INICIAL_71",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "manha",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 53 em vila_inicial, per?odo n."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? manha",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "manha",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 53 em vila_inicial, per?odo n.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "vila_inicial ? Dia 3"
+      }
+    },
+    {
+      "id": "D3T_NOR_VILA_INICIAL_55",
+      "locais": [
+        "vila_inicial"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 37 em vila_inicial, per?odo m."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "vila_inicial ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "vila_inicial"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 37 em vila_inicial, per?odo m.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "vila_inicial ? Dia 3"
+      }
+    },
+    {
+      "id": "D3T_NOR_FLORESTA_SOMBRIA_58",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_40",
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 40 em floresta_sombria, per?odo m."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_40"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": "memoria_40",
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_40",
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 40 em floresta_sombria, per?odo m.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            },
+            {
+              "type": "memory",
+              "value": "memoria_40"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "floresta_sombria ? Dia 3"
+      }
+    },
+    {
+      "id": "D3T_NOR_FLORESTA_SOMBRIA_61",
+      "locais": [
+        "floresta_sombria"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 43 em floresta_sombria, per?odo t."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "floresta_sombria ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "floresta_sombria"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 43 em floresta_sombria, per?odo t.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "floresta_sombria ? Dia 3"
+      }
+    },
+    {
+      "id": "D3T_NOR_RUINAS_ANTIGAS_64",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 46 em ruinas_antigas, per?odo t."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 46 em ruinas_antigas, per?odo t.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3T_NOR_RUINAS_ANTIGAS_67",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "tarde"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": "ajudou_mercador",
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 49 em ruinas_antigas, per?odo n."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": "ajudou_mercador",
+        "weight": 4
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "tarde"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": "ajudou_mercador",
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 49 em ruinas_antigas, per?odo n.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3T_NOR_CAMPO_70",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 4,
+      "tipo": "Normal",
+      "obstaculo_tipo": "npc",
+      "obstaculo_id": "eldrin",
+      "obstacle": {
+        "id": "eldrin",
+        "sprite": "mage",
+        "label": "Eldrin",
+        "uiTone": "neutro"
+      },
+      "dialogos": [
+        {
+          "falante": "Eldrin",
+          "texto": "Evento normal 52 em campo, per?odo n."
+        },
+        {
+          "falante": "Eldrin",
+          "texto": "Peso narrativo 4."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 0
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? tarde",
+      "sceneTone": "neutro",
+      "overlayPortrait": "eldrin",
+      "jsonVision": {
+        "speaker": "Eldrin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 4
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "tarde",
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 4,
+      "obstacle_type": "npc",
+      "obstacle_id": "eldrin",
+      "speaker": "Eldrin",
+      "dialogs": [
+        "Evento normal 52 em campo, per?odo n.",
+        "Peso narrativo 4."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "eldrin",
+        "portrait": "mage",
+        "label": "Eldrin",
+        "subtitle": "campo ? Dia 3"
+      }
+    },
+    {
+      "id": "D3N_NOR_RUINAS_ANTIGAS_56",
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 38 em ruinas_antigas, per?odo m."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "ruinas_antigas ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 38 em ruinas_antigas, per?odo m.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
+    },
+    {
+      "id": "D3N_NOR_CAMPO_62",
+      "locais": [
+        "campo"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 44 em campo, per?odo t."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "campo ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "campo"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 44 em campo, per?odo t.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "campo ? Dia 3"
+      }
+    },
+    {
+      "id": "D3N_NOR_ESTRADAS_68",
+      "locais": [
+        "estradas"
+      ],
+      "dias": [
+        3,
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
+      "memoria_gatilho": null,
+      "memoria_ganha": "memoria_50",
+      "peso": 7,
+      "tipo": "Normal",
+      "obstaculo_tipo": "monstro",
+      "obstaculo_id": "goblin",
+      "obstacle": {
+        "id": "goblin",
+        "sprite": "goblin",
+        "label": "Goblin",
+        "uiTone": "hostil"
+      },
+      "dialogos": [
+        {
+          "falante": "Goblin",
+          "texto": "Evento normal 50 em estradas, per?odo n."
+        },
+        {
+          "falante": "Goblin",
+          "texto": "Peso narrativo 7."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Prosseguir",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "texto": "Investigar",
+          "target": "continuar",
+          "efeitos": [
+            {
+              "tipo": "karma",
+              "valor": 1
+            },
+            {
+              "tipo": "memory",
+              "valor": "memoria_50"
+            }
+          ]
+        }
+      ],
+      "kind": "normal",
+      "hudTag": "estradas ? noite",
+      "sceneTone": "hostil",
+      "overlayPortrait": "goblin",
+      "jsonVision": {
+        "speaker": "Goblin",
+        "memoryGain": "memoria_50",
+        "memoryTrigger": null,
+        "weight": 7
+      },
+      "locations": [
+        "estradas"
+      ],
+      "day": [
+        3,
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": "memoria_50",
+      "weight": 7,
+      "obstacle_type": "monstro",
+      "obstacle_id": "goblin",
+      "speaker": "Goblin",
+      "dialogs": [
+        "Evento normal 50 em estradas, per?odo n.",
+        "Peso narrativo 7."
+      ],
+      "choices": [
+        {
+          "text": "Prosseguir",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "Investigar",
+          "target": "continuar",
+          "effects": [
+            {
+              "type": "karma",
+              "value": 1
+            },
+            {
+              "type": "memory",
+              "value": "memoria_50"
+            }
+          ]
+        }
+      ],
+      "ui": {
+        "speakerSlug": "goblin",
+        "portrait": "goblin",
+        "label": "Goblin",
+        "subtitle": "estradas ? Dia 3"
+      }
     },
     {
       "id": "D3N_CONFRONTO_FINAL",
-      "locais": ["Ruinas Antigas"],
-      "dias": [3],
-      "periodos": ["noite"],
-      "clima": ["Todos"],
+      "locais": [
+        "ruinas_antigas"
+      ],
+      "dias": [
+        3
+      ],
+      "periodos": [
+        "noite"
+      ],
+      "clima": [
+        "Todos"
+      ],
       "memoria_gatilho": null,
       "memoria_ganha": null,
       "peso": 0,
       "tipo": "Fixo",
-      "dialogos": [],
-      "escolhas": []
+      "obstaculo_tipo": "generic",
+      "obstaculo_id": "boss",
+      "obstacle": {
+        "id": "boss",
+        "sprite": "door",
+        "label": "Confronto Final",
+        "uiTone": "boss"
+      },
+      "dialogos": [
+        {
+          "falante": "Narrador",
+          "texto": "As Ruínas Antigas revelam o confronto final."
+        }
+      ],
+      "escolhas": [
+        {
+          "texto": "Enfrentar",
+          "target": "continuar",
+          "efeitos": []
+        }
+      ],
+      "kind": "fixed",
+      "hudTag": "ruinas_antigas ? noite",
+      "sceneTone": "boss",
+      "overlayPortrait": "narrador",
+      "jsonVision": {
+        "speaker": "Narrador",
+        "memoryGain": null,
+        "memoryTrigger": null,
+        "weight": 0
+      },
+      "locations": [
+        "ruinas_antigas"
+      ],
+      "day": [
+        3
+      ],
+      "period": [
+        "noite"
+      ],
+      "climates": [
+        "Todos"
+      ],
+      "memoryTrigger": null,
+      "memoryGain": null,
+      "weight": 0,
+      "obstacle_type": "generic",
+      "obstacle_id": "boss",
+      "speaker": "Narrador",
+      "dialogs": [
+        "As Ruínas Antigas revelam o confronto final."
+      ],
+      "choices": [
+        {
+          "text": "Enfrentar",
+          "target": "continuar",
+          "effects": []
+        }
+      ],
+      "ui": {
+        "speakerSlug": "narrador",
+        "portrait": "generic",
+        "label": "Confronto Final",
+        "subtitle": "ruinas_antigas ? Dia 3"
+      }
     }
   ]
 }
