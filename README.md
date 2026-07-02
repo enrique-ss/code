@@ -1,149 +1,132 @@
 # Code Quest
 
-Um visual novel interativo desenvolvido com Phaser 3, onde você é um programador transportado para um mundo de fantasia medieval. Use suas habilidades de programação para manipular o JSON do mundo e encontrar seu caminho de volta para casa!
+Um jogo de aventura 2D narrativo com sistema de eventos dinâmicos, desenvolvido com JavaScript e Phaser 3. O jogador é transportado para um mundo de fantasia medieval e deve navegar por uma história ramificada com escolhas morais que afetam o desfecho.
 
-## 🚀 Como Jogar
+## 🚀 Setup do Projeto
 
-### Opção 1: Abrir Diretamente (Mais Simples)
+### Pré-requisitos
+
+- Node.js (versão 14 ou superior)
+- npm (geralmente instalado com Node.js)
+
+### Instalação
 
 1. Clone ou baixe o repositório
-2. Abra o arquivo `index.html` no seu navegador
-3. Pronto! O jogo funciona sem precisar instalar nada
+2. Navegue até a pasta do projeto:
+   ```bash
+   cd code
+   ```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-### Opção 2: GitHub Pages
+### Executar o Projeto
 
-Hospede o jogo gratuitamente no GitHub Pages:
+#### Desenvolvimento (com auto-reload)
+```bash
+npm run dev
+```
 
-1. Faça push do repositório para o GitHub
-2. Vá em Settings > Pages
-3. Em "Source", selecione "Deploy from a branch"
-4. Escolha a branch `main` e a pasta `/ (root)`
-5. Clique em "Save"
-6. Aguarde alguns minutos e o jogo estará disponível em `https://seu-usuario.github.io/code`
+#### Produção
+```bash
+npm start
+```
+
+O jogo estará disponível em `http://localhost:8080`
 
 ## 📱 Compatibilidade
 
-- ✅ **Desktop**: Chrome, Firefox, Edge, Safari
-- ✅ **Mobile**: iOS Safari, Chrome Mobile
-- ✅ **Tablet**: Qualquer navegador moderno
+- ✅ **Desktop**: Chrome, Firefox, Edge, Safari (Windows)
+- ✅ **Mobile**: iOS Safari, Chrome Mobile (limitado no MVP)
 
 ## 🎮 Características
 
-- **Motor de Jogo**: Phaser 3 via CDN (sem instalação)
-- **Visual Novel**: Sistema de diálogos com efeito de digitação
-- **Sistema de Escolhas**: Escolhas que afetam a história
-- **Editor JSON**: Painel lateral para visualizar e editar dados do jogo
-- **Sistema de Classes**: Guerreiro, Mago e Ladino
-- **Responsivo**: Funciona em PC e mobile
+- **Motor de Jogo**: Phaser 3.60.0
+- **Sistema de Eventos**: Sorteio ponderado com requisitos de memória, clima e localização
+- **Sistema de Escolhas**: Escolhas que afetam Karma e desbloqueiam eventos futuros
+- **Visão JSON**: Painel lateral para visualizar dados do jogo com desbloqueio progressivo
+- **Sistema de Classes**: Guerreiro, Mago e Arqueiro
+- **Persistência**: Estado salvo em localStorage
+- **Movimentação Automática**: Personagem move-se automaticamente no eixo X
 
 ## 📁 Estrutura do Projeto
 
 ```
 code/
-├── assets/                 # Imagens e assets do jogo
+├── assets/
+│   ├── events/           # Arquivos JSON de eventos
+│   ├── npcs/             # Arquivos JSON de NPCs
+│   ├── maps/             # Arquivos JSON de mapas
+│   ├── classes/          # Arquivos JSON de classes
+│   └── data/             # Dados gerais (climas, memórias)
 ├── css/
-│   └── style.css          # Estilos CSS
+│   └── style.css         # Estilos CSS
 ├── js/
 │   ├── config.js         # Configurações e constantes
 │   ├── game-engine.js    # Motor do jogo
 │   ├── history.js        # História e nós de diálogo
 │   ├── ui-manager.js     # Gerenciador do editor JSON
 │   ├── main.js           # Entry point do Phaser 3
-│   └── scenes/
-│       ├── preload-scene.js       # Carregamento de assets
-│       ├── menu-scene.js          # Menu principal
-│       ├── character-creation-scene.js  # Criação de personagem
-│       ├── game-scene.js          # Cena principal do jogo
-│       └── final-scene.js         # Tela final
-└── index.html            # HTML principal
+│   ├── managers/         # Gerenciadores de sistemas
+│   └── scenes/           # Cenas do jogo
+├── index.html            # HTML principal
+├── package.json          # Dependências do projeto
+├── GDD.md                # Documento de Design de Jogo
+└── KANBAN.md             # Kanban de desenvolvimento
 ```
 
 ## 🎯 Como Jogar
 
 1. **Menu Principal**: Clique em "Iniciar Jogo"
 2. **Criação de Personagem**: 
-   - Digite o nome do seu personagem
-   - Escolha uma classe (Guerreiro, Mago ou Ladino)
+   - Escolha uma classe (Guerreiro, Mago ou Arqueiro)
    - Clique em "Confirmar"
 3. **Jogo**:
-   - Clique na caixa de diálogo para avançar
-   - Faça escolhas que afetam a história
-   - Use o editor JSON para visualizar dados do jogo
-4. **Editor JSON**: Clique no botão "JSON" no canto superior esquerdo
+   - O personagem move-se automaticamente até colidir com eventos
+   - Faça escolhas que afetam a história e o Karma
+   - Use o painel JSON para visualizar dados do jogo
+4. **Desfecho**: O final depende do Karma acumulado durante a run
 
 ## 🔧 Desenvolvimento
 
-### Adicionar Novas Cenas
+### Adicionar Novos Eventos
 
-1. Crie um novo arquivo em `js/scenes/`
-2. Crie a classe da cena:
-```javascript
-class MinhaCena extends Phaser.Scene {
-    constructor() {
-        super('MinhaCena');
-    }
-    
-    create() {
-        // Sua lógica aqui
-    }
-}
-```
+Edite `assets/events/events.json` e adicione novos eventos seguindo a estrutura definida no GDD.
 
-3. Adicione a cena ao array de cenas em `js/main.js`
+### Adicionar Novos NPCs
 
-### Adicionar Novos Assets
+Crie arquivos JSON em `assets/npcs/` seguindo o modelo de estrutura definido.
 
-1. Coloque as imagens na pasta `assets/`
-2. Adicione o asset ao objeto `ASSETS` em `js/config.js`
-3. O asset será carregado automaticamente no `PreloadScene`
+### Adicionar Novos Mapas
 
-### Adicionar Novos Nós de História
-
-Edite `js/history.js` e adicione novos nós ao objeto `StoryNodes`:
-
-```javascript
-const StoryNodes = {
-    meu_novo_no: {
-        bg: "planicie_inicial",
-        dialogs: [
-            { speaker: "Narrador", text: "Seu texto aqui" }
-        ],
-        choices: [
-            { text: "Opção 1", target: "outro_no" }
-        ]
-    }
-};
-```
-
-## 🎨 Customização
-
-### Cores e Estilos
-
-Edite `SPRITE_STYLES` em `js/config.js` para customizar cores dos personagens.
-
-### Fontes
-
-O projeto usa Google Fonts (Fredoka, Outfit). Para alterar, edite o HTML e as configurações de texto nas cenas.
+Crie arquivos JSON em `assets/maps/` com os dados do mapa (backgrounds, parallax, etc).
 
 ## 📊 Sistema de Dados
 
-O jogo usa um sistema de JSON dinâmico que pode ser editado em tempo real:
+O jogo usa arquivos JSON para todos os dados:
 
-- **heroi**: Atributos do jogador (vida, mana, força, etc.)
-- **inventario**: Itens, ouro e equipamentos
-- **mundo**: Clima, hora, localização
-- **monstros**: Dados de monstros
-- **npcs**: Dados de NPCs
+- **classes.json**: Definição das classes do jogo
+- **memorias.json**: Definição das memórias do mundo
+- **climas.json**: Tipos de clima disponíveis
+- **events.json**: Banco de eventos do jogo
+- **npcs/*.json**: Dados dos NPCs
+- **maps/*.json**: Dados dos mapas
 
 ## 🐛 Troubleshooting
 
 ### Assets não carregam
 
-Verifique se os arquivos de imagem existem na pasta `assets/` e se os caminhos em `config.js` estão corretos.
+Verifique se os arquivos existem nas pastas corretas em `assets/` e se os caminhos estão corretos.
 
-### Editor JSON não funciona
+### Erro ao executar npm start
 
-O editor JSON usa DOM overlay sobre o canvas Phaser. Verifique se `ui-manager.js` está carregado corretamente.
+Certifique-se de que instalou as dependências com `npm install`.
+
+## 📝 Documentação
+
+- **GDD.md**: Documento de Design de Jogo completo
+- **KANBAN.md**: Kanban de desenvolvimento com tarefas pendentes
 
 ## 📝 Licença
 

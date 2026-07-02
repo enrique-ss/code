@@ -1,0 +1,15 @@
+{
+  "id": "floresta_sombria",
+  "nome": "Floresta Sombria",
+  "descricao": "Uma floresta densa com árvores altas e sombras misteriosas",
+  "background": "floresta_bg.png",
+  "parallax_layers": [
+    "floresta_layer1.png",
+    "floresta_layer2.png",
+    "floresta_layer3.png",
+    "floresta_layer4.png",
+    "floresta_layer5.png"
+  ],
+  "desbloqueado_por_defecto": false,
+  "memoria_desbloqueio": "boss_localizado"
+}

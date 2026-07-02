@@ -1,0 +1,16 @@
+{
+  "id": "viajante",
+  "nome": "Viajante",
+  "descricao": "Um viajante misterioso que parece saber muito sobre o mundo",
+  "localizacao": "Estradas",
+  "atributos_visiveis": {
+    "nome": true,
+    "descricao": true,
+    "origem": false
+  },
+  "atributos_ocultos": {
+    "identidade_real": false,
+    "motivacao": false,
+    "conhecimento_secreto": false
+  }
+}

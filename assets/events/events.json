@@ -1,0 +1,43 @@
+{
+  "eventos": [
+    {
+      "id": "D1M_DESPERTAR",
+      "locais": ["Campo"],
+      "dias": [1],
+      "periodos": ["manha"],
+      "clima": ["Todos"],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "dialogos": [],
+      "escolhas": []
+    },
+    {
+      "id": "D1M_VILA_CONVITE",
+      "locais": ["Campo"],
+      "dias": [1],
+      "periodos": ["manha"],
+      "clima": ["Todos"],
+      "memoria_gatilho": null,
+      "memoria_ganha": "vila_desbloqueada",
+      "peso": 0,
+      "tipo": "Fixo",
+      "dialogos": [],
+      "escolhas": []
+    },
+    {
+      "id": "D3N_CONFRONTO_FINAL",
+      "locais": ["Ruinas Antigas"],
+      "dias": [3],
+      "periodos": ["noite"],
+      "clima": ["Todos"],
+      "memoria_gatilho": null,
+      "memoria_ganha": null,
+      "peso": 0,
+      "tipo": "Fixo",
+      "dialogos": [],
+      "escolhas": []
+    }
+  ]
+}

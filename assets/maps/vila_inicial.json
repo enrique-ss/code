@@ -1,0 +1,15 @@
+{
+  "id": "vila_inicial",
+  "nome": "Vila Inicial",
+  "descricao": "Uma pequena vila com casas de madeira e uma praça central",
+  "background": "vila_bg.png",
+  "parallax_layers": [
+    "vila_layer1.png",
+    "vila_layer2.png",
+    "vila_layer3.png",
+    "vila_layer4.png",
+    "vila_layer5.png"
+  ],
+  "desbloqueado_por_defecto": false,
+  "memoria_desbloqueio": "vila_desbloqueada"
+}

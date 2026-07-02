@@ -1,0 +1,16 @@
+{
+  "id": "ferreiro",
+  "nome": "Ferreiro",
+  "descricao": "Um artesão habilidoso que trabalha com metal",
+  "localizacao": "Vila Inicial",
+  "atributos_visiveis": {
+    "nome": true,
+    "descricao": true,
+    "profissao": true
+  },
+  "atributos_ocultos": {
+    "historia": false,
+    "habilidades_especiais": false,
+    "relacoes": false
+  }
+}
